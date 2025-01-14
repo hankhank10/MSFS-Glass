@@ -1,9 +1,11 @@
-from SimConnect import *
+from ctypes import cast
+from _ctypes import POINTER
+
 from .Enum import *
-from .Constants import *
 
 
-class Facilitie(object):
+
+class Facilities(object):
 	def __init__(self):
 		pass
 

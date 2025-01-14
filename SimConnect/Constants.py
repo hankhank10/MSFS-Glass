@@ -1,8 +1,6 @@
-import logging
-from ctypes.wintypes import *
-from ctypes import *
+from ctypes import c_float
+from ctypes.wintypes import DWORD
 
-LOGGER = logging.getLogger(__name__)
 
 
 # //----------------------------------------------------------------------------
@@ -10,7 +8,6 @@ LOGGER = logging.getLogger(__name__)
 # //----------------------------------------------------------------------------
 
 DWORD_MAX = DWORD(0xFFFFFFFF)
-SIMCONNECT_UNUSED = DWORD_MAX
 SIMCONNECT_OBJECT_ID_USER = DWORD(0)  # proxy value for User vehicle ObjectID
 SIMCONNECT_UNUSED = DWORD_MAX  # special value to indicate unused event, ID
 
@@ -63,3 +60,8 @@ SIMCONNECT_OPEN_CONFIGINDEX_LOCAL = DWORD(
 	-1
 )  # ignore SimConnect.cfg settings, and force local connection
 SIMCONNECT_OBJECT_ID = DWORD
+
+SIMCONNECT_CLOUD_STATE_ARRAY_WIDTH = 64
+SIMCONNECT_CLOUD_STATE_ARRAY_SIZE = (
+    SIMCONNECT_CLOUD_STATE_ARRAY_WIDTH * SIMCONNECT_CLOUD_STATE_ARRAY_WIDTH
+)

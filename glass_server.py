@@ -1,10 +1,10 @@
-from flask import Flask, jsonify, render_template, request, abort
-from werkzeug.wrappers import response
+import json
+
+from flask import Flask, jsonify, render_template, request, abort, redirect
 from SimConnect import *
 from SimConnect.simconnect_mobiflight import SimConnectMobiFlight
 from SimConnect.mobiflight_variable_requests import MobiFlightVariableRequests
-from time import sleep, localtime
-import random
+from time import sleep
 import logging
 import math
 import socket
@@ -24,6 +24,8 @@ selected_plane = ""
 
 # list of kml files in program directroy
 kml_list = []
+LOG = logging.getLogger('SimConnect')
+LOG.setLevel(logging.INFO)
 
 cwd = os.path.realpath(os.path.join(
     os.getcwd(), os.path.dirname(__file__)))
@@ -41,6 +43,7 @@ def flask_thread_func(threadname):
     global sm
     global ae
     global fltpln
+    global api_key
 
     # Define Supported Aircraft
     planes_list = [
@@ -85,8 +88,9 @@ def flask_thread_func(threadname):
     ui_friendly_dictionary["selected_plane"] = selected_plane
 
     app = Flask(__name__)
-    log = logging.getLogger('werkzeug')
-    log.disabled = True
+    flask_log = logging.getLogger('werkzeug')
+    flask_log.disabled = True
+
 
     @app.route('/ui')
     def output_ui_variables():
@@ -94,23 +98,36 @@ def flask_thread_func(threadname):
         ui_friendly_dictionary["STATUS"] = "success"
         return jsonify(ui_friendly_dictionary)
 
+    @app.route('/sync_aircraft')
+    def sync_aircraft():
+        if sm is not None:
+            sm.load_selected_plane()
+        referer = request.headers.get('Referer', '/')
+        reload_url = f"{referer}?reload=true"
+        return redirect(reload_url)
+
+
     @app.route('/', methods=["GET", "POST"])
     def index():
         global selected_plane
+        global api_key
         cur_plane_select = request.form.get("plane_selected")
+        api_key = request.form.get("api_key")
         if cur_plane_select != None:
             selected_plane = cur_plane_select
             ui_friendly_dictionary["selected_plane"] = selected_plane
-        return render_template('glass.html', planes_list=planes_list, selected_plane=selected_plane, curr_plane=planes_dict[selected_plane])
+        return render_template('glass.html', planes_list=planes_list, selected_plane=selected_plane, curr_plane=planes_dict[selected_plane], api_key=api_key)
 
     @app.route('/landscape', methods=["GET", "POST"])
     def index_landscape():
         global selected_plane
+        global api_key
         cur_plane_select = request.form.get("plane_selected")
+        api_key = request.form.get("api_key")
         if cur_plane_select != None:
             selected_plane = cur_plane_select
             ui_friendly_dictionary["selected_plane"] = selected_plane
-        return render_template('glass_landscape.html', planes_list=planes_list, selected_plane=selected_plane, curr_plane=planes_dict[selected_plane])
+        return render_template('glass_landscape.html', planes_list=planes_list, selected_plane=selected_plane, curr_plane=planes_dict[selected_plane], api_key=api_key)
 
     # returns the list of available KML files
     @app.route('/kml', methods=["GET"])
@@ -125,56 +142,66 @@ def flask_thread_func(threadname):
         except:
             return abort(404)
 
-    def trigger_event(event_name, value_to_use=None):
+    def trigger_event(event_name, value_to_use=None, event_type=None):
         # This function actually does the work of triggering the event
-
-        EVENT_TO_TRIGGER = ae.find(event_name)
-        if EVENT_TO_TRIGGER is not None:
-            if value_to_use is None:
-                EVENT_TO_TRIGGER()
-            else:
-                # Convert Hz BCD for NAV1_RADIO_SET, NAV2_RADIO_SET and AD_SET events
-                if event_name == "NAV1_RADIO_SET" or event_name == "NAV2_RADIO_SET":
-                    freq_hz = float(value_to_use) * 100
-                    freq_hz = str(int(freq_hz))
-                    freq_hz_bcd = 0
-                    for figure, digit in enumerate(reversed(freq_hz)):
-                        freq_hz_bcd += int(digit)*(16**(figure))
-                    EVENT_TO_TRIGGER(int(freq_hz_bcd))
-                elif event_name == "ADF_COMPLETE_SET":
-                    freq_hz = int(value_to_use) * 10000
-                    freq_hz = str(int(freq_hz))
-                    freq_hz_bcd = 0
-                    for figure, digit in enumerate(reversed(freq_hz)):
-                        freq_hz_bcd += int(digit)*(16**(figure))
-                    EVENT_TO_TRIGGER(int(freq_hz_bcd))
-                elif event_name == "COM_RADIO_SET" or event_name == "COM2_RADIO_SET":
-                    freq_hz = float(value_to_use) * 100
-                    flag_3dec = int(freq_hz) != freq_hz
-                    freq_hz = str(int(freq_hz))
-                    freq_hz_bcd = 0
-                    for figure, digit in enumerate(reversed(freq_hz)):
-                        freq_hz_bcd += int(digit)*(16**(figure))
-                    EVENT_TO_TRIGGER(int(freq_hz_bcd))
-                    # Workarouund for 3rd decimal
-                    if flag_3dec is True and str(value_to_use)[-2:] != "25" and str(value_to_use)[-2:] != "75":
-                        if event_name == "COM_RADIO_SET":
-                            trigger_event("COM_STBY_RADIO_SWAP")
-                            trigger_event("COM_RADIO_FRACT_INC")
-                            trigger_event("COM_STBY_RADIO_SWAP")
-                        else:
-                            trigger_event("COM2_RADIO_SWAP")
-                            trigger_event("COM2_RADIO_FRACT_INC")
-                            trigger_event("COM2_RADIO_SWAP")
-                elif event_name == "XPNDR_SET":
-                    freq_hz = int(value_to_use) * 1
-                    freq_hz = str(int(freq_hz))
-                    freq_hz_bcd = 0
-                    for figure, digit in enumerate(reversed(freq_hz)):
-                        freq_hz_bcd += int(digit)*(16**(figure))
-                    EVENT_TO_TRIGGER(int(freq_hz_bcd))
+        LOG.debug(f"Triggered event: {event_name}: {value_to_use} {event_type}")
+        if event_type == '' or event_type == "aircraft":
+            EVENT_TO_TRIGGER = ae.find(event_name)
+            if EVENT_TO_TRIGGER is not None:
+                if value_to_use is None:
+                    EVENT_TO_TRIGGER()
                 else:
-                    EVENT_TO_TRIGGER(int(value_to_use))
+                    # Convert Hz BCD for NAV1_RADIO_SET, NAV2_RADIO_SET and AD_SET events
+                    if event_name == "NAV1_RADIO_SET" or event_name == "NAV2_RADIO_SET":
+                        freq_hz = float(value_to_use) * 100
+                        freq_hz = str(int(freq_hz))
+                        freq_hz_bcd = 0
+                        for figure, digit in enumerate(reversed(freq_hz)):
+                            freq_hz_bcd += int(digit)*(16**(figure))
+                        EVENT_TO_TRIGGER(int(freq_hz_bcd))
+                    elif event_name == "ADF_COMPLETE_SET":
+                        freq_hz = int(value_to_use) * 10000
+                        freq_hz = str(int(freq_hz))
+                        freq_hz_bcd = 0
+                        for figure, digit in enumerate(reversed(freq_hz)):
+                            freq_hz_bcd += int(digit)*(16**(figure))
+                        EVENT_TO_TRIGGER(int(freq_hz_bcd))
+                    elif event_name == "COM_RADIO_SET" or event_name == "COM2_RADIO_SET":
+                        freq_hz = float(value_to_use) * 100
+                        flag_3dec = int(freq_hz) != freq_hz
+                        freq_hz = str(int(freq_hz))
+                        freq_hz_bcd = 0
+                        for figure, digit in enumerate(reversed(freq_hz)):
+                            freq_hz_bcd += int(digit)*(16**(figure))
+                        EVENT_TO_TRIGGER(int(freq_hz_bcd))
+                        # Workarouund for 3rd decimal
+                        if flag_3dec is True and str(value_to_use)[-2:] != "25" and str(value_to_use)[-2:] != "75":
+                            if event_name == "COM_RADIO_SET":
+                                trigger_event("COM_STBY_RADIO_SWAP")
+                                trigger_event("COM_RADIO_FRACT_INC")
+                                trigger_event("COM_STBY_RADIO_SWAP")
+                            else:
+                                trigger_event("COM2_RADIO_SWAP")
+                                trigger_event("COM2_RADIO_FRACT_INC")
+                                trigger_event("COM2_RADIO_SWAP")
+                    elif event_name == "XPNDR_SET":
+                        freq_hz = int(value_to_use) * 1
+                        freq_hz = str(int(freq_hz))
+                        freq_hz_bcd = 0
+                        for figure, digit in enumerate(reversed(freq_hz)):
+                            freq_hz_bcd += int(digit)*(16**(figure))
+                        EVENT_TO_TRIGGER(int(freq_hz_bcd))
+                    else:
+                        EVENT_TO_TRIGGER(int(value_to_use))
+            status = "success"
+        elif event_type == "input":
+            if event_name == "AS1000_RANGE_MFD" or event_name == "AS1000_RANGE_PFD":
+                sm.set_input_event(sm.input_event_hash[event_name], value_to_use)
+                sleep(0.5)
+                sm.set_input_event(sm.input_event_hash[event_name], [0.0, 0.0, 0.0])
+            else:
+                print("triggering event: ", event_name, value_to_use, event_type)
+                sm.set_input_event(sm.input_event_hash[event_name], float(value_to_use))
 
             status = "success"
         else:
@@ -187,9 +214,9 @@ def flask_thread_func(threadname):
         # This is the http endpoint wrapper for triggering an event
 
         ds = request.get_json() if request.is_json else request.form
-        value_to_use = ds.get('value_to_use')
-
-        status = trigger_event(event_name, value_to_use)
+        value_to_use = json.loads(ds.get('value_to_use'))
+        event_type = ds.get('event_type')
+        status = trigger_event(event_name, value_to_use, event_type)
 
         return jsonify(status)
 
@@ -216,13 +243,12 @@ def flask_thread_func(threadname):
 
             try:
                 # MS Store
-                fltpln_dir_full = fltpln_dir + \
-                    "\LocalState\MISSIONS\Custom\CustomFlight\CUSTOMFLIGHT.FLT"
+                fltpln_dir_full = fltpln_dir + '\LocalState\MISSIONS\Custom\CustomFlight\CUSTOMFLIGHT.FLT'
                 with open(fltpln_dir_full, 'r') as fltpln:
                     fltpln_lines = fltpln.readlines()
             except:
                 # Steam
-                fltpln_dir_full = fltpln_dir + "\MISSIONS\Custom\CustomFlight\CUSTOMFLIGHT.FLT"
+                fltpln_dir_full = fltpln_dir + '\MISSIONS\Custom\CustomFlight\CUSTOMFLIGHT.FLT'
                 with open(fltpln_dir_full, 'r') as fltpln:
                     fltpln_lines = fltpln.readlines()
 
@@ -322,21 +348,24 @@ def simconnect_thread_func(threadname):
     while True:
         try:
             sm = SimConnect()
-            print("\n********* MSFS 2020 Mobile Companion App *********\n")
-            print(f"Local web server for MSFS 2020 Mobile Companion App initialized.\n")
+            print("\n********* MSFS 2024 Mobile Companion App *********\n")
+            print(f"Local web server for MSFS 2024 Mobile Companion App initialized.\n")
             print(
-                f"Launch {socket.gethostbyname(socket.gethostname())}:4000 in your browser to access MSFS 2020 Mobile Companion App.\n")
+                f"Launch {socket.gethostbyname(socket.gethostname())}:4000 in your browser to access MSFS 2024 Mobile Companion App.\n")
             print(
                 f"Make sure your your mobile device is connected to the same local network (WIFI) as this PC.\n")
             print(f"Notice: If your computer has more than one active ethernet/WIFI adapter, please check ipconfig in command prompt.\n")
             print("**************************************************\n\n")
             break
         except:
-            print("Could not find MSFS running. Please launch MSFS first and then restart the MSFS 2020 Mobile Companion App.")
+            print("Could not find MSFS running. Please launch MSFS first and then restart the MSFS 2024 Mobile Companion App.")
             sleep(5)
 
     ae = AircraftEvents(sm)
     aq = AircraftRequests(sm)
+    REQUEST_ID = sm.new_request_id()
+    sm.dll.EnumerateInputEvents(sm.hSimConnect, REQUEST_ID.value)
+    sleep(1)
 
     # Initialize previous altitude for code stability
     previous_alt = -400
@@ -573,6 +602,7 @@ def simconnect_thread_func2(threadname):
 
     ae = AircraftEvents(sm)
     aq = AircraftRequests(sm)
+
 
     def thousandify(x):
         return f"{x:,}"

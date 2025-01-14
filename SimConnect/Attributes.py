@@ -1,7 +1,9 @@
+from ctypes import HRESULT, c_char_p, c_void_p, c_bool, windll, WINFUNCTYPE
+from ctypes.wintypes import LPCSTR, HWND
+
+
 from .Enum import *
 from .Constants import *
-from ctypes import *
-from ctypes.wintypes import *
 
 
 class SimConnectDll(object):
@@ -15,7 +17,7 @@ class SimConnectDll(object):
 		self.CLIENT_DATA_ID = SIMCONNECT_CLIENT_DATA_ID
 		self.CLIENT_DATA_DEFINITION_ID = SIMCONNECT_CLIENT_DATA_DEFINITION_ID
 
-		self.SimConnect = cdll.LoadLibrary(library_path)
+		self.SimConnect = windll.LoadLibrary(library_path)
 		# SIMCONNECTAPI SimConnect_Open(
 		# 	HANDLE * phSimConnect,
 		# 	LPCSTR szName,
@@ -72,7 +74,7 @@ class SimConnectDll(object):
 		# 	DispatchProc pfcnDispatch,
 		# 	void * pContext);
 
-		self.DispatchProc = CFUNCTYPE(c_void_p, POINTER(SIMCONNECT_RECV), DWORD, c_void_p)
+		self.DispatchProc = WINFUNCTYPE(c_void_p, POINTER(SIMCONNECT_RECV), DWORD, c_void_p)
 
 		self.CallDispatch = self.SimConnect.SimConnect_CallDispatch
 		self.CallDispatch.restype = HRESULT
@@ -582,8 +584,8 @@ class SimConnectDll(object):
 		self.AICreateNonATCAircraft.restype = HRESULT
 		self.AICreateNonATCAircraft.argtypes = [
 			HANDLE,
-			c_double,
-			c_double,
+			c_char_p,
+			c_char_p,
 			SIMCONNECT_DATA_INITPOSITION,
 			self.DATA_REQUEST_ID,
 		]
@@ -713,7 +715,14 @@ class SimConnectDll(object):
 		#   float fHeadingDeg);
 		self.CameraSetRelative6DOF = self.SimConnect.SimConnect_CameraSetRelative6DOF
 		self.CameraSetRelative6DOF.restype = HRESULT
-		self.CameraSetRelative6DOF.argtypes = []
+		self.CameraSetRelative6DOF.argtypes = [
+			c_float,
+			c_float,
+			c_float,
+			c_float,
+			c_float,
+			c_float
+		]
 
 		# SIMCONNECTAPI SimConnect_MenuAddItem(
 		#   HANDLE hSimConnect,
@@ -722,14 +731,21 @@ class SimConnectDll(object):
 		#   DWORD dwData);
 		self.MenuAddItem = self.SimConnect.SimConnect_MenuAddItem
 		self.MenuAddItem.restype = HRESULT
-		self.MenuAddItem.argtypes = []
+		self.MenuAddItem.argtypes = [
+			HANDLE,
+			SIMCONNECT_CLIENT_EVENT_ID,
+			DWORD
+		]
 
 		# SIMCONNECTAPI SimConnect_MenuDeleteItem(
 		#   HANDLE hSimConnect,
 		#   SIMCONNECT_CLIENT_EVENT_ID MenuEventID);
 		self.MenuDeleteItem = self.SimConnect.SimConnect_MenuDeleteItem
 		self.MenuDeleteItem.restype = HRESULT
-		self.MenuDeleteItem.argtypes = []
+		self.MenuDeleteItem.argtypes = [
+			HANDLE,
+			SIMCONNECT_CLIENT_EVENT_ID
+		]
 
 		# SIMCONNECTAPI SimConnect_MenuAddSubItem(
 		#   HANDLE hSimConnect,
@@ -739,7 +755,13 @@ class SimConnectDll(object):
 		#   DWORD dwData);
 		self.MenuAddSubItem = self.SimConnect.SimConnect_MenuAddSubItem
 		self.MenuAddSubItem.restype = HRESULT
-		self.MenuAddSubItem.argtypes = []
+		self.MenuAddSubItem.argtypes = [
+			HANDLE,
+			SIMCONNECT_CLIENT_EVENT_ID,
+			c_char_p,
+			SIMCONNECT_CLIENT_EVENT_ID,
+			DWORD
+		]
 
 		# SIMCONNECTAPI SimConnect_MenuDeleteSubItem(
 		#   HANDLE hSimConnect,
@@ -747,7 +769,11 @@ class SimConnectDll(object):
 		#   const SIMCONNECT_CLIENT_EVENT_ID SubMenuEventID);
 		self.MenuDeleteSubItem = self.SimConnect.SimConnect_MenuDeleteSubItem
 		self.MenuDeleteSubItem.restype = HRESULT
-		self.MenuDeleteSubItem.argtypes = []
+		self.MenuDeleteSubItem.argtypes = [
+			HANDLE,
+			SIMCONNECT_CLIENT_EVENT_ID,
+			SIMCONNECT_CLIENT_EVENT_ID
+		]
 
 		# SIMCONNECTAPI SimConnect_RequestSystemState(
 		#   HANDLE hSimConnect,
@@ -755,7 +781,11 @@ class SimConnectDll(object):
 		#   const char * szState);
 		self.RequestSystemState = self.SimConnect.SimConnect_RequestSystemState
 		self.RequestSystemState.restype = HRESULT
-		self.RequestSystemState.argtypes = []
+		self.RequestSystemState.argtypes = [
+			HANDLE,
+			SIMCONNECT_DATA_REQUEST_ID,
+			c_char_p
+		]
 
 		# SIMCONNECTAPI SimConnect_SetSystemState(
 		#   HANDLE hSimConnect,
@@ -765,7 +795,13 @@ class SimConnectDll(object):
 		#   const char * szString);
 		self.SetSystemState = self.SimConnect.SimConnect_SetSystemState
 		self.SetSystemState.restype = HRESULT
-		self.SetSystemState.argtypes = []
+		self.SetSystemState.argtypes = [
+			HANDLE,
+			c_char_p,
+			DWORD,
+			c_float,
+			c_char_p
+		]
 
 		# SIMCONNECTAPI SimConnect_MapClientDataNameToID(
 		#   HANDLE hSimConnect,
@@ -773,7 +809,11 @@ class SimConnectDll(object):
 		#   SIMCONNECT_CLIENT_DATA_ID ClientDataID);
 		self.MapClientDataNameToID = self.SimConnect.SimConnect_MapClientDataNameToID
 		self.MapClientDataNameToID.restype = HRESULT
-		self.MapClientDataNameToID.argtypes = []
+		self.MapClientDataNameToID.argtypes = [
+			HANDLE,
+			c_char_p,
+			SIMCONNECT_CLIENT_DATA_ID
+		]
 
 		# SIMCONNECTAPI SimConnect_CreateClientData(
 		#   HANDLE hSimConnect,
@@ -796,9 +836,7 @@ class SimConnectDll(object):
 		#   DWORD dwSizeOrType
 		#   float fEpsilon = 0
 		#   DWORD DatumID = SIMCONNECT_UNUSED);
-		self.AddToClientDataDefinition = (
-			self.SimConnect.SimConnect_AddToClientDataDefinition
-		)
+		self.AddToClientDataDefinition = self.SimConnect.SimConnect_AddToClientDataDefinition
 		self.AddToClientDataDefinition.restype = HRESULT
 		self.AddToClientDataDefinition.argtypes = [
 			HANDLE,
@@ -812,9 +850,7 @@ class SimConnectDll(object):
 		# SIMCONNECTAPI SimConnect_ClearClientDataDefinition(
 		#   HANDLE hSimConnect,
 		#   SIMCONNECT_CLIENT_DATA_DEFINITION_ID DefineID);
-		self.ClearClientDataDefinition = (
-			self.SimConnect.SimConnect_ClearClientDataDefinition
-		)
+		self.ClearClientDataDefinition = self.SimConnect.SimConnect_ClearClientDataDefinition
 		self.ClearClientDataDefinition.restype = HRESULT
 		self.ClearClientDataDefinition.argtypes = [
 			HANDLE,
@@ -944,3 +980,354 @@ class SimConnectDll(object):
 			SIMCONNECT_FACILITY_LIST_TYPE,
 			self.DATA_REQUEST_ID,
 		]
+
+		# SIMCONNECTAPI SimConnect_TransmitClientEvent_EX1(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_OBJECT_ID ObjectID,
+		#   SIMCONNECT_CLIENT_EVENT_ID EventID,
+		#   SIMCONNECT_NOTIFICATION_GROUP_ID GroupID,
+		#   SIMCONNECT_EVENT_FLAG Flags,
+		#   DWORD dwData0,
+		#   DWORD dwData1 = 0,
+		#   DWORD dwData2 = 0,
+		#   DWORD dwData3 = 0,
+		#   DWORD dwData4 = 0);
+		self.TransmitClientEvent_EX1 = self.SimConnect.SimConnect_TransmitClientEvent_EX1
+		self.TransmitClientEvent_EX1.restype = HRESULT
+		self.TransmitClientEvent_EX1.argtypes = [
+			HANDLE,
+			SIMCONNECT_OBJECT_ID,
+			self.EventID,
+			self.GROUP_ID,
+			SIMCONNECT_EVENT_FLAG,
+			DWORD,
+			DWORD,
+			DWORD,
+			DWORD,
+			DWORD,
+		]
+
+		# SIMCONNECTAPI SimConnect_AddToFacilityDefinition(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_DEFINITION_ID DefineID,
+		#   const char * FieldName);
+		self.AddToFacilityDefinition = self.SimConnect.SimConnect_AddToFacilityDefinition
+		self.AddToFacilityDefinition.restype = HRESULT
+		self.AddToFacilityDefinition.argtypes = [
+			HANDLE,
+			self.DATA_DEFINITION_ID,
+			c_char_p,
+		]
+
+		# SIMCONNECTAPI SimConnect_RequestFacilityData(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_DEFINITION_ID DefineID,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID,
+		#   const char * ICAO,
+		#   const char * Region = "");
+		self.RequestFacilityData = self.SimConnect.SimConnect_RequestFacilityData
+		self.RequestFacilityData.restype = HRESULT
+		self.RequestFacilityData.argtypes = [
+			HANDLE,
+			self.DATA_DEFINITION_ID,
+			self.DATA_REQUEST_ID,
+			c_char_p,
+			c_char_p,
+		]
+
+		# SIMCONNECTAPI SimConnect_SubscribeToFacilities_EX1(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_FACILITY_LIST_TYPE type,
+		#   SIMCONNECT_DATA_REQUEST_ID newElemInRangeRequestID,
+		#   SIMCONNECT_DATA_REQUEST_ID oldElemOutRangeRequestID);
+		self.SubscribeToFacilities_EX1 = self.SimConnect.SimConnect_SubscribeToFacilities_EX1
+		self.SubscribeToFacilities_EX1.restype = HRESULT
+		self.SubscribeToFacilities_EX1.argtypes = [
+			HANDLE,
+			SIMCONNECT_FACILITY_LIST_TYPE,
+			self.DATA_REQUEST_ID,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_UnsubscribeToFacilities_EX1(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_FACILITY_LIST_TYPE type,
+		#   bool bUnsubscribeNewInRange,
+		#   bool bUnsubscribeOldOutRange);
+		self.UnsubscribeToFacilities_EX1 = self.SimConnect.SimConnect_UnsubscribeToFacilities_EX1
+		self.UnsubscribeToFacilities_EX1.restype = HRESULT
+		self.UnsubscribeToFacilities_EX1.argtypes = [
+			HANDLE,
+			SIMCONNECT_FACILITY_LIST_TYPE,
+			c_bool,
+			c_bool,
+		]
+
+		# SIMCONNECTAPI SimConnect_RequestFacilitiesList_EX1(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_FACILITY_LIST_TYPE type,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID);
+		self.RequestFacilitiesList_EX1 = self.SimConnect.SimConnect_RequestFacilitiesList_EX1
+		self.RequestFacilitiesList_EX1.restype = HRESULT
+		self.RequestFacilitiesList_EX1.argtypes = [
+			HANDLE,
+			SIMCONNECT_FACILITY_LIST_TYPE,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_RequestFacilityData_EX1(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_DEFINITION_ID DefineID,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID,
+		#   const char * ICAO,
+		#   const char * Region = "",
+		#   char Type = 0);
+		self.RequestFacilityData_EX1 = self.SimConnect.SimConnect_RequestFacilityData_EX1
+		self.RequestFacilityData_EX1.restype = HRESULT
+		self.RequestFacilityData_EX1.argtypes = [
+			HANDLE,
+			self.DATA_DEFINITION_ID,
+			self.DATA_REQUEST_ID,
+			c_char_p,
+			c_char_p,
+			c_char,
+		]
+
+		# SIMCONNECTAPI SimConnect_RequestJetwayData(
+		#   HANDLE hSimConnect,
+		#   const char * AirportIcao,
+		#   DWORD ArrayCount,
+		#   int * Indexes);
+		self.RequestJetwayData = self.SimConnect.SimConnect_RequestJetwayData
+		self.RequestJetwayData.restype = HRESULT
+		self.RequestJetwayData.argtypes = [
+			HANDLE,
+			c_char_p,
+			DWORD,
+			POINTER(c_int),
+		]
+
+		# SIMCONNECTAPI SimConnect_EnumerateControllers(
+		#   HANDLE hSimConnect);
+		self.EnumerateControllers = self.SimConnect.SimConnect_EnumerateControllers
+		self.EnumerateControllers.restype = HRESULT
+		self.EnumerateControllers.argtypes = [HANDLE]
+
+		# SIMCONNECTAPI SimConnect_MapInputEventToClientEvent_EX1(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_INPUT_GROUP_ID GroupID,
+		#   const char * szInputDefinition,
+		#   SIMCONNECT_CLIENT_EVENT_ID DownEventID,
+		#   DWORD DownValue = 0,
+		#   SIMCONNECT_CLIENT_EVENT_ID UpEventID = (SIMCONNECT_CLIENT_EVENT_ID)SIMCONNECT_UNUSED,
+		#   DWORD UpValue = 0,
+		#   BOOL bMaskable = FALSE);
+		self.MapInputEventToClientEvent_EX1 = self.SimConnect.SimConnect_MapInputEventToClientEvent_EX1
+		self.MapInputEventToClientEvent_EX1.restype = HRESULT
+		self.MapInputEventToClientEvent_EX1.argtypes = [
+			HANDLE,
+			self.INPUT_GROUP_ID,
+			c_char_p,
+			self.EventID,
+			DWORD,
+			self.EventID,
+			DWORD,
+			c_bool,
+		]
+
+		# SIMCONNECTAPI SimConnect_ExecuteAction(
+		#   HANDLE hSimConnect,
+		#   DWORD cbRequestID,
+		#   const char * szActionID,
+		#   DWORD cbUnitSize,
+		#   void * pParamValues);
+		self.ExecuteAction = self.SimConnect.SimConnect_ExecuteAction
+		self.ExecuteAction.restype = HRESULT
+		self.ExecuteAction.argtypes = [
+			HANDLE,
+			DWORD,
+			c_char_p,
+			DWORD,
+			c_void_p,
+		]
+
+		# SIMCONNECTAPI SimConnect_EnumerateInputEvents(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID);
+		self.EnumerateInputEvents = self.SimConnect.SimConnect_EnumerateInputEvents
+		self.EnumerateInputEvents.restype = HRESULT
+		self.EnumerateInputEvents.argtypes = [
+			HANDLE,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_GetInputEvent(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID,
+		#   UINT64 Hash);
+		self.GetInputEvent = self.SimConnect.SimConnect_GetInputEvent
+		self.GetInputEvent.restype = HRESULT
+		self.GetInputEvent.argtypes = [
+			HANDLE,
+			self.DATA_REQUEST_ID,
+			c_uint64,
+		]
+
+		# SIMCONNECTAPI SimConnect_SetInputEvent(
+		#   HANDLE hSimConnect,
+		#   UINT64 Hash,
+		#   DWORD cbUnitSize,
+		#   void * Value);
+		self.SetInputEvent = self.SimConnect.SimConnect_SetInputEvent
+		self.SetInputEvent.restype = HRESULT
+		self.SetInputEvent.argtypes = [
+			HANDLE,
+			c_uint64,
+			DWORD,
+			c_void_p,
+		]
+
+		# SIMCONNECTAPI SimConnect_SubscribeInputEvent(
+		#   HANDLE hSimConnect,
+		#   UINT64 Hash);
+		self.SubscribeInputEvent = self.SimConnect.SimConnect_SubscribeInputEvent
+		self.SubscribeInputEvent.restype = HRESULT
+		self.SubscribeInputEvent.argtypes = [
+			HANDLE,
+			c_uint64,
+		]
+
+		# SIMCONNECTAPI SimConnect_UnsubscribeInputEvent(
+		#   HANDLE hSimConnect,
+		#   UINT64 Hash);
+		self.UnsubscribeInputEvent = self.SimConnect.SimConnect_UnsubscribeInputEvent
+		self.UnsubscribeInputEvent.restype = HRESULT
+		self.UnsubscribeInputEvent.argtypes = [
+			HANDLE,
+			c_uint64,
+		]
+
+		# SIMCONNECTAPI SimConnect_EnumerateInputEventParams(
+		#   HANDLE hSimConnect,
+		#   UINT64 Hash);
+		self.EnumerateInputEventParams = self.SimConnect.SimConnect_EnumerateInputEventParams
+		self.EnumerateInputEventParams.restype = HRESULT
+		self.EnumerateInputEventParams.argtypes = [
+			HANDLE,
+			c_uint64,
+		]
+
+		# SIMCONNECTAPI SimConnect_AddFacilityDataDefinitionFilter(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_DEFINITION_ID DefineID,
+		#   const char * szFilterPath,
+		#   DWORD cbUnitSize,
+		#   void * pFilterData);
+		self.AddFacilityDataDefinitionFilter = self.SimConnect.SimConnect_AddFacilityDataDefinitionFilter
+		self.AddFacilityDataDefinitionFilter.restype = HRESULT
+		self.AddFacilityDataDefinitionFilter.argtypes = [
+			HANDLE,
+			self.DATA_DEFINITION_ID,
+			c_char_p,
+			DWORD,
+			c_void_p,
+		]
+
+		# SIMCONNECTAPI SimConnect_ClearAllFacilityDataDefinitionFilters(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_DEFINITION_ID DefineID);
+		self.ClearAllFacilityDataDefinitionFilters = self.SimConnect.SimConnect_ClearAllFacilityDataDefinitionFilters
+		self.ClearAllFacilityDataDefinitionFilters.restype = HRESULT
+		self.ClearAllFacilityDataDefinitionFilters.argtypes = [
+			HANDLE,
+			self.DATA_DEFINITION_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_AICreateParkedATCAircraft_EX1(
+		#   HANDLE hSimConnect,
+		#   const char * szContainerTitle,
+		#   const char * szLivery,
+		#   const char * szTailNumber,
+		#   const char * szAirportID,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID);
+		self.AICreateParkedATCAircraft_EX1 = self.SimConnect.SimConnect_AICreateParkedATCAircraft_EX1
+		self.AICreateParkedATCAircraft_EX1.restype = HRESULT
+		self.AICreateParkedATCAircraft_EX1.argtypes = [
+			HANDLE,
+			c_char_p,
+			c_char_p,
+			c_char_p,
+			c_char_p,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_AICreateEnrouteATCAircraft_EX1(
+		#   HANDLE hSimConnect,
+		#   const char * szContainerTitle,
+		#   const char * szLivery,
+		#   const char * szTailNumber,
+		#   int iFlightNumber,
+		#   const char * szFlightPlanPath,
+		#   double dFlightPlanPosition,
+		#   BOOL bTouchAndGo,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID);
+		self.AICreateEnrouteATCAircraft_EX1 = self.SimConnect.SimConnect_AICreateEnrouteATCAircraft_EX1
+		self.AICreateEnrouteATCAircraft_EX1.restype = HRESULT
+		self.AICreateEnrouteATCAircraft_EX1.argtypes = [
+			HANDLE,
+			c_char_p,
+			c_char_p,
+			c_char_p,
+			c_int,
+			c_char_p,
+			c_double,
+			c_bool,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_AICreateNonATCAircraft_EX1(
+		#   HANDLE hSimConnect,
+		#   const char * szContainerTitle,
+		#   const char * szLivery,
+		#   const char * szTailNumber,
+		#   SIMCONNECT_DATA_INITPOSITION InitPos,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID);
+		self.AICreateNonATCAircraft_EX1 = self.SimConnect.SimConnect_AICreateNonATCAircraft_EX1
+		self.AICreateNonATCAircraft_EX1.restype = HRESULT
+		self.AICreateNonATCAircraft_EX1.argtypes = [
+			HANDLE,
+			c_char_p,
+			c_char_p,
+			c_char_p,
+			SIMCONNECT_DATA_INITPOSITION,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_AICreateSimulatedObject_EX1(
+		#   HANDLE hSimConnect,
+		#   const char * szContainerTitle,
+		#   const char * szLivery,
+		#   SIMCONNECT_DATA_INITPOSITION InitPos,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID);
+		self.AICreateSimulatedObject_EX1 = self.SimConnect.SimConnect_AICreateSimulatedObject_EX1
+		self.AICreateSimulatedObject_EX1.restype = HRESULT
+		self.AICreateSimulatedObject_EX1.argtypes = [
+			HANDLE,
+			c_char_p,
+			c_char_p,
+			SIMCONNECT_DATA_INITPOSITION,
+			self.DATA_REQUEST_ID,
+		]
+
+		# SIMCONNECTAPI SimConnect_EnumerateSimObjectsAndLiveries(
+		#   HANDLE hSimConnect,
+		#   SIMCONNECT_DATA_REQUEST_ID RequestID,
+		#   SIMCONNECT_SIMOBJECT_TYPE Type);
+		self.EnumerateSimObjectsAndLiveries = self.SimConnect.SimConnect_EnumerateSimObjectsAndLiveries
+		self.EnumerateSimObjectsAndLiveries.restype = HRESULT
+		self.EnumerateSimObjectsAndLiveries.argtypes = [
+			HANDLE,
+			self.DATA_REQUEST_ID,
+			SIMCONNECT_SIMOBJECT_TYPE,
+		]
+

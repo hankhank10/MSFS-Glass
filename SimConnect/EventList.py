@@ -4,14 +4,14 @@ from SimConnect import *
 class Event(object):
 
 	def __call__(self, value=0):
-		if self.event is None:
-			self.event = self.sm.map_to_sim_event(self.deff)
-		self.sm.send_event(self.event, DWORD(value))
+			if self.event is None:
+				self.event = self.sm.map_to_sim_event(self.deff)
+			self.sm.send_event(self.event, DWORD(value))
 
-	def __init__(self, _deff, _sm, _dec=''):
+	def __init__(self, _deff, _sm, _desc=''):
 		self.deff = _deff
 		self.event = None
-		self.description = _dec
+		self.description = _desc
 		self.sm = _sm
 
 
@@ -22,7 +22,7 @@ class EventHelper:
 	def __getattr__(self, _name):
 		for key in self.list:
 			if _name == key[0].decode():
-				ne = Event(key[0], self.sm, _dec=key[1])
+				ne = Event(key[0], self.sm, _desc=key[1])
 				setattr(self, _name, ne)
 				return ne
 		return None
@@ -82,6 +82,8 @@ class AircraftEvents():
 		self.list.append(self.ATC)
 		self.Multiplayer = self.__Multiplayer(_sm)
 		self.list.append(self.Multiplayer)
+		self.G1000PFD = self.__G1000_PFD(_sm)
+		self.list.append(self.G1000PFD)
 
 	def find(self, key):
 		for clas in self.list:
@@ -90,6 +92,22 @@ class AircraftEvents():
 					return getattr(clas, key)
 		return None
 
+	class __InputEvents(EventHelper):
+		type = 1
+		list = [
+			(b'AS1000_SOFTKEY_1_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_2_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_3_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_4_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_5_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_6_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_7_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_8_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_9_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_10_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_11_MFD',"","Shared Cockpit"),
+			(b'AS1000_SOFTKEY_12_MFD',"","Shared Cockpit"),
+		]
 	class __Engine(EventHelper):
 		list = [
 			(b'THROTTLE_FULL', "Set throttles max", "Shared Cockpit"),
@@ -1725,6 +1743,18 @@ class AircraftEvents():
 			(b'G1000_PFD_GROUP_KNOB_DEC', "Step down through the page groups.", "Shared Cockpit"),
 			(b'G1000_PFD_PAGE_KNOB_INC', "Step up through the individual pages.", "Shared Cockpit"),
 			(b'G1000_PFD_PAGE_KNOB_DEC', "Step down through the individual pages.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY1', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY2', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY3', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY4', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY5', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY6', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY7', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY8', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY9', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY10', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY11', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
+			(b'G1000_PFD_SOFTKEY12', "SInitiate the action for the icon displayed in the softkey position.", "Shared Cockpit"),
 		]
 		# G1000_PFD_SOFTKEY1, G1000_PFD_SOFTKEY12	Initiate the action for the icon displayed in the softkey position.	Shared Cockpit
 

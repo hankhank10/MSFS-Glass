@@ -1,6 +1,9 @@
 import logging, logging.handlers
-import ctypes
-from ctypes import wintypes
+from ctypes import c_char_p, cast
+from ctypes.wintypes import HANDLE
+
+from _ctypes import POINTER
+
 from SimConnect import SimConnect
 from SimConnect.Enum import SIMCONNECT_CLIENT_DATA_ID, SIMCONNECT_RECV_ID, SIMCONNECT_RECV_CLIENT_DATA
 
@@ -14,7 +17,7 @@ class SimConnectMobiFlight(SimConnect):
         else:
             super().__init__(auto_connect)
         # Fix missing types
-        self.dll.MapClientDataNameToID.argtypes = [wintypes.HANDLE, ctypes.c_char_p, SIMCONNECT_CLIENT_DATA_ID]
+        self.dll.MapClientDataNameToID.argtypes = [HANDLE, c_char_p, SIMCONNECT_CLIENT_DATA_ID]
 
 
     def register_client_data_handler(self, handler):
@@ -32,7 +35,7 @@ class SimConnectMobiFlight(SimConnect):
     def my_dispatch_proc(self, pData, cbData, pContext):
         dwID = pData.contents.dwID
         if dwID == SIMCONNECT_RECV_ID.SIMCONNECT_RECV_ID_CLIENT_DATA:
-            client_data = ctypes.cast(pData, ctypes.POINTER(SIMCONNECT_RECV_CLIENT_DATA)).contents
+            client_data = cast(pData, POINTER(SIMCONNECT_RECV_CLIENT_DATA)).contents
             for handler in self.client_data_handlers:
                 handler(client_data)
         else:

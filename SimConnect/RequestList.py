@@ -1,7 +1,6 @@
 from SimConnect import *
 from .Enum import *
 from .Constants import *
-import asyncio
 
 
 class Request(object):
@@ -209,8 +208,8 @@ class AircraftRequests():
 		self.list.append(self.AutopilotData)
 		self.LandingGearData = self.__AircraftLandingGearData(_sm, _time, _attemps)
 		self.list.append(self.LandingGearData)
-		self.EnvironmentData = self.__AircraftEnvironmentData(_sm, _time, _attemps)
-		self.list.append(self.EnvironmentData)
+		self.AircraftEnvironmentData  = self.__AircraftEnvironmentData(_sm, _time, _attemps)
+		self.list.append(self.AircraftEnvironmentData )
 		self.HelicopterSpecificData = self.__HelicopterSpecificData(_sm, _time, _attemps)
 		self.list.append(self.HelicopterSpecificData)
 		self.MiscellaneousSystemsData = self.__AircraftMiscellaneousSystemsData(_sm, _time, _attemps)
@@ -235,8 +234,7 @@ class AircraftRequests():
 			"NUMBER_OF_ENGINES": ["Number of engines (minimum 0, maximum 4)", b'NUMBER OF ENGINES', b'Number', 'N'],
 			"ENGINE_CONTROL_SELECT": ["Selected engines (combination of bit flags); 1 = Engine 1; 2 = Engine 2; 4 = Engine 3; 8 = Engine 4", b'ENGINE CONTROL SELECT', b'Mask', 'Y'],
 			"THROTTLE_LOWER_LIMIT": ["Percent throttle defining lower limit (negative for reverse thrust equipped airplanes)", b'THROTTLE LOWER LIMIT', b'Percent', 'N'],
-			"ENGINE_TYPE": ["Engine type:; 0 = Piston; 1 = Jet; 2 = None; 3 = Helo(Bell) turbine; 4 = Unsupported; 5 = Turboprop", b'ENGINE TYPE', b'Enum', 'N'],
-			"MASTER_IGNITION_SWITCH": ["Aircraft master ignition switch (grounds all engines magnetos)", b'MASTER IGNITION SWITCH', b'Bool', 'N'],
+            "MASTER_IGNITION_SWITCH": ["Aircraft master ignition switch (grounds all engines magnetos)", b'MASTER IGNITION SWITCH', b'Bool', 'N'],
 			"GENERAL_ENG_COMBUSTION:index": ["Combustion flag", b'GENERAL ENG COMBUSTION:index', b'Bool', 'Y'],
 			"GENERAL_ENG_MASTER_ALTERNATOR:index": ["Alternator (generator) switch", b'GENERAL ENG MASTER ALTERNATOR:index', b'Bool', 'N'],
 			"GENERAL_ENG_FUEL_PUMP_SWITCH:index": ["Fuel pump switch", b'GENERAL ENG FUEL PUMP SWITCH:index', b'Bool', 'N'],
@@ -280,8 +278,7 @@ class AircraftRequests():
 			"RECIP_ENG_FUEL_AVAILABLE:index": ["True if fuel is available", b'RECIP ENG FUEL AVAILABLE:index', b'Bool', 'Y'],
 			"RECIP_ENG_FUEL_FLOW:index": ["Engine fuel flow", b'RECIP ENG FUEL FLOW:index', b'Pounds per hour', 'Y'],
 			"RECIP_ENG_FUEL_TANK_SELECTOR:index": ["Fuel tank selected for engine. See fuel tank list.", b'RECIP ENG FUEL TANK SELECTOR:index', b'Enum', 'N'],
-			"ENGINE_TYPE": ["Engine type:; 0 = Piston; 1 = Jet; 2 = None; 3 = Helo(Bell) turbine; 4 = Unsupported; 5 = Turboprop", b'ENGINE TYPE', b'Enum', 'N'],
-			"RECIP_ENG_FUEL_NUMBER_TANKS_USED:index": ["Number of tanks currently being used", b'RECIP ENG FUEL NUMBER TANKS USED:index', b'Number', 'N'],
+            "RECIP_ENG_FUEL_NUMBER_TANKS_USED:index": ["Number of tanks currently being used", b'RECIP ENG FUEL NUMBER TANKS USED:index', b'Number', 'N'],
 			"RECIP_CARBURETOR_TEMPERATURE:index": ["Carburetor temperature", b'RECIP CARBURETOR TEMPERATURE:index', b'Celsius', 'Y'],
 			"RECIP_MIXTURE_RATIO:index": ["Fuel / Air mixture ratio", b'RECIP MIXTURE RATIO:index', b'Ratio', 'Y'],
 			"TURB_ENG_N1:index": ["Turbine engine N1", b'TURB ENG N1:index', b'Percent', 'Y'],
@@ -694,12 +691,10 @@ class AircraftRequests():
 			"AILERON_RIGHT_DEFLECTION_PCT": ["Percent deflection", b'AILERON RIGHT DEFLECTION PCT', b'Percent Over 100', 'N'],
 			"AILERON_AVERAGE_DEFLECTION": ["Angle deflection", b'AILERON AVERAGE DEFLECTION', b'Radians', 'N'],
 			"AILERON_TRIM": ["Angle deflection", b'AILERON TRIM', b'Radians', 'N'],
-			"AILERON_TRIM_PCT": ["Percent deflection", b'AILERON TRIM PCT', b'Percent Over 100', 'Y'],
-			"RUDDER_DEFLECTION": ["Angle deflection", b'RUDDER DEFLECTION', b'Radians', 'N'],
+            "RUDDER_DEFLECTION": ["Angle deflection", b'RUDDER DEFLECTION', b'Radians', 'N'],
 			"RUDDER_DEFLECTION_PCT": ["Percent deflection", b'RUDDER DEFLECTION PCT', b'Percent Over 100', 'N'],
 			"RUDDER_TRIM": ["Angle deflection", b'RUDDER TRIM', b'Radians', 'N'],
-			"RUDDER_TRIM_PCT": ["Percent deflection", b'RUDDER TRIM PCT', b'Percent Over 100', 'Y'],
-			"FLAPS_AVAILABLE": ["True if flaps available", b'FLAPS AVAILABLE', b'Bool', 'N'],
+            "FLAPS_AVAILABLE": ["True if flaps available", b'FLAPS AVAILABLE', b'Bool', 'N'],
 			"FLAP_DAMAGE_BY_SPEED": ["True if flagps are damaged by excessive speed", b'FLAP DAMAGE BY SPEED', b'Bool', 'N'],
 			"FLAP_SPEED_EXCEEDED": ["True if safe speed limit for flaps exceeded", b'FLAP SPEED EXCEEDED', b'Bool', 'N'],
 			"ELEVATOR_DEFLECTION": ["Angle deflection", b'ELEVATOR DEFLECTION', b'Radians', 'N'],
@@ -717,8 +712,7 @@ class AircraftRequests():
 			"AUTOPILOT_MASTER": ["On/off flag", b'AUTOPILOT MASTER', b'Bool', 'N'],
 			"AUTOPILOT_NAV_SELECTED": ["Index of Nav radio selected", b'AUTOPILOT NAV SELECTED', b'Number', 'N'],
 			"AUTOPILOT_WING_LEVELER": ["Wing leveler active", b'AUTOPILOT WING LEVELER', b'Bool', 'N'],
-			"AUTOPILOT_NAV1_LOCK": ["Lateral nav mode active", b'AUTOPILOT NAV1 LOCK', b'Bool', 'N'],
-			"AUTOPILOT_HEADING_LOCK": ["Heading mode active", b'AUTOPILOT HEADING LOCK', b'Bool', 'N'],
+            "AUTOPILOT_HEADING_LOCK": ["Heading mode active", b'AUTOPILOT HEADING LOCK', b'Bool', 'N'],
 			"AUTOPILOT_HEADING_LOCK_DIR": ["Selected heading", b'AUTOPILOT HEADING LOCK DIR', b'Degrees', 'N'],
 			"AUTOPILOT_ALTITUDE_LOCK": ["Altitude hole active", b'AUTOPILOT ALTITUDE LOCK', b'Bool', 'N'],
 			"AUTOPILOT_ALTITUDE_LOCK_VAR": ["Selected altitude", b'AUTOPILOT ALTITUDE LOCK VAR', b'Feet', 'N'],
@@ -1042,8 +1036,7 @@ class AircraftRequests():
 			"STATIC_CG_TO_GROUND": ["Static CG to ground", b'STATIC CG TO GROUND', b'Feet', 'N'],
 			"STATIC_PITCH": ["Static pitch", b'STATIC PITCH', b'Radians', 'N'],
 			"CRASH_SEQUENCE": ["One of:; 0: off; 1: complete; 3: reset; 4: pause; 11: start", b'CRASH SEQUENCE', b'Enum', 'N'],
-			"CRASH_FLAG": ["One of:; 0: None; 2: Mountain; 4: General; 6: Building; 8: Splash; 10: Gear up; 12: Overstress; 14: Building; 16: Aircraft; 18: Fuel Truck", b'CRASH FLAG', b'Enum', 'N'],
-			"TOW_RELEASE_HANDLE": ["Position of tow release handle. 100 is fully deployed.", b'TOW RELEASE HANDLE', b'Percent over 100', 'N'],
+            "TOW_RELEASE_HANDLE": ["Position of tow release handle. 100 is fully deployed.", b'TOW RELEASE HANDLE', b'Percent over 100', 'N'],
 			"TOW_CONNECTION": ["True if a towline is connected to both tow plane and glider.", b'TOW CONNECTION', b'Bool', 'N'],
 			"APU_PCT_RPM": ["Auxiliary power unit rpm, as a percentage", b'APU PCT RPM', b'Percent over 100', 'N'],
 			"APU_PCT_STARTER": ["Auxiliary power unit starter, as a percentage", b'APU PCT STARTER', b'Percent over 100', 'N'],

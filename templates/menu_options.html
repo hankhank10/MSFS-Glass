@@ -61,6 +61,24 @@
 				</div>
 
 				<hr class="bg-secondary">
+
+				<div class="row">
+					<!-- OpenAIP API Key -->
+					<div class="col" style="margin-top:0px">
+						<div class="lead" style="margin-bottom:10px">OpenAIP API key</div>
+						<form method="POST" action="{% if request.path == "/" %}{{ url_for('.index') }}{% else %}{{ url_for('index_landscape') }}{% endif %}">
+							<div class="form-group">
+								<input name="api_key" class="form-control" value="{{api_key}}" placeholder="API Key">
+							</div>
+							<div class="form-group" style="margin-bottom:0px">
+								<button type="submit" class="btn btn-secondary">Load API Key</button>
+							</div>
+						</form>
+						<p class="font-italic text-secondary" style="margin-bottom:0px">Create and insert your OpenAIP API key to access the aviation map overlay. The last used key will persist in your application.</p>
+					</div>
+				</div>
+
+                <hr class="bg-secondary">
 				
 				<!-- Fourth Row-->
 				<div class="row">

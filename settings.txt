@@ -1,3 +1,3 @@
 # This file is used for the MSFS Mobile Companion App to load your flight plan
 # Change the path below so that it corresponds with your MSFS installation
-C:\Users\YOURUSERNAME\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe
+C:\Users\fzsombor\AppData\Local\Packages\Microsoft.Limitless_8wekyb3d8bbwe

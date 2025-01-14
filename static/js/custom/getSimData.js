@@ -1586,6 +1586,18 @@ function toggleGPStrack() {
     }
 }
 
+function syncPlane(){
+	url_to_call = "/sync_aircraft";
+    $.get( url_to_call).done(function(response) {
+		// Reload the page on success
+		window.location.reload();
+	})
+	.fail(function(xhr, status, error) {
+		// Handle errors if the API call fails
+		console.error("API call failed:", error);
+	});
+}
+
 function updateMap() {
     var pos = L.latLng(latitude, longitude);
 
@@ -1627,9 +1639,10 @@ function setSimDatapoint(datapointToSet, valueToUse) {
     $.post( url_to_call, { value_to_use: valueToUse } );
 }
 
-function triggerSimEvent(eventToTrigger, valueToUse, hideAlert = false){
+function triggerSimEvent(eventToTrigger, valueToUse, hideAlert = false, eventType = null){
     url_to_call = "/event/"+eventToTrigger+"/trigger";
-    $.post( url_to_call, { value_to_use: valueToUse } );
+	console.log("Event ", eventToTrigger, eventType, valueToUse)
+    $.post( url_to_call, { value_to_use: JSON.stringify(valueToUse), event_type: eventType } );
 
     if (!hideAlert) {
         temporaryAlert('', "Sending instruction", "success")
