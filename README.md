@@ -20,6 +20,7 @@ MSFS Mobile Companion App is a tool that allows you to control essential aircraf
 - Landing ratings (vertical speed at touchdown).
 - Simulation rate controls.
 
+
 ### Supported Controls Profiles
 MSFS Mobile Companion App has built-in support for the following aircraft:
 - Default GNS430/530 and G1000 (to be used with default MSFS planes and other third-party planes without dedicated controls profiles)
@@ -33,12 +34,25 @@ MSFS Mobile Companion App has built-in support for the following aircraft:
 - MB-339 by IndiaFoxtEcho
 - PA-28R Arrow III (GPS100, GNS530, GNS Dual) by Just Flight
 
-## Update Nov/04/2021 Version 1.9.1 Changelog:
+## Update 01/15/2025 Version 2.0.0-alpha-1 Changelog:
+- Credit where credit is due:
+   - [https://github.com/mracko/MSFS-Mobile-Companion-App](https://github.com/mracko/MSFS-Mobile-Companion-App/)
+   - [https://github.com/odwdinc/Python-SimConnect](https://github.com/odwdinc/Python-SimConnect)
+- Created a new repo, due to abandoning the original repos
+- Updated DLL and header definitions to the SDK of MSFS2024
+- Implemented [Input events](https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_API_Reference.htm#inputevents) to be able to control avionics without an external WASM (MobiFlight) module
+- Started working on Frontend revamp 
+- Merged some pull requests on the original repos
+- Cherry-picked changes from each repo to have all the changes in one place
+- Updated OpenAIP integration for maps to load
+- Added API key inputs for OpenAIP
+- Started implementing G1000 avionics to work with Input Events
+- Started implementing airliners (A32x) to work with Input Events
+- Started implementing automatic UI selection for selected aircraft
+- Started optimizing imports and memory footprint
+- Created a framework for logging & easier debugging
+- **NO BINARIES HAVE BEEN BUILT FOR THIS VERSION**
 
-- Added controls profile for the Ju-52 Classic and Retrofit by Asobo
-- Improved UI for all NAV controls
-- Removed pop-up for panel switches
-- Added approximate G-forces at touchdown in the Data tab
 
 ## How do I install MSFS Mobile Companion App?
 1. Download the latest build [here](https://github.com/mracko/MSFS-Mobile-Companion-App/releases/).
