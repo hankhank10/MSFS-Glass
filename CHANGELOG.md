@@ -1,5 +1,24 @@
 # Change Log
 
+**Update 01/15/2025 Version 2.0.0-alpha-1 Changelog:**
+- Credit where credit is due:
+   - [https://github.com/mracko/MSFS-Mobile-Companion-App](https://github.com/mracko/MSFS-Mobile-Companion-App/)
+   - [https://github.com/odwdinc/Python-SimConnect](https://github.com/odwdinc/Python-SimConnect)
+- Created a new repo, due to abandoning the original repos
+- Updated DLL and header definitions to the SDK of MSFS2024
+- Implemented [Input events](https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_API_Reference.htm#inputevents) to be able to control avionics without an external WASM (MobiFlight) module
+- Started working on Frontend revamp 
+- Merged some pull requests on the original repos
+- Cherry-picked changes from each repo to have all the changes in one place
+- Updated OpenAIP integration for maps to load
+- Added API key inputs for OpenAIP
+- Started implementing G1000 avionics to work with Input Events
+- Started implementing airliners (A32x) to work with Input Events
+- Started implementing automatic UI selection for selected aircraft
+- Started optimizing imports and memory footprint
+- Created a framework for logging & easier debugging
+- **NO BINARIES HAVE BEEN BUILT FOR THIS VERSION**
+
 **v1.9.1 November 3, 2021:**
 - Added controls profile for the Ju-52 Classic and Retrofit by Asobo
 - Improved UI for all NAV controls
