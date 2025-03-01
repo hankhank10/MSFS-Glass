@@ -1,23 +1,44 @@
 # Change Log
 
-**Update 01/15/2025 Version 2.0.0-alpha-1 Changelog:**
+**Update 03/01/2025 Version 2.0.0-alpha-2 Changelog:**
 - Credit where credit is due:
    - [https://github.com/mracko/MSFS-Mobile-Companion-App](https://github.com/mracko/MSFS-Mobile-Companion-App/)
    - [https://github.com/odwdinc/Python-SimConnect](https://github.com/odwdinc/Python-SimConnect)
-- Created a new repo, due to abandoning the original repos
+- Created a new repo due to abandoning the original repos
 - Updated DLL and header definitions to the SDK of MSFS2024
-- Implemented [Input events](https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_API_Reference.htm#inputevents) to be able to control avionics without an external WASM (MobiFlight) module
-- Started working on Frontend revamp 
+- **Rebranding MSFS 2020 Mobile Companion App to MSFS Glass**
+- Bumped SimConnect version to SDK 1.2.2
+- **Implemented [Input events](https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_API_Reference.htm#inputevents) to be able to control avionics without an external WASM (MobiFlight) module**
+- **Implemented LVar getting and setting without the need of a WASM module**
 - Merged some pull requests on the original repos
 - Cherry-picked changes from each repo to have all the changes in one place
-- Updated OpenAIP integration for maps to load
+- Updated OpenAIP integration for aviation maps to load
 - Added API key inputs for OpenAIP
-- Started implementing G1000 avionics to work with Input Events
-- Started implementing airliners (A32x) to work with Input Events
-- Started implementing automatic UI selection for selected aircraft
-- Started optimizing imports and memory footprint
-- Created a framework for logging & easier debugging
+- Optimizing imports and memory footprint
+- Created a framework for logging including debug log level and logging to file for easier debugging
+- MSFS Glass now can be launched before the sim, it will try to connect every 5 seconds
+- **Started replacing Leaflet map implementation with MapLibre**
+- Optimized performance by simplifying SimVar getting and setting. The UI now subscribes for data, that arrives periodically (quicker than before for important data, and maybe slower for not so important). Furthermore, the MSFS will now only send data if it has changed in the simulator. We store the data locally in the backend, so the UI/API does not need to wait for the simulator. (This can cause late/missed data though, but we are more okay with that than UI hangs.)
+- Cleaned up unnecessary async operations
+- Reduced global variable usage
+- Cleaned up multithreading. Current implementation runs on 3 threads:
+  - Simconnect library Callback function
+  - Simconnect client code for getting variables for the frontend
+  - Webserver
+- Resolved a memory leak during getting SimVars
+- Cleand up and unified logging for easier debugging
+- Small UI fixes
+- Small fixes for Simconnect library
+- Code reformatting and clean-up
+- **Major frontend revamp**
+- **Automatic UI selection for the (supported) selected plane**
 - **NO BINARIES HAVE BEEN BUILT FOR THIS VERSION**
+- Paid 3rd party aircraft support removed due to the removal of MobiFlight. Might get re-added later if they become available on Marketplace & InputEvents/LVars can be used to control them
+
+**Known issues:**
+- G1000 Range and FMS knobs are only working if they remain unchanged within the sim. (Their inputEvents always return 0 upon change which is an MSFS/SimConnect bug, so they are implemented with a clumsy workaround that stores their value in the application & are not synced with the sim.)
+- MSFS 2024 flight plan files has changed, so the flight path is not displayed on the map. Only the 1st waypoint based on the GPS.
+- Map cannot be moved if Following plane. `Unfollow plane` button should be clicked and the map can be moved afterwards.
 
 **v1.9.1 November 3, 2021:**
 - Added controls profile for the Ju-52 Classic and Retrofit by Asobo

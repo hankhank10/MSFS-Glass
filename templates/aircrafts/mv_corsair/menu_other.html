@@ -1,0 +1,88 @@
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapseother_milviz_corsair" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px;margin-bottom:12px">
+			<div class="card-body">
+			
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- Flaps & Gear -->
+					<div class="col" style="margin-top:20px; max-width:300px; min-width:299px;">
+						<div class="row" style="margin-bottom:10px">
+							<div class="col">
+								<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-left:0px;padding-right:0px;width:66px">Flaps</button>
+									<button type="button" class="btn btn-light" id="flaps-position" style="padding-left:0px;padding-right:0px;width:65px">???</button>
+								</div>
+								<button onclick="triggerSimEvent('FLAPS_DECR',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:55px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16"><path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg></button>
+								<button onclick="triggerSimEvent('FLAPS_INCR',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:55px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg></button><br>
+								<button onclick="triggerSimEvent('SPOILERS_TOGGLE',0,true);$(this).blur();" id="milviz_corsair_dive_brake" type="button" class="btn btn-danger" style="width:249px">Dive Brake</button><br>
+								<button onclick="triggerSimEvent('GEAR_TOGGLE',0,true);$(this).blur();" id="gear" type="button" class="btn btn-danger" style="width:249px">Gear</button>
+								<button onclick="triggerSimEvent('MobiFlight.MV_COR_LOCK_TAILWHEEL',0,true);$(this).blur();" id="milviz_corsair_tail_wheel" type="button" class="btn btn-danger" style="width:249px">Lock Tail Wheel</button>
+								<hr class="bg-secondary" style="margin-bottom:15px">
+								
+								<table>
+									<tr>
+										<th style="width:100px">Elev.</th>
+										<th style="width:100px">Rudd.</th>
+										<th style="width:100px">Ailr.</th>
+									</tr>
+									<tr>
+										<td>Up</td>
+										<td>Right</td>
+										<td>Right</td>
+									</tr>
+									<tr>
+										<td style="height:20vh">
+											<form>
+												<div class="form-group">
+													<input type="range" min="-16383" max="16383" step="1" class="form-control-range" style="position:absolute;transform-origin:center left;width:20vh;margin-top:-12vh;margin-left:23px;transform:rotate(90deg);-moz-transform:rotate(90deg)" oninput="triggerSimEvent('AXIS_ELEV_TRIM_SET',this.value,true);" id="TrimElevator">
+												</div>
+											</form>
+										</td>
+										<td>
+											<form>
+												<div class="form-group">
+													<input type="range" min="-100" max="100" step="1" class="form-control-range" style="position:absolute;transform-origin:center left;width:20vh;margin-top:8vh;margin-left:23px;transform:rotate(270deg);-moz-transform:rotate(270deg)" oninput="triggerSimEvent('RUDDER_TRIM_SET',this.value,true)" id="TrimRudder">
+												</div>
+											</form>
+										</td>
+										<td>
+											<form>
+												<div class="form-group">
+													<input type="range" min="-100" max="100" step="1" class="form-control-range" style="position:absolute;transform-origin:center left;width:20vh;margin-top:8vh;margin-left:23px;transform:rotate(270deg);-moz-transform:rotate(270deg)" oninput="triggerSimEvent('AILERON_TRIM_SET',this.value,true)" id="TrimAileron">
+												</div>
+											</form>
+										</td>
+									</tr>
+									<tr>
+										<td>Down</td>
+										<td>Left</td>
+										<td>Left</td>
+									</tr>
+									<tr>
+										<td>
+											<button onclick="disableScroll()" onpointerdown="presshold(function(){ elevatorPlus() }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/></svg></button></br>
+											<button onclick="enableScroll()" onpointerdown="presshold(function(){ elevatorMinus() }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/></svg></button></br>
+											<button onclick="elevatorReset();$(this).blur();" type="button" class="btn btn-warning" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/></svg></button>
+										</td>
+										<td>
+											<button onpointerdown="presshold(function(){ rudderPlus() }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></button></br>
+											<button onpointerdown="presshold(function(){ rudderMinus() }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/></svg></button></br>
+											<button onclick="rudderReset();$(this).blur();" type="button" class="btn btn-warning" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/></svg></button>
+										</td>
+										<td>
+											<button onpointerdown="presshold(function(){ aileronPlus() }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button></br>
+											<button onpointerdown="presshold(function(){ aileronMinus() }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/></svg></button></br>
+											<button onclick="aileronReset();$(this).blur();" type="button" class="btn btn-warning" style="width:45px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/></svg></button>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+
+			</div>
+		</div>
+	</div>

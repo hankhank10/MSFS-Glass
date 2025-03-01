@@ -1,0 +1,101 @@
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapsegnsdual_jf_arrow" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px;margin-bottom:12px;">
+			<div class="card-body">
+			
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- GPS Softkeys -->
+					<div class="col" style="margin-top:20px; max-width:400px; min-width:332px">
+						<div class="lead">GNS 530 Horizontal Keys</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('TOGGLE_GPS_DRIVES_NAV1',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">CDI</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_OBS_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">OBS</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_MSG_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">MSG</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_FPL_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">FPL</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_VNAV_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">VNAV</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_PROC_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">PROC</button>
+						</div>
+						</div>
+						<div class="lead">GNS 530 Nav Buttons</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.AS530_DirectTo_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">D-></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_MENU_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">MENU</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_CLR_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">CLR</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_ENT_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">ENT</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_CLR_Push_Long',0,true);$(this).blur();" type="button" class="btn btn-light" style="width:83px;padding-left:0px;padding-right:0px;text-align:center">CLR Hold</button>
+						</div>
+						</div>
+						
+						<div class="lead">GNS 530 Range Buttons</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RNG_Dezoom',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16"><path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RNG_Zoom',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16"><path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/></svg></button>
+						</div>
+						</div>
+						
+						<div class="lead">GNS 530 Right Knob</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RightLargeKnob_Left',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RightSmallKnob_Left',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 12.796L4.519 8 10 3.204v9.592zm-.659.753l-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RightSmallKnob_Push',0,true);$(this).blur();" type="button" class="btn btn-light" style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RightSmallKnob_Right',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 12.796L11.481 8 6 3.204v9.592zm.659.753l5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS530_RightLargeKnob_Right',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></button>
+						</div>
+						</div>
+						</br>
+					</div>
+					
+					<!-- GPS Softkeys -->
+					<div class="col" style="margin-top:20px; max-width:400px; min-width:332px">
+						<div class="lead">GNS 430 Horizontal Keys</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('TOGGLE_GPS_DRIVES_NAV1',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">CDI</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_OBS_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">OBS</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_MSG_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">MSG</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_FPL_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">FPL</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_PROC_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">PROC</button>
+						</div>
+						</div>
+						<div class="lead">GNS 430 Nav Buttons</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.AS430_DirectTo_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">D-></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_MENU_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">MENU</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_CLR_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">CLR</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_ENT_Push',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">ENT</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_CLR_Push_Long',0,true);$(this).blur();" type="button" class="btn btn-light" style="width:83px;padding-left:0px;padding-right:0px;text-align:center">CLR Hold</button>
+						</div>
+						</div>
+						
+						<div class="lead">GNS 430 Range Buttons</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RNG_Dezoom',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16"><path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RNG_Zoom',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16"><path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/></svg></button>
+						</div>
+						</div>
+						
+						<div class="lead">GNS 430 Right Knob</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RightLargeKnob_Left',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RightSmallKnob_Left',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 12.796L4.519 8 10 3.204v9.592zm-.659.753l-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RightSmallKnob_Push',0,true);$(this).blur();" type="button" class="btn btn-light" style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH</button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RightSmallKnob_Right',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 12.796L11.481 8 6 3.204v9.592zm.659.753l5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.AS430_RightLargeKnob_Right',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></button>
+						</div>
+						</div>
+						
+					</div>
+				
+				</div>
+
+			</div>
+		</div>
+	</div>

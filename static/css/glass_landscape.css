@@ -1,0 +1,294 @@
+button {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.main-container {
+    display: flex;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 0.75rem;
+}
+
+.map-container {
+    flex: 1;
+    background: #f0f0f0;
+    position: relative;
+    margin-right: 0.75rem;
+
+}
+
+.map-container #map {
+    width: 100%;
+    height: 100%;
+}
+
+.content-container {
+    width: 470px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+button {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.navbar .nav-link.active {
+    border-bottom: 3px solid #ffffff; /* Adjust color and thickness as needed */
+    color: #ffffff; /* Optional: Ensure text color matches */
+    padding-bottom: 0.4rem; /* Add some space between the text and the border */
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.navbar .nav-link {
+    padding: 1rem 1rem; /* Adjust these values as needed */
+    margin: 0 5px; /* Optional: Add spacing between buttons */
+    transition: background-color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: Highlight on hover */
+}
+
+.navbar {
+    margin-right: 0.75rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    padding: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    max-width: 470px;
+    z-index: 1030;
+}
+
+.navbar::-webkit-scrollbar {
+    width: 0 !important
+}
+
+
+.navbar {
+    overflow: -moz-scrollbars-none;
+}
+
+.navbar {
+    -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Safari/iOS press and hold button fix and double-tap zoom and pull down refresh fix in Chrome*/
+
+input[type=range][orient=vertical] {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 16px;
+    vertical-align: bottom;
+    margin: 19.9px 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+
+/* Custom Range Slider*/
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    background: #efedec;
+    border: 0;
+    border-radius: 1.3px;
+    width: 16px;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+
+    width: 45px;
+    height: 30px;
+    background: #6c757d;
+    border: 0;
+    border-radius: 11px;
+    cursor: pointer;
+    -webkit-appearance: none;
+
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ffffff;
+}
+
+input[type=range]::-moz-range-track {
+    background: #efedec;
+    border: 0;
+    border-radius: 1.3px;
+    width: 100%;
+    height: 5.2px;
+    cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 45px;
+    height: 30px;
+    background: #6c757d;
+    border: 0;
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    border-width: 19.9px 0;
+    color: transparent;
+    width: 100%;
+    height: 5.2px;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #dfdbd9;
+    border: 0;
+    border-radius: 2.6px;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #efedec;
+    border: 0;
+    border-radius: 2.6px;
+}
+
+input[type=range]::-ms-thumb {
+    width: 45px;
+    height: 30px;
+    background: #6c757d;
+    border: 0;
+    border-radius: 11px;
+    cursor: pointer;
+    margin-top: 0px;
+    /*Needed to keep the Edge thumb centred*/
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #efedec;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #ffffff;
+}
+
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+    /* Pre-Chromium Edge only styles, selector taken from https://stackoverflow.com/a/32202953/7077589 */
+    input[type=range] {
+        margin: 0;
+        /*Edge starts the margin from the thumb, not the track as other browsers do*/
+    }
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Firefox scrollbar */
+@supports (scrollbar-width: thin) {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+    }
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    overscroll-behavior: contain;
+    background-color: #6c757d;
+    overflow: hidden;
+}
+
+.content-wrapper {
+
+    height: 100%;
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow-y: auto; /* Only show scrollbar when needed */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.content-wrapper.map-container {
+    width: 100%;
+}
+
+.map-container {
+    max-height: calc(100dvh - 1.5rem);
+}
+
+
+.content {
+    padding: 2rem;
+}
+
+.content.map-content {
+    padding: 0 !important;
+    height: 100% !important;
+}
+
+#collapseMap {
+    height: 100%;
+    position: relative;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn-group-map {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    border-radius: 0.3rem;
+}
+
+.leaflet-container img.leaflet-tile {
+    mix-blend-mode: normal !important;
+}

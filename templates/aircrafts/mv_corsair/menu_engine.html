@@ -1,0 +1,64 @@
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapseengine_milviz_corsair" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px;margin-bottom:12px;">
+			<div class="card-body">
+			
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<div class="col" style="margin-top:20px; max-width:400px; min-width:332px">
+						<div class="lead" style="margin-bottom:4px">Engine Controls</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">Superchar.</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_supercharger" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_SUPERCHARGER_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_SUPERCHARGER_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">+</button>
+							
+							<p style="margin-top:16px;margin-bottom:4px">Cooling Flaps</p>
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">Oil cooler</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_oilcooler" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_OIL_COOLER_MINUS',0,true);$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_OIL_COOLER_PLUS',0,true);$(this).blur();" class="btn btn-secondary" style="width:45px">+</button><br>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">Intercooler</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_intercooler" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_INTERCOOLER_MINUS',0,true);$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_INTERCOOLER_PLUS',0,true);$(this).blur();" class="btn btn-secondary" style="width:45px">+</button><br>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">Engine</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_cowlflaps" style="padding-left:0px;padding-right:0px;width:50px">---</button>
+							</div>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_COWL_FLAP_MINUS',0,true);$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_COWL_FLAP_PLUS',0,true);$(this).blur();" class="btn btn-secondary" style="width:45px">+</button><br>
+							
+							<p style="margin-top:16px;margin-bottom:4px">Fuel Selector</p>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_OFF',0,true);$(this).blur();" class="btn btn-secondary" style="width:95px;padding-left:0px;padding-right:0px;" id="milviz_corsair_fuel_off">Off</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_MAIN',0,true);$(this).blur();" class="btn btn-secondary" style="width:95px;padding-left:0px;padding-right:0px;" id="milviz_corsair_fuel_main">Main</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_RESERVE',0,true);$(this).blur();" class="btn btn-secondary" style="width:95px;padding-left:0px;padding-right:0px;" id="milviz_corsair_fuel_reserve">Reserve</button><br>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_RH',0,true);$(this).blur();" class="btn btn-secondary" style="width:95px;padding-left:0px;padding-right:0px;" id="milviz_corsair_fuel_lh">L.H.Wing</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_LH',0,true);$(this).blur();" class="btn btn-secondary" style="width:95px;padding-left:0px;padding-right:0px;" id="milviz_corsair_fuel_rh">R.H.Wing</button>
+							<button type="button" onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_CENTER',0,true);$(this).blur();" class="btn btn-secondary" style="width:95px;padding-left:0px;padding-right:0px;" id="milviz_corsair_fuel_cntr">Cntr Drop</button>
+							
+							<table style="margin-top:14px">
+								<tr>
+									<td width="103">Fuel pump:</td>
+									<td><button onclick="triggerSimEvent('MobiFlight.MV_COR_FUEL_PUMP_TOGGLE',0,true);$(this).blur();" id="milviz_corsair_fuel_pump" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+							</table>
+							
+						</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>

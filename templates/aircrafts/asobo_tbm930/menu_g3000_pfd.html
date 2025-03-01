@@ -1,0 +1,180 @@
+<!-- First Row-->
+<div class="row" style="margin-top:-23px">
+
+    <!-- Lower Softkeys -->
+    <div class="col" style="margin-top:20px; max-width:400px; min-width:332px">
+        <div class="lead">PFD Lower Softkeys</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_1',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">1
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_2',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">2
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_3',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">3
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_4',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">4
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_5',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">5
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_6',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">6
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_7',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">7
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_8',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">8
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_10',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">9
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_11',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">10
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_12',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">11
+                </button>
+                <button onclick="triggerSimEvent('AS3000_PFD_1_SOFTKEY_1',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:25px;padding-left:0px;padding-right:0px;text-align:center">12
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FMS Softkeys -->
+    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
+        <div class="lead">PFD FMS Knob</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_FMS_LOWER_PFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_PFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_PUSH_PFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-light"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_PFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_LOWER_PFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Joystick Softkeys -->
+    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
+        <div class="lead">PFD Joystick</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_RANGE_PFD',[-1.0, 0.0, 0.0],true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_RANGE_PFD',[0.0, 0.0, 1.0],true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-arrow-up"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_RANGE_PFD',[0.0, 0.0, -1.0],true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-arrow-down"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_RANGE_PFD',[1.0, 0.0, 0.0],true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_RANGE_PUSH_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-light" style="width:65px;padding-left:0px;padding-right:0px;text-align:center">
+                    PUSH
+                </button>
+                <br>
+                <table>
+                    <tr>
+                        <td style="width:98px">Range:</td>
+                        <td>
+                            <button onclick="triggerSimEvent('AS1000_RANGE_ZOOM_PFD',-1,true, 'input');$(this).blur();"
+                                    type="button" class="btn btn-secondary"
+                                    style="width:45px;padding-left:0px;padding-right:0px;text-align:center">-
+                            </button>
+                            <button onclick="triggerSimEvent('AS1000_RANGE_ZOOM_PFD',1,true, 'input');$(this).blur();"
+                                    type="button" class="btn btn-secondary"
+                                    style="width:45px;padding-left:0px;padding-right:0px;text-align:center">+
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- GPS Softkeys -->
+    <div class="col" style="margin-top:20px; max-width:232px; min-width:230px">
+        <div class="lead">PFD GPS Keys</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_DIRECTTO_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">D->
+                </button>
+                <button onclick="triggerSimEvent('AS1000_MENU_PUSH_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">MENU
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_FPL_PUSH_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">FPL
+                </button>
+                <button onclick="triggerSimEvent('AS1000_PROC_PUSH_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PROC
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_CLR_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">CLR
+                </button>
+                <button onclick="triggerSimEvent('AS1000_ENT_PUSH_PFD',1,true,'input');$(this).blur();" type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">ENT
+                </button>
+                <br>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,124 @@
+<!-- First Row-->
+<div class="row">
+
+    <!-- Flaps & Gear -->
+    <div class="col" style="max-width:300px; min-width:299px;">
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary"
+                            style="padding-left:0px;padding-right:0px;width:66px">Flaps
+                    </button>
+                    <button type="button" class="btn btn-light" id="flaps-position"
+                            style="padding-left:0px;padding-right:0px;width:65px">???
+                    </button>
+                </div>
+                <button onclick="triggerSimEvent('FLAPS_DECR',0,true);$(this).blur();" type="button"
+                        class="btn btn-secondary" style="width:55px">
+                    <i class="bi bi-caret-up-fill"></i>
+                </button>
+                <button onclick="triggerSimEvent('FLAPS_INCR',0,true);$(this).blur();" type="button"
+                        class="btn btn-secondary" style="width:55px">
+                    <i class="bi bi-caret-down-fill"></i>
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('HANDLING_SPOILERS', HANDLING_SPOILERS === 0 ? 1 :0,true, 'input');$(this).blur();" id="speedbrake" type="button"
+                        class="btn btn-danger" style="width:190px">Speedbrake
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('PARKING_BRAKES',0,true);$(this).blur();" id="parking-brake"
+                        type="button"
+                        class="btn btn-danger" style="width:190px">Parking Brake
+                </button>
+
+                <hr class="bg-secondary" style="margin-bottom:15px">
+
+                <table>
+                    <tr>
+                        <th style="width:100px">Elev.</th>
+
+                        <th style="width:100px">Ailr.</th>
+                    </tr>
+                    <tr>
+                        <td>Up</td>
+
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td style="height:25vh">
+                            <form>
+                                <div class="form-group">
+                                    <input type="range" min="-16383" max="16383" step="1" class="form-control-range"
+                                           style="position:absolute;transform-origin:center left;width:25vh;margin-top:-14vh;margin-left:23px;transform:rotate(90deg);-moz-transform:rotate(90deg)"
+                                           oninput="triggerSimEvent('AXIS_ELEV_TRIM_SET',this.value,true);"
+                                           id="TrimElevator">
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <div class="form-group">
+                                    <input type="range" min="-100" max="100" step="1" class="form-control-range"
+                                           style="position:absolute;transform-origin:center left;width:25vh;margin-top:11vh;margin-left:23px;transform:rotate(270deg);-moz-transform:rotate(270deg)"
+                                           oninput="triggerSimEvent('AILERON_TRIM_SET',this.value,true)"
+                                           id="TrimAileron">
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Down</td>
+
+                        <td>Left</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick="disableScroll()"
+                                    onpointerdown="presshold(function(){ elevatorPlus() }, 400, 0.6, 90);"
+                                    onpointerup="releasehold();$(this).blur();"
+                                    onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary"
+                                    style="width:45px;">
+                                <i class="bi bi-arrow-up-short"></i>
+                            </button>
+                            </br>
+                            <button onclick="enableScroll()"
+                                    onpointerdown="presshold(function(){ elevatorMinus() }, 400, 0.6, 90);"
+                                    onpointerup="releasehold();$(this).blur();"
+                                    onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary"
+                                    style="width:45px;">
+                                <i class="bi bi-arrow-down-short"></i>
+                            </button>
+                            </br>
+                            <button onclick="elevatorReset();$(this).blur();" type="button" class="btn btn-warning"
+                                    style="width:45px;">
+                                <i class="bi bi-arrows-collapse"></i>
+                            </button>
+                        </td>
+
+                        <td>
+                            <button onpointerdown="presshold(function(){ aileronPlus() }, 400, 0.6, 90);"
+                                    onpointerup="releasehold();$(this).blur();"
+                                    onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary"
+                                    style="width:45px;">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                            </br>
+                            <button onpointerdown="presshold(function(){ aileronMinus() }, 400, 0.6, 90);"
+                                    onpointerup="releasehold();$(this).blur();"
+                                    onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary"
+                                    style="width:45px;">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                            </button>
+                            </br>
+                            <button onclick="aileronReset();$(this).blur();" type="button" class="btn btn-warning"
+                                    style="width:45px;">
+                                <i class="bi bi-arrows-collapse"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,5 @@
+[CONFIG]
+msfsbasedir = C:\Users\[username]\AppData\Local\Packages\Microsoft.Limitless_8wekyb3d8bbwe (for MS store version)
+openaipapikey = [OpenAip API key here]
+loglevel = info
+

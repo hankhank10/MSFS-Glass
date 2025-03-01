@@ -1,0 +1,112 @@
+	<!-- NAV-->
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapsenav_milviz_corsair" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px; margin-bottom:12px;">
+			<div class="card-body">
+				
+				<!-- NAV Frequency Swap -->
+				<div class="row" style="margin-top:-10px">
+
+					<!-- ADF -->
+					<div class="col" style="margin-top:10px;max-width:220px;min-width:221px;">
+						<div class="lead">ADF</div>	
+
+						<div class="row align-items-center" style="margin-bottom:10px;margin-left:0px;margin-right:0px">
+							<div class="col" style="min-width:177px;max-width:177px;">
+							<div class="row">
+							<!-- ADF Standby Tuner-->
+							<div class="col" style="margin-left:4px">
+								<div class="row">
+								<button type="button" class="btn btn-secondary" style="width:40px;" disabled>&nbsp;</button>
+								</div>
+								<div class="row">
+								<button type="button" class="btn btn-secondary" style="background-color:#000000;width:40px;opacity:1" disabled><strong><span style="color:red" id="adf_act_1000">?</span></strong></button>
+								</div>
+								<div class="row">
+								<button type="button" class="btn btn-secondary" style="width:40px;" disabled>&nbsp;</button>
+								</div>
+							</div>
+							<div class="col" style="margin-left:4px">
+								<div class="row">
+								<button onclick="triggerSimEvent ('ADF_100_INC', 1, true); $(this).blur(); adfplus100_use();" id="autopilot-com-freq" type="button" class="btn btn-secondary" title="Increase ADF frequency by 100 kHz" style="width:40px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg></button>
+								</div>
+								<div class="row">
+								<button type="button" class="btn btn-secondary" style="background-color:#000000;width:40px;opacity:1" disabled><strong><span style="color:red" id="adf_act_100">?</span></strong></button>
+								</div>
+								<div class="row">
+								<button onclick="triggerSimEvent ('ADF_100_DEC', 1, true); $(this).blur(); adfminus100_use();" id="autopilot-com-freq" type="button" class="btn btn-secondary" title="Decrease ADF frequency by 100 kHz" style="width:40px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg></button>
+								</div>
+							</div>
+							<div class="col" style="margin-left:4px">
+								<div class="row">
+								<button onclick="triggerSimEvent ('ADF_10_INC', 1, true); $(this).blur(); adfplus10_use();" id="autopilot-com-freq" type="button" class="btn btn-secondary" title="Increase ADF frequency by 10 kHz" style="width:40px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg></button>
+								</div>
+								<div class="row">
+								<button type="button" class="btn btn-secondary" style="background-color:#000000;width:40px;opacity:1" disabled><strong><span style="color:red" id="adf_act_10">?</span></strong></button>
+								</div>
+								<div class="row">
+								<button onclick="triggerSimEvent ('ADF_10_DEC', 1, true); $(this).blur(); adfminus10_use();" id="autopilot-com-freq" type="button" class="btn btn-secondary" title="Decrease ADF frequency by 10 kHz" style="width:40px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg></button>
+								</div>
+							</div>
+							<div class="col" style="margin-left:4px">
+								<div class="row">
+								<button onclick="triggerSimEvent ('ADF_1_INC', 1, true); $(this).blur(); adfplus1_use();" id="autopilot-com-freq" type="button" class="btn btn-secondary" title="Increase ADF frequency by 1 kHz" style="width:40px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/></svg></button>
+								</div>
+								<div class="row">
+								<button type="button" class="btn btn-secondary" style="background-color:#000000;width:40px;opacity:1" disabled><strong><span style="color:red" id="adf_act_1">?</span></strong></button>
+								</div>
+								<div class="row">
+								<button onclick="triggerSimEvent ('ADF_1_DEC', 1, true); $(this).blur(); adfminus1_use();" id="autopilot-com-freq" type="button" class="btn btn-secondary" title="Decrease ADF frequency by 1 kHz" style="width:40px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg></button>
+								</div>
+							</div>
+							</div>
+							</div>
+							
+						</div>
+						
+					</div>
+
+					<!-- General -->
+					<div class="col" style="margin-top:20px;max-width:225px;min-width:224px;">
+						<div class="lead">Other</div>
+						<div class="row" style="margin-top:10px">
+							<div class="col align-self-center" style="max-width:100px; padding-right:0px">
+							Heading:
+							</div>
+							<div class="col">
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_HEADING_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:44px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_HEADING_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:44px">+</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col align-self-center" style="max-width:100px; padding-right:0px">
+							Gyro Drift:
+							</div>
+							<div class="col">
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('GYRO_DRIFT_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:44px;" title="Decrements altimeter setting">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('GYRO_DRIFT_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:44px" title="Decrements altimeter setting">+</button>
+							</div>
+						</div>
+						<div class="row" style="margin-bottom:10px">
+							<div class="col align-self-center" style="max-width:100px; padding-right:0px">
+							Altimeter:
+							</div>
+							<div class="col">
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('KOHLSMAN_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:44px;" title="Decrements altimeter setting">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('KOHLSMAN_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:44px" title="Decrements altimeter setting">+</button>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<!-- Last Row Force Sync Frequencies -->
+				<div class="row" style="margin-top:15px">
+					<div class="col">
+						<button type="button" onclick="syncRadio();$(this).blur();" class="btn-sm btn-danger">Force Sync Frequencies</button>
+						<p class="font-italic text-secondary">Press "Force Sync Frequencies" if radio frequencies are out of sync with MSFS. Allow up to 3 seconds to sync frequencies.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End of Navigation-->

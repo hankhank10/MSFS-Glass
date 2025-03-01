@@ -1,0 +1,72 @@
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- Lights -->
+					<div class="col" style="margin-top:20px; max-width:270px; min-width:270px;">
+						<div class="lead">Lights</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all" type="button" class="btn btn-warning" style="width:253px">Toggle All Lights</button><br>
+							<table style="width:255px">
+								<tr>
+									<td width="73">Strobe</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_STROBE_ON',0,true);$(this).blur();" id="FBW_A32NX_strobe_on" type="button" class="btn btn-secondary" style="width:55px">On</button>
+										<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_STROBE_AUTO',0,true);$(this).blur();" id="FBW_A32NX_strobe_auto" type="button" class="btn btn-secondary" style="width:60px;padding-left:0;padding-right:0">Auto</button>
+										<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_STROBE_OFF',0,true);$(this).blur();" id="FBW_A32NX_strobe_off" type="button" class="btn btn-secondary" style="width:55px">Off</button>
+									
+									</td>
+								</tr>
+								<tr>
+									<td>Beacon</td>
+									<td><button onclick="triggerSimEvent('TOGGLE_BEACON_LIGHTS',0,true);$(this).blur();" id="light-beacon" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>Wing</td>
+									<td><button onclick="triggerSimEvent('TOGGLE_WING_LIGHTS',0,true);$(this).blur();" id="light-wings" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>NAV</td>
+									<td><button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>RWY</td>
+									<td><button onclick="triggerSimEvent('TOGGLE_TAXI_LIGHTS',0,true);$(this).blur();" id="FBW_A32NX_rwy" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>Landing</td>
+									<td><button onclick="triggerSimEvent('LANDING_LIGHTS_TOGGLE',0,true);$(this).blur();" id="FBW_A32NX_land" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>Panel</td>
+									<td><button onclick="triggerSimEvent('PANEL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-panel" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>Nose</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_NOSE_ON',0,true);$(this).blur();" id="FBW_A32NX_nose_on" type="button" class="btn btn-secondary" style="width:55px">TO</button>
+										<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_NOSE_TAXI',0,true);$(this).blur();" id="FBW_A32NX_nose_auto" type="button" class="btn btn-secondary" style="width:60px;padding-left:0;padding-right:0">Taxi</button>
+										<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_NOSE_OFF',0,true);$(this).blur();" id="FBW_A32NX_nose_off" type="button" class="btn btn-secondary" style="width:55px">Off</button>
+									
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+					</div>
+
+					<!-- Pitot & Deicing -->
+					<div class="col" style="margin-top:20px; max-width:300px; min-width:290px;">
+						<div class="lead">Anti-Ice</div>
+						<div class="row" style="margin-bottom:10px">
+							<div class="col">
+								<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_ANTIICE_WING',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center" id="FBW_A32NX_anti_ice_wing">Wing Anti-Ice (Off)</button><br>
+								<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_ANTIICE_ENG1',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center" id="FBW_A32NX_anti_ice_eng1">ENG1 Anti-Ice (Off)</button><br>
+								<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_ANTIICE_ENG2',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center" id="FBW_A32NX_anti_ice_eng2">ENG2 Anti-Ice (Off)</button><br>
+								<button onclick="triggerSimEvent('MobiFlight.FBW_A32NX_DEV_OVHD_PROBESWINDOW',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center" id="FBW_A32NX_window_heat">Probe/Window Heat (Off)</button>
+								
+							</div>
+						</div>
+					</div>
+				
+				</div>

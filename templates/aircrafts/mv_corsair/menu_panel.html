@@ -1,0 +1,160 @@
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapsepanel_milviz_corsair" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px;margin-bottom:12px;">
+			<div class="card-body">
+			
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- Lights -->
+					<div class="col" style="margin-top:20px; max-width:332px; min-width:331px;">
+						<div class="lead">Lights</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td width="70">BCN</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_BCN_DOWN',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_bcn_down">Down</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_BCN_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_bcn_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_BCN_RED',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_bcn_red">Red</button>
+									</td>
+								</tr>
+								<tr>
+									<td>RECOGN</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_RECOGN_STEADY',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_recogn_steady">Steady</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_RECOGN_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_recogn_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_RECOGN_FLASH',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_recogn_flash">Flash</button>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>LAND</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_LANDING_ON',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_landing_on">On</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_LANDING_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_landing_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_LANDING_AMBER',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_landing_amber">Amber</button>
+									</td>
+								</tr>
+								<tr>
+									<td>EXT</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_EXT_STEADY',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_extl_steady">Steady</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_EXT_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_extl_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_EXT_FLASH',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_extl_flash">Flash</button>
+									</td>
+								</tr>
+								<tr>
+									<td>WING</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_WING_BRIGHT',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_wing_brigth">Bright</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_WING_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_wing_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_WING_DIM',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_wing_dim">Dim</button>
+									</td>
+								</tr>
+								<tr>
+									<td>TAIL</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_TAIL_BRIGHT',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_tail_bright">Bright</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_TAIL_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_tail_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_TAIL_DIM',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_tail_dim">Dim</button>
+									</td>
+								</tr>
+								<tr>
+									<td>FORM</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_FORM_BRIGHT',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_form_bright">Bright</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_FORM_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_form_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_FORM_DIM',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_form_dim">Dim</button>
+									</td>
+								</tr>
+								<tr>
+									<td>SECTION</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_SECTION_BRIGHT',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_section_bright">Bright</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_SECTION_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_section_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_SECTION_DIM',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_section_dim">Dim</button>
+									</td>
+								</tr>
+								<tr>
+									<td>SEC.SEL</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_SECSEL_BRIGHT',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_secsel_steady">Steady</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_SECSEL_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_secsel_off">Off</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_SECSEL_DIM',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_secsel_code">Code</button>
+									</td>
+								</tr>
+								<tr>
+									<td>APP</td>
+									<td>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_APP_ON',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_app_on">On</button>
+										<button onclick="triggerSimEvent('MobiFlight.MV_COR_APP_OFF',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:65px;padding-left:0px;padding-right:0px" id="milviz_corsair_app_off">Off</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+					</div>
+					
+					<!-- Cockpit Lights -->
+					<div class="col" style="margin-top:20px; max-width:332px; min-width:331px;">
+						<div class="lead">Cockpit Lights</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.MV_COR_COCKPIT_TOGGLE',0,true);$(this).blur();" id="milviz_corsair_cockpit_lights" type="button" class="btn btn-danger" style="width:199px">Cockpit Lights</button><br>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">Chart B.</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_chartb" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_CHART_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_CHART_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">+</button>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">L. Panel</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_lpanel" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_LPANEL_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_LPANEL_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">+</button>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">R. Panel</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_rpanel" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_RPANEL_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_RPANEL_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">+</button>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">L. Instr.</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_linst" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_LINST_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_LINST_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">+</button>
+							
+							<div class="btn-group" role="group">
+									<button type="button" class="btn btn-secondary" style="padding-right:0px;width:100px;text-align:left">R. Instr.</button>
+									<button type="button" class="btn btn-light" id="milviz_corsair_rinst" style="padding-left:0px;padding-right:0px;width:50px">???%</button>
+							</div>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_RINST_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">-</button>
+							<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.MV_COR_RINST_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:45px">+</button>
+						</div>
+						</div>
+					</div>
+					
+					<!-- Pitot & Deicing -->
+					<div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+						<div class="lead">Pitot Heat & Deicing</div>
+						<div class="row" style="margin-bottom:10px">
+							<div class="col">
+								<button onclick="triggerSimEvent('MobiFlight.MV_COR_DEFROST_TOGGLE',0,true);$(this).blur();" id="milviz_corsair_defrost" type="button" class="btn btn-danger" style="width:199px">Defrost</button><br>
+								<button onclick="triggerSimEvent('MobiFlight.MV_COR_PITOT_HEAT_TOGGLE',0,true);$(this).blur();" id="milviz_corsair_pitotheat" type="button" class="btn btn-danger" style="width:199px">Pitot Heat</button><br>
+								<button onclick="triggerSimEvent('MobiFlight.MV_COR_RECPT',0,true);$(this).blur();" id="milviz_corsair_recpt" type="button" class="btn btn-danger" style="width:199px">Recpt</button>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+
+			</div>
+		</div>
+	</div>

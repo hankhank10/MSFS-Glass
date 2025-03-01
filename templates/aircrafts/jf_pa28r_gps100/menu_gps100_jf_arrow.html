@@ -1,0 +1,27 @@
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapsegps100_jf_arrow" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px;margin-bottom:12px;">
+			<div class="card-body">
+			
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- GPS Softkeys -->
+					<div class="col" style="margin-top:20px; max-width:400px; min-width:332px">
+						<div class="lead">GPS 100 Control Keys</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('MobiFlight.JF_ARROW_GPS100_RTE_press',0,true);setTimeout(() => { triggerSimEvent('MobiFlight.JF_ARROW_GPS100_RTE_release',0,true); },100);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">RTE</button>
+							<button onclick="triggerSimEvent('MobiFlight.JF_ARROW_GPS100_WPT_press',0,true);setTimeout(() => { triggerSimEvent('MobiFlight.JF_ARROW_GPS100_WPT_release',0,true); },100);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center">WPT</button>
+							<button onclick="triggerSimEvent('MobiFlight.JF_ARROW_GPS100_NAV_press',0,true);setTimeout(() => { triggerSimEvent('MobiFlight.JF_ARROW_GPS100_NAV_release',0,true); },100);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center;margin-right:10px">NAV</button>
+							<button onclick="triggerSimEvent('MobiFlight.JF_ARROW_GPS100_LEFT_press',0,true);setTimeout(() => { triggerSimEvent('MobiFlight.JF_ARROW_GPS100_CENTER',0,true); },100);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></button>
+							<button onclick="triggerSimEvent('MobiFlight.JF_ARROW_GPS100_RIGHT_press',0,true);setTimeout(() => { triggerSimEvent('MobiFlight.JF_ARROW_GPS100_CENTER',0,true); },100);$(this).blur();" type="button" class="btn btn-secondary" style="width:53px;padding-left:0px;padding-right:0px;text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg></button>
+						</div>
+						</div>
+						
+					</div>
+				
+				</div>
+
+			</div>
+		</div>
+	</div>

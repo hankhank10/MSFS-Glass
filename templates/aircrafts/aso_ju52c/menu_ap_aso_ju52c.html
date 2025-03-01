@@ -1,0 +1,51 @@
+	<div class="collapse {% if (post_loop.first) and (request.path != "/") %}show{% endif %}" id="collapseap_aso_ju52c" data-parent="#myGroup">
+		<div class="card bg-dark text-white" style="margin-top:10px;margin-bottom:12px;">
+			<div class="card-body">
+			
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- AP -->
+					<div class="col" style="margin-top:20px; max-width:332px; min-width:332px;">
+						<div class="lead">AP Master</div>
+						
+						<button onclick="triggerSimEvent('MobiFlight.ASO_JU52_AP_ACTIVE',0,true);$(this).blur();" id="ASO_JU52C_AP" type="button" class="btn btn-danger btn-lg" style="width:332px" id="ASO_JU52C_AP">Kurssteuerung (Off)</button>
+						
+						<hr class="bg-secondary" style="margin-bottom:5px">
+						
+						<!-- Default AP Controls -->
+						<table style="border-collapse:separate; border-spacing:0 5px; vertical-align: middle; text-align: left">
+							<tr>
+								<td width="80">Heading (deg)</td>
+								<td width="66"><button onclick="triggerSimEvent('MobiFlight.ASO_JU52_AP_HEADING_HOLD4',0,true);$(this).blur();" id="ASO_JU52C_AP_HEADING" type="button" class="btn btn-danger" style="width:62px" disabled>?</button></td>
+								<td>
+									<div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px">
+										<input id="autopilot-heading-lock-dir" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('AP_hdg_set').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="?" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("autopilot-heading-lock-dir").value <= 360 && document.getElementById("autopilot-heading-lock-dir").value >= 0 && document.getElementById("autopilot-heading-lock-dir").value != "") {triggerSimEventFromField ("HEADING_BUG_SET", "autopilot-heading-lock-dir");$("#autopilot-heading-lock-dir").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;" title="Set AP heading in degrees" id="AP_hdg_set">Set</button>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('HEADING_BUG_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="width:62px;margin-top:0px">-1°</button>
+									<button type="button" onclick="triggerSimEventFromVar ('HEADING_BUG_SET', plane_heading_degrees, false);$(this).blur();" class="btn btn-sm btn-secondary" title="Sync HDG with current HDG" style="width:84px;margin-top:0px">Sync</button>
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('HEADING_BUG_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="width:62px;margin-top:0px">+1°</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+				<div class="row" style="margin-top:15px">
+					<div class="col">
+						<p class="font-italic text-secondary">Heading AP switch cannot be operated due to current technical limitations of SimConnect.</p>
+					</div>
+				</div>
+			
+			
+			</div>
+		</div>
+	</div>

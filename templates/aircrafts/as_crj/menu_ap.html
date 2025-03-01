@@ -1,0 +1,187 @@
+
+				<!-- First Row-->
+				<div class="row" style="margin-top:-23px">
+					
+					<!-- Main AP Engage -->
+					<div class="col" style="margin-top:20px">
+						<div class="lead" style="margin-bottom:-15px">AP Master</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('AP_MASTER',0,true);$(this).blur();" id="autopilot-master" type="button" class="btn mt-3 btn-block btn-danger btn-lg">?</button>
+							<hr class="bg-secondary" style="margin-bottom:5px">
+						</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Second Row-->
+				<div class="row" style="margin-top:-23px">
+					<!-- AP Controls -->
+					<div class="col" style="margin-top:20px; margin-bottom:0px; max-width:410px; min-width:332px">
+						<!-- NAV and 1/2 Bank-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_NAV',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_NAV_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_NAV_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:83px;margin-left:68px;padding-left:0px;padding-right:0px;text-align:center">NAV</button>
+							<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_12BANK',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_12BANK_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_12BANK_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:83px;padding-left:0px;padding-right:0px;text-align:center">1/2 BANK</button>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- HDG-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td style="width:30px;writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl">
+										<div class="lead text-secondary" style="height:120px;text-align:center;-webkit-writing-mode:vertical-rl">----HDG---</div>
+									</td>
+									<td>
+										<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center">HDG Toggle</button></br>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_INFO_minus10',0,true) }, 400, 0.6, 150);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px">-12</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_INFO_minus1',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px">-1</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_INFO_plus1',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px">+1</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_INFO_plus10',0,true) }, 400, 0.6, 150);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px">+12</button><br>
+										<button type="button" onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_SYNC',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_SYNC_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_HDG_SYNC_rel',0,true);$(this).blur();" class="btn btn-light btn-sm" title="Sync HDG with current HDG" style="width:245px">PUSH SYNC</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- ALT-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td style="width:30px;writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl">
+										<div class="lead text-secondary" style="height:85px;text-align:center;-webkit-writing-mode:vertical-rl">--ALT--</div>
+									</td>
+									<td>
+										<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center">ALT Toggle</button></br>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_INFO_minus100',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">-100</button>
+										<button type="button" onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_CANCEL',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_CANCEL_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_CANCEL_rel',0,true);$(this).blur();" class="btn btn-light" title="Sync HDG with current HDG" style="width:120px;padding-left:0px;padding-right:0px">PUSH CANCEL</button>
+										<button type="button"  onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_ALT_INFO_plus100',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">+100</button>
+									</td>
+							</table>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- VS-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td style="width:30px;writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl">
+										<div class="lead text-secondary" style="height:85px;text-align:center;-webkit-writing-mode:vertical-rl">---VS---</div>
+									</td>
+									<td>
+										<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_VS',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_VS_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_VS_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center">VS Toggle</button></br>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_WHEEL_up2',0,true) }, 400, 0.6, 150);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">-1000</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_WHEEL_up',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">-100</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_WHEEL_down',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">+100</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_WHEEL_down2',0,true) }, 400, 0.6, 150);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">+1000</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- SPEED-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td style="width:30px;writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl">
+										<div class="lead text-secondary" style="height:85px;text-align:center;-webkit-writing-mode:vertical-rl">--SPD--</div>
+									</td>
+									<td>
+										<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_SPEED',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_SPEED_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_SPEED_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:245px;padding-left:0px;padding-right:0px;text-align:center">SPEED Toggle</button></br>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_SPEED_minus',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">-</button>
+										<button type="button" onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_IAS_MACH',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_IAS_MACH_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_IAS_MACH_rel',0,true);$(this).blur();" class="btn btn-light" style="width:120px;padding-left:0px;padding-right:0px">IAS/MACH</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_SPEED_plus',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">+</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- CRS1-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td style="width:30px;writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl">
+										<div class="lead text-secondary" style="height:85px;text-align:center;-webkit-writing-mode:vertical-rl">--CRS1--</div>
+									</td>
+									<td>
+										<div class="input-group sim-input-field" style="width:245px;margin-top:2px;margin-bottom:2px">
+										<div class="input-group-prepend">
+											<button class="btn btn-secondary" type="button" style="margin-top:0px;margin-bottom:0px;padding:0px;width:58px;"disabled>DEG</button>
+										</div>
+										<input class="form-control" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('OBS_1_Set').click()" inputmode="numeric" pattern="[0-9]*" id="OBS_1_heading" aria-label="OBS 1 Deg" aria-describedby="OBS_1_Deg" placeholder="-" style = "padding-left:10px;padding-right:0px">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("OBS_1_heading").value <= 360 && document.getElementById("OBS_1_heading").value >= 0 && document.getElementById("OBS_1_heading").value % 1 === 0 && document.getElementById("OBS_1_heading").value != "") {triggerSimEventFromField ("VOR1_SET", "OBS_1_heading", "Setting OBS 1");$("#OBS_1_heading").val("");}; $(this).blur();' class="btn btn-warning" type="button" id="OBS_1_Set" style="margin-top:0px;margin-bottom:0px;padding:0px;width:58px;" title="Set OBS 1 heading in degrees">Set</button>
+										</div>
+										</div>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS1_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">-</button>
+										<button type="button" onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS1_DIRECT',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS1_DIRECT_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS1_DIRECT_rel',0,true);$(this).blur();" class="btn btn-light" style="width:120px;padding-left:0px;padding-right:0px">PUSH DIRECT</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS1_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">+</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- CRS2-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<table>
+								<tr>
+									<td style="width:30px;writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl">
+										<div class="lead text-secondary" style="height:85px;text-align:center;-webkit-writing-mode:vertical-rl">--CRS2--</div>
+									</td>
+									<td>
+										<div class="input-group sim-input-field" style="width:245px;margin-top:2px;margin-bottom:2px">
+										<div class="input-group-prepend">
+											<button class="btn btn-secondary" type="button" style="margin-top:0px;margin-bottom:0px;padding:0px;width:58px;"disabled>DEG</button>
+										</div>
+										<input class="form-control" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('OBS_2_Set').click()" inputmode="numeric" pattern="[0-9]*" id="OBS_2_heading" aria-label="OBS 2 Deg" aria-describedby="OBS_2_Deg" placeholder="-" style = "padding-left:10px;padding-right:0px">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("OBS_2_heading").value <= 360 && document.getElementById("OBS_2_heading").value >= 0 && document.getElementById("OBS_2_heading").value % 1 === 0 && document.getElementById("OBS_2_heading").value != "") {triggerSimEventFromField ("VOR2_SET", "OBS_2_heading", "Setting OBS2");$("#OBS_2_heading").val("");}; $(this).blur();' class="btn btn-warning" type="button" id="OBS_2_Set" style="margin-top:0px;margin-bottom:0px;padding:0px;width:58px;" title="Set OBS 2 heading in degrees">Set</button>
+										</div>
+										</div>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS2_MINUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">-</button>
+										<button type="button" onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS2_DIRECT',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS2_DIRECT_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS2_DIRECT_rel',0,true);$(this).blur();" class="btn btn-light" style="width:120px;padding-left:0px;padding-right:0px">PUSH DIRECT</button>
+										<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('MobiFlight.ASCRJ_FCP_CRS2_PLUS',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary" style="width:58px;padding-left:0px;padding-right:0px;text-align:center">+</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+
+						<hr class="bg-secondary" style="width:245px;margin-left:30px">
+
+						<!-- Rest-->
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_APPR',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_APPR_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_APPR_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:83px;margin-left:68px;padding-left:0px;padding-right:0px;text-align:center">APPR</button>
+							<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_BC',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_BC_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_BC_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:83px;padding-left:0px;padding-right:0px;text-align:center">B/C</button></br>
+							<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_XFR',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_XFR_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_XFR_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:83px;margin-left:68px;padding-left:0px;padding-right:0px;text-align:center">XFR</button>
+							<button onpointerdown="triggerSimEvent('MobiFlight.ASCRJ_FCP_TURB',0,true)" onpointerup="triggerSimEvent('MobiFlight.ASCRJ_FCP_TURB_rel',0,true);$(this).blur();" onpointerout="triggerSimEvent('MobiFlight.ASCRJ_FCP_TURB_rel',0,true);$(this).blur();" type="button" class="btn btn-secondary" style="width:83px;padding-left:0px;padding-right:0px;text-align:center">TURB</button></br>
+						</div>
+						</div>
+
+					</div>
+					
+				</div>

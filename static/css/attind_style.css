@@ -1,77 +1,101 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1f1f1f; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+}
+
+/* Casing */
 .casing {
-  background: #111 url("../img/metal.jpg") repeat;
-  border: 1px solid #aaa;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #000;
-  padding: 20px;
+  background: #2a2a2a url("../img/metal.jpg") repeat;
+  border: 1px solid #555;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+  padding: 30px;
   height: 334px;
   width: 334px;
 }
 
+/* Inner Case */
 .inner-case {
-  background: #222;
-  border: 2px solid #333;
+  background: #333;
+  border: 2px solid #666;
   border-radius: 165px;
-  box-shadow: 0 0 10px #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   height: 300px;
   overflow: hidden;
-  padding: 15px;
+  padding: 25px;
 }
 
+/* Case Control */
 .case-control {
-  box-shadow: 0px 2px 0px #333;
-  border-bottom: 1px solid #555;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #777;
   height: 230px;
   overflow: hidden;
 }
 
-/* panel */
+/* Panel */
 .panel {
-  box-shadow: 0 0 10px #111;
-  border-radius: 30px 30px 300px 300px;
-  background: #333;
-  color: #aaa;
-  font-family: Arial;
-  margin: 13px 0 0 55px;
-  width: 190px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
+  background: #444;
+  color: #ccc;
+  font-family: 'Arial', sans-serif;
+  margin: 20px 0 0 60px;
+  width: 200px;
   height: 40px;
 }
+
 .panel ul {
   padding: 0;
+  margin: 0;
 }
+
 .panel li {
-  list-style-type: none;
+  list-style: none;
   float: left;
 }
 
-/* labels */
+/* Labels */
 .labels li {
-  margin: 3px 8px;
-}
-.labels li:nth-child(3) {
-  margin-left: 25px;
+  margin: 5px 10px;
 }
 
-/* lights */
+.labels li:nth-child(3) {
+  margin-left: 30px;
+}
+
+/* Lights */
 .light {
   background: #555;
-  border-radius: 10px;
-  height: 10px;
-  margin: 0 23px;
-  width: 10px;
-}
-.light:nth-child(3) {
-  margin-left: 42px;
-}
-.light.on {
-  box-shadow: 0 0 8px #3f3;
-  background: #6f6;
-}
-.light.off {
-  box-shadow: 0 0 8px #f33;
-  background: #f66;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  margin: 0 25px;
 }
 
+.light:nth-child(3) {
+  margin-left: 45px;
+}
+
+.light.on {
+  box-shadow: 0 0 8px #4caf50;
+  background: #66bb6a;
+}
+
+.light.off {
+  box-shadow: 0 0 8px #f44336;
+  background: #f44336;
+}
+
+/* Weight */
 .weight {
   position: absolute;
   height: 300px;
@@ -79,100 +103,93 @@
   z-index: 3;
 }
 
+/* Aircraft Control */
 .aircraft div {
-  background: #e98219;
+  background: #ff9800;
   border-radius: 5px;
   box-shadow: 0 0 6px #000;
   position: absolute;
   top: 150px;
-  height: 5px;
+  height: 6px;
 }
 
-/* up-chevron */
+/* Up-chevron */
 .up-chevron {
   position: relative;
   top: 50px;
-  left: 140px;
+  left: 145px;
 }
+
 .up-chevron div {
-  background: #e98219;
+  background: #ff9800;
   border-radius: 5px;
   box-shadow: 0 0 6px #000;
   position: absolute;
   width: 5px;
 }
+
 .up-chevron div:nth-child(1),
 .up-chevron div:nth-child(2) {
   height: 35px;
 }
+
 .up-chevron div:nth-child(3) {
   height: 25px;
 }
+
 .up-chevron div:nth-child(1) {
-  box-shadow: 2px 0px 2px #555;
+  box-shadow: 2px 0 2px #444;
   transform: rotate(-20deg);
   top: 0;
   left: 11px;
 }
+
 .up-chevron div:nth-child(2) {
-  box-shadow: -2px 0px 2px #555;
+  box-shadow: -2px 0 2px #444;
   transform: rotate(20deg);
   top: 0;
   left: 0;
 }
+
 .up-chevron div:nth-child(3) {
-  box-shadow: 2px 0px 2px #555;
+  box-shadow: 2px 0 2px #444;
   transform: rotate(90deg);
   top: 19px;
   left: 5px;
 }
 
-.left {
-  left: 80px;
-  width: 50px;
-}
-
-.centre {
-  left: 150px;
-  width: 5px;
-}
-
-.right {
-  left: 175px;
-  width: 50px;
-}
-
+/* Sky and Terrain */
 .sky {
-  background: #558ebb;
+  background: #4f9dc7; /* Sky Blue */
 }
 
 .terrain {
-  background: #503723;
+  background: #7b4c34; /* Brownish Terrain */
 }
 
+/* Mechanism */
 .mechanism {
   transform: rotate(0deg); /* dynamic */
 }
 
-/* back */
+/* Back */
 .back.sky {
   border-radius: 150px 150px 0 0;
   height: 150px;
   width: 300px;
 }
+
 .back.terrain {
   border-radius: 0 0 150px 150px;
   height: 150px;
   width: 300px;
 }
 
+/* Roll */
 .roll {
-  border-top: 50px solid #558ebb;
-  border-right: 50px solid #558ebb;
-  border-bottom: 50px solid #503723;
-  border-left: 50px solid #503723;
+  border: 50px solid #4f9dc7;
   border-radius: 200px;
-  box-shadow: inset 0 0 20px #000;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
   transform: rotate(-45deg);
   position: absolute;
   top: 0;
@@ -182,11 +199,12 @@
   z-index: 2;
 }
 
-/* roll-lines */
+/* Roll Lines */
 .roll-lines {
   transform: rotate(45deg);
   position: absolute;
 }
+
 .roll-lines div {
   background: #fff;
   position: absolute;
@@ -199,87 +217,53 @@
   width: 50px;
   top: -1px;
 }
+
 #ninety-left {
   left: -9px;
 }
+
 #ninety-right {
   left: 242px;
 }
 
-#zero {
-  background: none;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 40px solid #fff;
-  top: -140px;
-  left: 126px;
-  height: 0;
-  width: 0;
-}
-
-#fortyfive-left,
-#fortyfive-right {
-  background: none;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 15px solid #fff;
-  top: -81px;
-  left: 57px;
-  height: 0;
-  width: 0;
-}
-#fortyfive-left {
-  transform: rotate(-45deg);
-}
-#fortyfive-right {
-  transform: rotate(45deg);
-  left: 215px;
-}
-#thirty-left,
-#thirty-right {
-  top: -60px;
-}
-#thirty-left {
-  transform: rotate(30deg);
-  left: 16px;
-}
-#thirty-right {
-  transform: rotate(-30deg);
-  left: 227px;
-}
-#sixty-left,
-#sixty-right {
-  top: -105px;
-}
-#sixty-left {
-  transform: rotate(60deg);
-  left: 60px;
-}
-#sixty-right {
-  transform: rotate(-60deg);
-  left: 183px;
-}
-
+/* Ball */
 .ball {
   position: absolute;
   border-radius: 75px;
   box-shadow: 0 0 10px #000;
   left: 50px;
-  top: 75px; /* dynamic */
+  top: 75px;
   z-index: 1;
 }
 
-/* pitch-lines */
+.ball .sky {
+  width: 200px;
+  height: 75px;
+  background-image: linear-gradient(top, #4f9dc7, #90c8db);
+  border-radius: 100px 100px 0 0;
+  border-bottom: 2px solid #fff;
+}
+
+.ball .terrain {
+  width: 200px;
+  height: 75px;
+  background-image: linear-gradient(top, #7b4c34, #5d3621);
+  border-radius: 0 0 100px 100px;
+}
+
+/* Pitch Lines */
 .pitch-lines {
   position: absolute;
   padding: 8px 70px;
 }
+
 .pitch-lines div {
   background: #fff;
   margin-top: 12px;
   height: 2px;
   width: 25px;
 }
+
 .pitch-lines .small {
   margin-left: 18px;
 }
@@ -289,44 +273,55 @@
   margin-left: 10px;
   width: 40px;
 }
+
 #twenty,
 #minus-twenty {
   width: 60px;
 }
+
 #minus-five {
   margin-top: 24px;
 }
 
-/* ball */
-.ball .sky {
-  width: 200px;
-  height: 75px;
-  background-image: linear-gradient(top, #558ebb, #9ccbe5);
-  border-radius: 100px 100px 0 0;
-  border-bottom: 2px solid #fff;
-}
-.ball .terrain {
-  width: 200px;
-  height: 75px;
-  background-image: linear-gradient(top, #553a29, #3d2618);
-  border-radius: 0 0 100px 100px;
-}
-
+/* Cage Toggle */
 .cage-toggle {
-  background: #222;
-  border: 2px solid #333;
-  border-radius: 40px;
-  box-shadow: 0 0 10px #000;
-  color: #aaa;
-  font-family: Arial;
-  font-size: 10px;
-  height: 40px;
-  line-height: 13px;
+  background: #333;
+  border: 2px solid #444;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: #ccc;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  height: 45px;
+  line-height: 15px;
   left: 315px;
-  padding: 5px;
+  padding: 8px;
   position: absolute;
   top: 315px;
   text-align: center;
   transform: rotate(-34deg);
-  width: 40px;
+  width: 45px;
+}
+
+/* Navbar */
+.navbar {
+  background: #222;
+  border-radius: 0.5rem;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 0 20px;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #4caf50;
 }

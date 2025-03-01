@@ -1,0 +1,122 @@
+<!-- First Row-->
+<div class="row">
+
+    <!-- Lights -->
+    <div class="col" style="max-width:270px; min-width:270px;">
+        <div class="lead">Lights</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all"
+                        type="button" class="btn btn-warning" style="width:245px">Toggle All Exterior Lights
+                </button>
+                <br>
+                <table style="width:245px">
+                    <tr>
+                        <td>Beacon Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_BEACON_LIGHTS',0,true);$(this).blur();"
+                                    id="light-beacon" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landing Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LANDING_LIGHTS_TOGGLE',0,true);$(this).blur();"
+                                    id="light-landing" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taxi Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_TAXI_LIGHTS',0,true);$(this).blur();"
+                                    id="light-taxi" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>NAV Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Strobe Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('STROBES_TOGGLE',0,true);$(this).blur();" id="light-strobe"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>G1000 Lights</td>
+                        <td>
+                            <button onclick="toggle_g1000_light();$(this).blur();"
+                                    id="light-g1000" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SW/CB Panel Lights</td>
+                        <td>
+                            <button onclick="toggle_glareshield_light();$(this).blur();"
+                                    id="light-glareshield" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Standby Instrument Lights</td>
+                        <td>
+                            <button onclick="toggle_stdy_ind_light();$(this).blur();"
+                                    id="light-stby-ind-light" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pedestal Lights</td>
+                        <td>
+                            <button onclick="toggle_pedestal_light();$(this).blur();"
+                                    id="light-pedestal" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Floodlights</td>
+                        <td>
+                            <button onclick="toggle_floodlights();$(this).blur();"
+                                    id="light-flood" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pitot & Deicing -->
+    <div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+        <div class="lead">Pitot Heat & Deicing</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="if (pitot_heat == 0) {triggerSimEvent('PITOT_HEAT_SET', 1, true);} else {triggerSimEvent('PITOT_HEAT_SET', 0, true);};$(this).blur();"
+                        id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('ANTI_ICE_TOGGLE',0,true);$(this).blur();" id="anti-ice" type="button"
+                        class="btn btn-danger" style="width:190px">General Anti-Ice
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Last Row Information -->
+<div class="row">
+    <div class="col">
+        <p class="font-italic text-secondary">Some controls will work differently depending on the plane.</p>
+    </div>
+</div>

@@ -34,8 +34,12 @@ typedef DWORD SIMCONNECT_OBJECT_ID;
 //        Constants
 //----------------------------------------------------------------------------
 
-static const DWORD SIMCONNECT_UNUSED           = DWORD_MAX;   // special value to indicate unused event, ID
-static const DWORD SIMCONNECT_OBJECT_ID_USER   = 0;           // proxy value for User vehicle ObjectID
+static const DWORD SIMCONNECT_UNUSED           = DWORD_MAX;                          // special value to indicate unused event, ID
+static const DWORD SIMCONNECT_OBJECT_ID_MAX = DWORD_MAX - 128;                       // proxy value for User vehicle ObjectID
+static const DWORD SIMCONNECT_OBJECT_ID_USER = 0;                                    // deprecated - proxy legacy value for User aircraft ObjectID
+static const DWORD SIMCONNECT_OBJECT_ID_USER_AIRCRAFT = 0;                           // proxy value for User aircraft ObjectID
+static const DWORD SIMCONNECT_OBJECT_ID_USER_AVATAR = SIMCONNECT_OBJECT_ID_MAX + 1;  // proxy value for User avatar ObjectID
+static const DWORD SIMCONNECT_OBJECT_ID_USER_CURRENT = SIMCONNECT_OBJECT_ID_MAX + 2; // proxy value for User aircraft/avatar ObjectID
 
 static const float SIMCONNECT_CAMERA_IGNORE_FIELD   = FLT_MAX;  //Used to tell the Camera API to NOT modify the value in this part of the argument.
 
@@ -217,7 +221,8 @@ SIMCONNECT_ENUM SIMCONNECT_EXCEPTION
 // Object types
 SIMCONNECT_ENUM SIMCONNECT_SIMOBJECT_TYPE
 {
-    SIMCONNECT_SIMOBJECT_TYPE_USER,
+    SIMCONNECT_SIMOBJECT_TYPE_USER = 0,
+    SIMCONNECT_SIMOBJECT_TYPE_USER_AIRCRAFT = 0,
     SIMCONNECT_SIMOBJECT_TYPE_ALL,
     SIMCONNECT_SIMOBJECT_TYPE_AIRCRAFT,
     SIMCONNECT_SIMOBJECT_TYPE_HELICOPTER,
@@ -225,6 +230,8 @@ SIMCONNECT_ENUM SIMCONNECT_SIMOBJECT_TYPE
     SIMCONNECT_SIMOBJECT_TYPE_GROUND,
     SIMCONNECT_SIMOBJECT_TYPE_HOT_AIR_BALLOON,
     SIMCONNECT_SIMOBJECT_TYPE_ANIMAL,
+    SIMCONNECT_SIMOBJECT_TYPE_USER_AVATAR,
+    SIMCONNECT_SIMOBJECT_TYPE_USER_CURRENT,
 };
 
 // EventState values
