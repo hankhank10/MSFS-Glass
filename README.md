@@ -115,6 +115,8 @@ You can help in the troubleshooting by enabling `debug` level logging in the app
 - Unfortunately, I had to remove KML support for now, Maplibre is not displaying the custom graphics one can put in KML files.
 - Airplane and avionics in MSFS 2024 have been created by multiple dev teams, the behavior of these is really different, so feature parity between the different planes is impossible.
 - Map controls are limited when in follow mode, zoom, rotate, align to North will only work for 0.2s and then suddenly stops. This is due to how the plane icon is refreshed, which is a blocking operation for the map.
+- MSFS 2020 connection might work for some extent, but it is not tested.
+- Xbox support is not possible due to the lack of SimConnect SDK in the Xbox release
 
 ## Credits
 MSFS Glass is based on the [MFSS Mobile Companion App](https://github.com/mracko/MSFS-Mobile-Companion-App) that is a fork of [Python-SimConnect](https://pypi.org/project/SimConnect/) project.
