@@ -9,7 +9,7 @@
 							<button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all" type="button" class="btn btn-warning" style="width:245px">Toggle All Lights</button><br>
 							<table style="width:245px">
 								<tr>
-									<td width="190">Beacon Lights</td>
+									<td>Beacon Lights</td>
 									<td><button onclick="triggerSimEvent('TOGGLE_BEACON_LIGHTS',0,true);$(this).blur();" id="light-beacon" type="button" class="btn btn-danger" style="width:55px">?</button></td>
 								</tr>
 								<tr>
@@ -58,7 +58,7 @@
 						<div class="lead">Pitot Heat & Deicing</div>
 						<div class="row" style="margin-bottom:10px">
 							<div class="col">
-								<button onclick="if (pitot_heat == 0) {triggerSimEvent('PITOT_HEAT_SET', 1, true);} else {triggerSimEvent('PITOT_HEAT_SET', 0, true);};$(this).blur();" id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat</button><br>
+								<button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();" id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat</button><br>
 								<button onclick="triggerSimEvent('ANTI_ICE_TOGGLE',0,true);$(this).blur();" id="anti-ice" type="button" class="btn btn-danger" style="width:190px">General Anti-Ice</button><br>
 								<button onclick="triggerSimEvent('TOGGLE_STRUCTURAL_DEICE',0,true);$(this).blur();" id="structural-deice" type="button" class="btn btn-danger" style="width:190px">Structural Deice</button>
 							</div>

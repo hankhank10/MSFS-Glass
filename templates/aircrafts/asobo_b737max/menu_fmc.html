@@ -1,0 +1,176 @@
+<!-- fmc Panel Header -->
+<div class="lead mb-3">FMC Panel</div>
+
+<div class="fmc-container">
+    <!-- fmc function buttons -->
+    <div class="section fmc-side-buttons">
+        <button onclick="triggerSimEvent('FMC_EV_L1_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button> -
+        <button onclick="triggerSimEvent('FMC_EV_L2_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button> -
+        <button onclick="triggerSimEvent('FMC_EV_L3_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button> -
+        <button onclick="triggerSimEvent('FMC_EV_L4_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button> -
+        <button onclick="triggerSimEvent('FMC_EV_L5_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button> -
+        <button onclick="triggerSimEvent('FMC_EV_L6_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button> -
+    </div>
+
+    <div class="section fmc-side-buttons">
+        - <button onclick="triggerSimEvent('FMC_EV_R1_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button>
+        - <button onclick="triggerSimEvent('FMC_EV_R2_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button>
+        - <button onclick="triggerSimEvent('FMC_EV_R3_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button>
+        - <button onclick="triggerSimEvent('FMC_EV_R4_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button>
+        - <button onclick="triggerSimEvent('FMC_EV_R5_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button>
+        - <button onclick="triggerSimEvent('FMC_EV_R6_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">------</button>
+    </div>
+
+
+    <div class="section fmc-buttons">
+        <button onclick="triggerSimEvent('FMC_EV_INIT_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">INIT REF</button>
+        <button onclick="triggerSimEvent('FMC_EV_RTE_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">RTE</button>
+        <button onclick="triggerSimEvent('FMC_EV_DEPARR_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">DEP ARR</button>
+        <button onclick="triggerSimEvent('FMC_EV_ATC_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">ATC</button>
+        <button onclick="triggerSimEvent('FMC_EV_VNAV_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">VNAV</button>
+        <button onclick="triggerSimEvent('FMC_EV_FIX_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">FIX</button>
+        <button onclick="triggerSimEvent('FMC_EV_LEGS_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">LEGS</button>
+        <button onclick="triggerSimEvent('FMC_EV_HOLD_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">HOLD</button>
+        <button onclick="triggerSimEvent('FMC_EV_FMCCOM_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">FMC COMM</button>
+        <button onclick="triggerSimEvent('FMC_EV_PROG_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">PROG</button>
+        <button onclick="triggerSimEvent('FMC_EV_EXEC_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">EXEC</button>
+    </div>
+    <div class="section fmc-3-buttons">
+        <button onclick="triggerSimEvent('FMC_EV_MENU_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">MENU</button>
+        <button onclick="triggerSimEvent('FMC_EV_N1LIMIT_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">N1 LIMIT</button>
+        <button onpointerdown="presshold(function(){ triggerSimEvent('FMC_BRT_2',0,true,'input') }, 400, 0.6, 90);"
+                    onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary button" >BRT-</button>
+        <button onclick="triggerSimEvent('FMC_EV_PREVPAGE_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">PREV PAGE</button>
+        <button onclick="triggerSimEvent('FMC_EV_NEXTPAGE_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">NEXT PAGE</button>
+        <button onpointerdown="presshold(function(){ triggerSimEvent('FMC_BRT_2',2,true,'input') }, 400, 0.6, 90);"
+                    onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-secondary button" >BRT+</button>
+    </div>
+
+    <!-- Numbers -->
+    <div class="section numbers">
+        <button onclick="triggerSimEvent('FMC_EV_1_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">1</button>
+        <button onclick="triggerSimEvent('FMC_EV_2_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">2</button>
+        <button onclick="triggerSimEvent('FMC_EV_3_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">3</button>
+        <button onclick="triggerSimEvent('FMC_EV_4_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">4</button>
+        <button onclick="triggerSimEvent('FMC_EV_5_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">5</button>
+        <button onclick="triggerSimEvent('FMC_EV_6_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">6</button>
+        <button onclick="triggerSimEvent('FMC_EV_7_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">7</button>
+        <button onclick="triggerSimEvent('FMC_EV_8_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">8</button>
+        <button onclick="triggerSimEvent('FMC_EV_9_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">9</button>
+        <button onclick="triggerSimEvent('FMC_EV_DOT_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">.</button>
+        <button onclick="triggerSimEvent('FMC_EV_0_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">0</button>
+        <button onclick="triggerSimEvent('FMC_EV_PLUSMINUS_2',1,true,'input');$(this).blur();" class="btn btn-secondary button rounded-btn">+/-</button>
+    </div>
+
+    <!-- Letters -->
+    <div class="section letters">
+        <button onclick="triggerSimEvent('FMC_EV_A_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">A</button>
+        <button onclick="triggerSimEvent('FMC_EV_B_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">B</button>
+        <button onclick="triggerSimEvent('FMC_EV_C_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">C</button>
+        <button onclick="triggerSimEvent('FMC_EV_D_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">D</button>
+        <button onclick="triggerSimEvent('FMC_EV_E_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">E</button>
+        <button onclick="triggerSimEvent('FMC_EV_F_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">F</button>
+        <button onclick="triggerSimEvent('FMC_EV_G_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">G</button>
+        <button onclick="triggerSimEvent('FMC_EV_H_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">H</button>
+        <button onclick="triggerSimEvent('FMC_EV_I_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">I</button>
+        <button onclick="triggerSimEvent('FMC_EV_J_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">J</button>
+        <button onclick="triggerSimEvent('FMC_EV_K_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">K</button>
+        <button onclick="triggerSimEvent('FMC_EV_L_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">L</button>
+        <button onclick="triggerSimEvent('FMC_EV_M_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">M</button>
+        <button onclick="triggerSimEvent('FMC_EV_N_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">N</button>
+        <button onclick="triggerSimEvent('FMC_EV_O_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">O</button>
+        <button onclick="triggerSimEvent('FMC_EV_P_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">P</button>
+        <button onclick="triggerSimEvent('FMC_EV_Q_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">Q</button>
+        <button onclick="triggerSimEvent('FMC_EV_R_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">R</button>
+        <button onclick="triggerSimEvent('FMC_EV_S_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">S</button>
+        <button onclick="triggerSimEvent('FMC_EV_T_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">T</button>
+        <button onclick="triggerSimEvent('FMC_EV_U_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">U</button>
+        <button onclick="triggerSimEvent('FMC_EV_v_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">V</button>
+        <button onclick="triggerSimEvent('FMC_EV_W_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">W</button>
+        <button onclick="triggerSimEvent('FMC_EV_X_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">X</button>
+        <button onclick="triggerSimEvent('FMC_EV_Y_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">Y</button>
+        <button onclick="triggerSimEvent('FMC_EV_Z_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">Z</button>
+        <button onclick="triggerSimEvent('FMC_EV_SP_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">SP</button>
+        <button onclick="triggerSimEvent('FMC_EV_DEL_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">DEL</button>
+        <button onclick="triggerSimEvent('FMC_EV_DIV_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">/</button>
+        <button onclick="triggerSimEvent('FMC_EV_CLR_2',1,true,'input');$(this).blur();" class="btn btn-secondary button">CLR</button>
+    </div>
+</div>
+
+<style>
+    table.fixed {
+        table-layout: fixed;
+        width: 720px;
+    }
+
+    /*Setting the table width is important!*/
+    table.fixed td {
+        overflow: hidden;
+        width: 80px;
+    }
+
+    .fmc-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: auto;
+    }
+
+    .section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .button {
+        width: 60px;
+        height: 40px;
+        padding: 0;
+    }
+
+    .fmc-buttons button {
+        font-size: 14px;
+    }
+    .fmc-3-buttons button {
+        font-size: 14px;
+    }
+
+
+    .rounded-btn {
+        border-radius: 99px;
+    }
+
+    .fmc-buttons {
+        max-width: 420px;
+        max-height: 150px;
+    }
+
+    .fmc-3-buttons {
+        max-width: 210px;
+        max-height: 150px;
+    }
+
+    .fmc-side-buttons {
+        max-width: 80px;
+    }
+
+    .numbers {
+        max-width: 200px;
+        max-height: 190px;
+    }
+
+    .letters {
+        max-width: 350px;
+    }
+
+    /* Make numbers and letters wrap under each other on smaller screens */
+    @media (max-width: 600px) {
+        .letters, .numbers {
+            flex: 1 1 100%;
+            justify-content: center;
+        }
+    }
+
+</style>

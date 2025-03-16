@@ -1,0 +1,139 @@
+<!-- First Row-->
+<div class="row">
+
+    <!-- Lights -->
+    <div class="col" style="max-width:270px; min-width:270px;">
+        <div class="lead">Lights</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all"
+                        type="button" class="btn btn-warning" style="width:245px">Toggle All Exterior Lights
+                </button>
+                <br>
+                <table style="width:245px">
+                    <tr>
+                        <td>Strobe Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('STROBES_TOGGLE',0,true);$(this).blur();" id="light-strobe"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landing Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('SF50_LIGHTING_LANDING_LIGHTS',SF50_LIGHTING_LANDING_LIGHTS === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="sf50-light-landing" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ice Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_WING_1',LIGHTING_WING_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-wing" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cabin Lights Pilot</td>
+                        <td>
+                            <button onclick="triggerSimEvent('SF50_LIGHTING_PILOT_TASK_LIGHT',SF50_LIGHTING_PILOT_TASK_LIGHT === 0 ? 100 : 0,true, 'input');$(this).blur();"
+                                    id="light-cpt" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cabin Lights Copilot</td>
+                        <td>
+                            <button onclick="triggerSimEvent('SF50_LIGHTING_COPILOT_TASK_LIGHT',SF50_LIGHTING_COPILOT_TASK_LIGHT === 0 ? 100 : 0,true, 'input');$(this).blur();"
+                                    id="light-fo" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pitot & Deicing -->
+    <div class="col" style="margin-top:20px; max-width:250px; min-width:260px;">
+        <div class="lead">Pitot Heat & Deicing</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();"
+                        id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('ANTI_ICE_TOGGLE',0,true);$(this).blur();" id="anti-ice" type="button"
+                        class="btn btn-danger" style="width:190px">General Anti-Ice
+                </button>
+                <button onclick="triggerSimEvent('SF50_DEICE_WINDSHIELD',SF50_DEICE_WINDSHIELD === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="deice-windshield" type="button"
+                        class="btn btn-danger" style="width:190px">Deice Windshield
+                </button>
+                <button onclick="triggerSimEvent('SF50_DEICE_WINDSHIELD_HIGH',SF50_DEICE_WINDSHIELD_HIGH === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="deice-windshield-high" type="button"
+                        class="btn btn-danger" style="width:190px">Deice Windsh. High
+                </button>
+            </div>
+        </div>
+        <div class="lead">Emergency</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+
+                <table>
+                    <tr>
+                        <td>
+                            <button onclick="triggerSimEvent('SF50_CAPS_HANDLE', 1, true, 'input');$(this).blur();"
+                                    id="caps" type="button" class="btn btn-danger" style="width:90px" disabled>CAPS
+                            </button>
+                        </td>
+                        <td><span class="badge text-bg-secondary">Arm</span></td>
+                        <td>
+                            <form>
+                                <div class="form-check form-switch" style="margin-top:3px;margin-right:-7px">
+                                    <input type="checkbox" class="form-check-input" id="arm-caps"
+                                           onclick="$('#caps').prop('disabled', (i, v) => !v);">
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <br>
+                <table>
+                    <tr>
+                        <td>
+                            <button onclick="triggerSimEvent('SF50_SAFE_RETURN_ACTIVATE_BUTTON',1,true, 'input');$(this).blur();" id="autoland"
+                                    type="button"
+                                    class="btn btn-danger" style="width:90px" disabled>Autoland
+                            </button>
+                        </td>
+                        <td><span class="badge text-bg-secondary">Arm</span></td>
+                        <td>
+                            <form>
+                                <div class="form-check form-switch" style="margin-top:3px;margin-right:-7px">
+                                    <input type="checkbox" class="form-check-input" id="arm-autoland"
+                                           onclick="$('#autoland').prop('disabled', (i, v) => !v);">
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Last Row Information -->
+<div class="row">
+    <div class="col">
+        <p class="font-italic text-secondary">Some controls will work differently depending on the plane.</p>
+    </div>
+</div>

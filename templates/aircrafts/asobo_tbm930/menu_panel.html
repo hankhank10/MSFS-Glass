@@ -4,97 +4,124 @@
     <!-- Lights -->
     <div class="col" style="max-width:270px; min-width:270px;">
         <div class="lead">Lights</div>
-        <div class="row" style="margin-bottom:10px">
-            <div class="col">
-                <button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all"
-                        type="button" class="btn btn-warning" style="width:245px">Toggle All Exterior Lights
-                </button>
-                <br>
-                <table style="width:245px">
-                    <tr>
-                        <td>Strobe Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('STROBES_TOGGLE',0,true);$(this).blur();" id="light-strobe"
-                                    type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NAV Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav"
-                                    type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Landing Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('LANDING_LIGHTS_TOGGLE',0,true);$(this).blur();"
-                                    id="light-landing" type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Taxi Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('TOGGLE_TAXI_LIGHTS',0,true);$(this).blur();"
-                                    id="light-taxi" type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Cabin Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('LIGHTING_CABIN_LIGHT_INTENSITY',LIGHTING_CABIN_LIGHT_INTENSITY === 0 ? 100 : 0,true, 'input');$(this).blur();"
-                                    id="light-cabin" type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Glareshield Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('LIGHTING_GLARESHIELD_LIGHT_INTENSITY',LIGHTING_GLARESHIELD_LIGHT_INTENSITY === 0 ? 100 : 0,true, 'input');$(this).blur();"
-                                    id="light-glareshield" type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Standby Instrument Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('LIGHTING_SUB_PANEL_LIGHT_INTENSITY',LIGHTING_SUB_PANEL_LIGHT_INTENSITY === 0 ? 100 : 0,true, 'input');$(this).blur();"
-                                    id="light-stby-ind-light" type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Panel Lights</td>
-                        <td>
-                            <button onclick="triggerSimEvent('LIGHTING_PANEL_LIGHT_INTENSITY',LIGHTING_PANEL_LIGHT_INTENSITY === 0 ? 100 : 0,true, 'input');$(this).blur();"
-                                    id="light-panel" type="button" class="btn btn-danger" style="width:55px">?
-                            </button>
-                        </td>
-                    </tr>
-                   
-                </table>
-            </div>
-        </div>
+        <table style="width:245px">
+            <tr>
+                <td>Taxi/Landing Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('TBM930_LIGHTING_TAXI_LANDING_LIGHT_SWITCH', TBM930_LIGHTING_TAXI_LANDING_LIGHT_SWITCH === 0 ? 1 : TBM930_LIGHTING_TAXI_LANDING_LIGHT_SWITCH === 1 ? 2 : 0,true, 'input');$(this).blur();"
+                            id="light-landing-taxi" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Pulse Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('TBM930_LIGHTING_PULSE_LIGHT_SWITCH', TBM930_LIGHTING_PULSE_LIGHT_SWITCH === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                            id="light-pulse" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>NAV Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav"
+                            type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Strobe Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('STROBES_TOGGLE',0,true);$(this).blur();" id="light-strobe"
+                            type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Panel Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('LIGHT_POTENTIOMETER_14_SET',LIGHTING_PANEL_LIGHT > 0 ? 0 : 100,true);$(this).blur();"
+                            id="light-panel" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Dimmer Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('LIGHTING_DIMMER_LIGHT',LIGHTING_DIMMER_LIGHT === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                            id="light-dimmer" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Cabin Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('TBM930_LIGHTING_CABIN_LIGHT',TBM930_LIGHTING_CABIN_LIGHT === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                            id="light-cabin" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Access Lights</td>
+                <td>
+                    <button onclick="triggerSimEvent('TBM930_LIGHTING_ACCESS_LIGHT',TBM930_LIGHTING_ACCESS_LIGHT === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                            id="light-access" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Left Floodlight</td>
+                <td>
+                    <button onclick="triggerSimEvent('TBM930_LIGHTING_PILOT_LIGHT',TBM930_LIGHTING_PILOT_LIGHT === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                            id="light-l-flood" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Right Floodlight</td>
+                <td>
+                    <button onclick="triggerSimEvent('TBM930_LIGHTING_COPILOT_LIGHT',TBM930_LIGHTING_COPILOT_LIGHT === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                            id="light-r-flood" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Wing Ice-Detection</td>
+                <td>
+                    <button onclick="triggerSimEvent('TOGGLE_WING_LIGHTS',0,true);$(this).blur();"
+                            id="light-wings" type="button" class="btn btn-danger" style="width:55px">?
+                    </button>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!-- Pitot & Deicing -->
-    <div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+    <div class="col" style="max-width:220px; min-width:210px;">
         <div class="lead">Pitot Heat & Deicing</div>
-        <div class="row" style="margin-bottom:10px">
-            <div class="col">
-                <button onclick="if (pitot_heat == 0) {triggerSimEvent('PITOT_HEAT_SET', 1, true);} else {triggerSimEvent('PITOT_HEAT_SET', 0, true);};$(this).blur();"
-                        id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat
-                </button>
-                <br>
-                <button onclick="triggerSimEvent('ANTI_ICE_TOGGLE',0,true);$(this).blur();" id="anti-ice" type="button"
-                        class="btn btn-danger" style="width:190px">General Anti-Ice
-                </button>
-            </div>
-        </div>
+        <button onclick="triggerSimEvent('DEICE_AIRFRAME_1',DEICE_AIRFRAME_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                id="airframe-deice" type="button"
+                class="btn btn-danger" style="width:190px">Airframe Deice
+        </button>
+        <br>
+        <button onclick="triggerSimEvent('TOGGLE_PROPELLER_DEICE', 0,true);$(this).blur();" id="prop-deice"
+                type="button"
+                class="btn btn-danger" style="width:190px">Prop Deice
+        </button>
+        <br>
+        <button onclick="triggerSimEvent('TBM930_DEICE_WINDSHIELD_SWITCH',TBM930_DEICE_WINDSHIELD_SWITCH === 0 ? 1 : 0 ,true, 'input');$(this).blur();"
+                id="windshield-deice" type="button"
+                class="btn btn-danger" style="width:190px">Windsh. Deice
+        </button>
+        <br>
+        <button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();"
+                id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat
+        </button>
+        <br>
+        <button onclick="triggerSimEvent('TBM930_DEICE_INERT_SEP_SWITCH',TBM930_DEICE_INERT_SEP_SWITCH === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                id="anti-ice-isd" type="button"
+                class="btn btn-danger" style="width:190px">Inertial Separator
+        </button>
     </div>
 
 </div>

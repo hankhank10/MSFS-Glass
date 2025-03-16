@@ -1,0 +1,59 @@
+				<!-- First Row-->
+				<div class="row">
+					
+					<!-- Lights -->
+					<div class="col" style="max-width:270px; min-width:270px;">
+						<div class="lead">Lights</div>
+						<div class="row" style="margin-bottom:10px">
+						<div class="col">
+							<button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all" type="button" class="btn btn-warning" style="width:245px">Toggle All Lights</button><br>
+							<table style="width:245px">
+								<tr>
+									<td>NAV Lights</td>
+									<td><button onclick="triggerSimEvent('L:SWITCHNAVLIGHTSELECTED',SWITCHNAVLIGHTSELECTED === 0 ? 1 : SWITCHNAVLIGHTSELECTED === 1 ? 2 : 0,true, 'lvar');$(this).blur();" id="draco-lights-nav" type="button" class="btn btn-danger" style="width:55px; --bs-btn-padding-x: 0">?</button></td>
+								</tr>
+								<tr>
+									<td>Taxi Lights</td>
+									<td><button onclick="triggerSimEvent('L:SWITCHDNTAXILIGHTSELECTED',SWITCHDNTAXILIGHTSELECTED === 0 ? 1 : SWITCHDNTAXILIGHTSELECTED === 1 ? 2 : 0,true, 'lvar');$(this).blur();" id="draco-lights-down" type="button" class="btn btn-danger" style="width:55px; --bs-btn-padding-x: 0">?</button></td>
+								</tr>
+								<tr>
+									<td>Wing Tip Light</td>
+									<td><button onclick="triggerSimEvent('L:SWITCHTIPTAXILIGHTSELECTED',SWITCHTIPTAXILIGHTSELECTED === 0 ? 1 : SWITCHTIPTAXILIGHTSELECTED === 1 ? 2 : 0,true, 'lvar');$(this).blur();" id="draco-lights-tip" type="button" class="btn btn-danger" style="width:55px; --bs-btn-padding-x: 0">?</button></td>
+								</tr>
+								<tr>
+									<td>Nose Lights</td>
+									<td><button onclick="triggerSimEvent('L:SWITCHNOSELIGHTSELECTED',SWITCHNOSELIGHTSELECTED === 0 ? 1 : SWITCHNOSELIGHTSELECTED === 1 ? 2 : 0,true, 'lvar');$(this).blur();" id="draco-lights-nose" type="button" class="btn btn-danger" style="width:55px; --bs-btn-padding-x: 0">?</button></td>
+								</tr>
+								<tr>
+									<td>Landing Lights</td>
+									<td><button onclick="triggerSimEvent('TOGGLE_WING_LIGHTS',0,true);$(this).blur();" id="light-wings" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+								<tr>
+									<td>737 Rear Lights</td>
+									<td><button onclick="triggerSimEvent('TOGGLE_RECOGNITION_LIGHTS',0,true);$(this).blur();" id="light-recognition" type="button" class="btn btn-danger" style="width:55px">?</button></td>
+								</tr>
+							</table>
+						</div>
+						</div>
+					</div>
+
+					<!-- Pitot & Deicing -->
+					<div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+						<div class="lead">Pitot Heat & Deicing</div>
+						<div class="row" style="margin-bottom:10px">
+							<div class="col">
+								<button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();" id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat</button><br>
+								<button onclick="triggerSimEvent('ANTI_ICE_TOGGLE',0,true);$(this).blur();" id="anti-ice" type="button" class="btn btn-danger" style="width:190px">General Anti-Ice</button><br>
+								<button onclick="triggerSimEvent('L:SWITCHFLIRCAMERA',SWITCHFLIRCAMERA === 0 ? 1 : 0,true, 'lvar');$(this).blur();" id="draco-flir" type="button" class="btn btn-danger" style="width:190px">FLIR Camera</button>
+								</div>
+						</div>
+					</div>
+				
+				</div>
+				
+				<!-- Last Row Information -->
+				<div class="row">
+					<div class="col">
+						<p class="font-italic text-secondary">Some controls will work differently depending on the plane.</p>
+					</div>
+				</div>

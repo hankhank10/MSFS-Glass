@@ -1,3 +1,4 @@
+
 <!-- First Row-->
 <div class="row">
 
@@ -32,40 +33,18 @@
                 <table>
                     <tr>
                         <th style="width:100px">Elev.</th>
-
-                        <th style="width:100px">Ailr.</th>
                     </tr>
                     <tr>
                         <td>Up</td>
-
-                        <td>Right</td>
                     </tr>
                     <tr>
-                        <td style="height:25vh">
-                            <form>
-                                <div class="form-group">
-                                    <input type="range" min="-16383" max="16383" step="1" class="form-control-range"
-                                           style="position:absolute;transform-origin:center left;width:25vh;margin-top:-14vh;margin-left:23px;transform:rotate(90deg);-moz-transform:rotate(90deg)"
-                                           oninput="triggerSimEvent('AXIS_ELEV_TRIM_SET',this.value,true);"
-                                           id="TrimElevator">
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <form>
-                                <div class="form-group">
-                                    <input type="range" min="-100" max="100" step="1" class="form-control-range"
-                                           style="position:absolute;transform-origin:center left;width:25vh;margin-top:11vh;margin-left:23px;transform:rotate(270deg);-moz-transform:rotate(270deg)"
-                                           oninput="triggerSimEvent('AILERON_TRIM_SET',this.value,true)"
-                                           id="TrimAileron">
-                                </div>
-                            </form>
+                        <td class="trim-slider-container">
+                            <input type="range" min="-16383" max="16383" step="1" orient="vertical" class="trim-slider"
+                                   oninput="triggerSimEvent('AXIS_ELEV_TRIM_SET',this.value,true);" id="TrimElevator">
                         </td>
                     </tr>
                     <tr>
                         <td>Down</td>
-
-                        <td>Left</td>
                     </tr>
                     <tr>
                         <td>
@@ -86,27 +65,6 @@
                             </button>
                             </br>
                             <button onclick="elevatorReset();$(this).blur();" type="button" class="btn btn-warning"
-                                    style="width:45px;">
-                                <i class="bi bi-arrows-collapse"></i>
-                            </button>
-                        </td>
-
-                        <td>
-                            <button onpointerdown="presshold(function(){ aileronPlus() }, 400, 0.6, 90);"
-                                    onpointerup="releasehold();$(this).blur();"
-                                    onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary"
-                                    style="width:45px;">
-                                <i class="bi bi-arrow-clockwise"></i>
-                            </button>
-                            </br>
-                            <button onpointerdown="presshold(function(){ aileronMinus() }, 400, 0.6, 90);"
-                                    onpointerup="releasehold();$(this).blur();"
-                                    onpointerout="releasehold();$(this).blur();" type="button" class="btn btn-secondary"
-                                    style="width:45px;">
-                                <i class="bi bi-arrow-counterclockwise"></i>
-                            </button>
-                            </br>
-                            <button onclick="aileronReset();$(this).blur();" type="button" class="btn btn-warning"
                                     style="width:45px;">
                                 <i class="bi bi-arrows-collapse"></i>
                             </button>

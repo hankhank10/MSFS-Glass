@@ -6,14 +6,19 @@ asobo_c172sp_g1000 = [
     ["AS1000_FMS_LOWER_MFD", 0],
     ["AS1000_FMS_UPPER_PFD", 0],
     ["AS1000_FMS_UPPER_MFD", 0],
+    ["AS1000_HEADING_PFD", 0],
+    ["AS1000_HEADING_MFD", 0],
+    ["AS1000_NAV_SMALL_PFD", 0],
+    ["AS1000_NAV_SMALL_MFD", 0],
+    ["AS1000_NAV_LARGE_PFD", 0],
+    ["AS1000_NAV_LARGE_MFD", 0],
     ["LIGHTING_PANEL_1", 0],  # Glareshield
     ["LIGHTING_PANEL_2", 100],  # Standby indicators
     ["LIGHTING_PEDESTRAL_1", 0],
-    ["LIGHTING_POTENTIOMETER_5", 100], # G1000 buttons
-    ["LIGHTING_CABIN_1", 100], # Floodlight CPT
-    ["LIGHTING_CABIN_2", 100], # Floodlight FO
+    ["LIGHTING_POTENTIOMETER_5", 100],  # G1000 buttons
+    ["LIGHTING_CABIN_1", 100],  # Floodlight CPT
+    ["LIGHTING_CABIN_2", 100],  # Floodlight FO
 ]
-
 
 asobo_c208b = [
     # These are not working as intended due to G1000 bug in MSFS
@@ -23,14 +28,78 @@ asobo_c208b = [
     ["AS1000_FMS_LOWER_MFD", 0],
     ["AS1000_FMS_UPPER_PFD", 0],
     ["AS1000_FMS_UPPER_MFD", 0],
+    ["AS1000_HEADING_PFD", 0],
+    ["AS1000_HEADING_MFD", 0],
+    ["AS1000_NAV_SMALL_PFD", 0],
+    ["AS1000_NAV_SMALL_MFD", 0],
+    ["AS1000_NAV_LARGE_PFD", 0],
+    ["AS1000_NAV_LARGE_MFD", 0],
     ["LIGHTING_PANEL_1", 0],  # Standby Indicators
-    ["LIGHTING_PEDESTRAL_1", 0], # Central Flood
-    ["LIGHTING_POTENTIOMETER_30", 0], # G1000 buttons/brightness
-    ["LIGHTING_POTENTIOMETER_3", 0], # Panel backlight
-    ["LIGHTING_CABIN_1", 0], # Floodlight FO
-    ["LIGHTING_CABIN_2", 0], # Floodlight CPT
-    ["LIGHTING_CABIN_3", 0], # Passenger cabin
+    ["LIGHTING_PEDESTRAL_1", 0],  # Central Flood
+    ["LIGHTING_POTENTIOMETER_30", 0],  # G1000 buttons/brightness
+    ["LIGHTING_POTENTIOMETER_3", 0],  # Panel backlight
+    ["LIGHTING_CABIN_1", 0],  # Floodlight FO
+    ["LIGHTING_CABIN_2", 0],  # Floodlight CPT
+    ["LIGHTING_CABIN_3", 0],  # Passenger cabin
     ["DEICE_ENGINE_1", 0]
+]
+
+asobo_tbm930 = [
+    ["TBM930_DEICE_INERT_SEP_SWITCH", 0],
+    ["TBM930_LIGHTING_TAXI_LANDING_LIGHT_SWITCH", 0],
+    ["TBM930_LIGHTING_PULSE_LIGHT_SWITCH", 0],
+    ["LIGHTING_DIMMER_LIGHT", 0],
+    ["TBM930_LIGHTING_CABIN_LIGHT", 0],
+    ["TBM930_LIGHTING_ACCESS_LIGHT", 0],
+    ["TBM930_LIGHTING_PILOT_LIGHT", 0],
+    ["TBM930_LIGHTING_COPILOT_LIGHT", 0],
+    ["DEICE_AIRFRAME_1", 0],
+    ["TBM930_DEICE_WINDSHIELD_SWITCH", 0],
+]
+
+microsoft_pc12_ngx = [
+    ["INSTRUMENT_LIGHTING_SWITCH_RECOG_PULSE", 0],
+    ["LIGHTING_POTENTIOMETER_7", 0],
+    ["INSTRUMENT_LIGHTING_SWITCH_RECOG_PULSE", 0],
+    ["LIGHTING_GLARESHIELD_1", 0],
+    ["LIGHTING_POTENTIOMETER_20", 0],
+    ["LIGHTING_CABIN_1", 0],
+    ["LIGHTING_CABIN_2", 0],
+
+    ["DEICE_WINDSHIELD_1", 0],
+    ["DEICE_ENGINE_1", 0],
+    ["AUTOPILOT_AUTOTHROTTLE", 0],
+]
+
+asobo_da62 = [
+    ["DEICE_AIRFRAME", 0],
+]
+
+asobo_da40ng = [
+    ["LIGHTING_GLARESHIELD_1", 0],
+]
+
+asobo_bonanza_g36 = [
+    ["LIGHTING_GLARESHIELD_1", 0],
+]
+
+asobo_xcub = [
+    ["LIGHTING_LANDING_LIGHTS", 0],
+    ["LIGHTING_PULSE_LIGHTS", 0],
+    ["LIGHTING_PANEL_1", 0],
+    ["LIGHTING_GLARESHIELD_1", 0],
+    ["LANDING_SKIS", 0],
+    ["INSTRUMENT_AS3X_KNOB_OUTER_L", 0],
+    ["INSTRUMENT_AS3X_KNOB_INNER_L", 0],
+    ["INSTRUMENT_AS3X_KNOB_OUTER_R", 0],
+    ["INSTRUMENT_AS3X_KNOB_INNER_R", 0],
+]
+asobo_nxcub = [
+    ["LIGHTING_GLARESHIELD_1", 0],
+    ["INSTRUMENT_AS3X_KNOB_OUTER_L", 0],
+    ["INSTRUMENT_AS3X_KNOB_INNER_L", 0],
+    ["INSTRUMENT_AS3X_KNOB_OUTER_R", 0],
+    ["INSTRUMENT_AS3X_KNOB_INNER_R", 0],
 ]
 
 microsoft_c400_corvalis = [
@@ -41,9 +110,75 @@ microsoft_c400_corvalis = [
     ["AS1000_FMS_LOWER_MFD", 0],
     ["AS1000_FMS_UPPER_PFD", 0],
     ["AS1000_FMS_UPPER_MFD", 0],
+    ["AS1000_HEADING_PFD", 0],
+    ["AS1000_HEADING_MFD", 0],
+    ["AS1000_NAV_SMALL_PFD", 0],
+    ["AS1000_NAV_SMALL_MFD", 0],
+    ["AS1000_NAV_LARGE_PFD", 0],
+    ["AS1000_NAV_LARGE_MFD", 0],
     ["HANDLING_SPOILERS", 0],
+    ["DEICE_PROP_HEAT", 0],
     ["LIGHTING_GLARESHIELD_LIGHT_INTENSITY", 10],  # Glareshield + button background
     ["LIGHTING_CABIN_LIGHT_INTENSITY", 100],
-    ["LIGHTING_SUB_PANEL_LIGHT_INTENSITY", 0], # Standby indicators
-    ["LIGHTING_PANEL_LIGHT_INTENSITY", 100], # G1000 buttons - not working
+    ["LIGHTING_SUB_PANEL_LIGHT_INTENSITY", 0],  # Standby indicators
+    ["LIGHTING_PANEL_LIGHT_INTENSITY", 100],  # G1000 buttons - not working
+]
+
+asobo_b737max = [
+    ["EFIS_MINS_1", 0],
+    ["EFIS_MINS_REF_1", 0],
+    ["EFIS_BARO_UNIT_1", 0],
+    ["FCC_AUTOTHROTTLE", 0],
+    ["LIGHTING_RUNWAY_TURNOFF_LIGHT_L", 0],
+    ["LIGHTING_RUNWAY_TURNOFF_LIGHT_R", 0],
+    ["LIGHTING_POSITION_LIGHT", 0],
+    ["LIGHTING_TAXI_LIGHT_WHEEL_WELL", 0],
+    ["LIGHTING_TAXI_LIGHT_GEAR", 0],
+    ["HUD_DISPLAY", 0],
+    ["WINDSHIELD_L_WIPER", 0],
+    ["AFT_OVHD_DOME_LIGHT", 0],
+    ["BEHIND_YOKE_BACKGROUND_LIGHT", 0],
+    ["BEHIND_YOKE_MAP_LIGHT_1", 0],
+    ["ANTI_ICE_ENG_1", 0],
+    ["ANTI_ICE_ENG_2", 0],
+    ["ANTI_ICE_WING", 0],
+    ["PROBE_HEAT_A", 0],
+    ["WINDOW_HEAT_L_FWD", 0],
+]
+
+microsoft_a320neo = [
+    ["AIRLINER_WIPER_CPT", 0],
+    ["AIRLINER_LT_STROBE", 0],
+    ["AIRLINER_LT_NAVLOGO", 0],
+    ["AIRLINER_LT_TAXI", 0],
+    ["INSTRUMENT_LT_RWYTURN_IE_ID", 0],
+]
+
+microsoft_a321 = [
+    ["AIRLINER_WIPER_CPT", 0],
+    ["AIRLINER_LT_STROBE", 0],
+    ["AIRLINER_LT_NAVLOGO", 0],
+    ["AIRLINER_LT_TAXI", 0],
+    ["INSTRUMENT_LT_RWYTURN_IE_ID", 0],
+]
+
+douglas_dc3 = [
+    ["INSTRUMENT_SWITCH_COMPASS", 0],
+    ["INSTRUMENT_LIGHTING_UVGAUGE", 0],
+    ["LIGHTING_CABIN_4", 0],
+    ["LIGHTING_CABIN_3", 0],
+    ["LIGHTING_CABIN_2", 0],
+    ["LIGHTING_CABIN_1", 0],
+    ["DEICE_WINDSHIELD_1", 0],
+    ["INSTRUMENT_SWITCH_PILOTWIPER", 0],
+]
+
+microsoft_sf50 = [
+    ["SF50_LIGHTING_LANDING_LIGHTS", 0],
+    ["LIGHTING_WING_1", 0],
+    ["SF50_DEICE_WINDSHIELD", 0],
+    ["SF50_DEICE_WINDSHIELD_HIGH", 0],
+    ["SF50_LIGHTING_INSTRUMENT_LIGHTS", 100],
+    ["SF50_LIGHTING_PILOT_TASK_LIGHT", 100],
+    ["SF50_LIGHTING_COPILOT_TASK_LIGHT", 100],
 ]

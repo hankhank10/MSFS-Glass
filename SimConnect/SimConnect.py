@@ -68,6 +68,7 @@ class SimConnect:
             LOG.info("Connected to Flight Simulator!")
             # Subscribe to events when the simulation starts
             if subscribe_to_events:
+                LOG.debug("Subscribing to events")
                 # The user is in control of the aircraft
                 self.dll.SubscribeToSystemEvent(
                     self.hSimConnect, self.dll.EventID.EVENT_SIM_START, b"SimStart"
@@ -88,7 +89,6 @@ class SimConnect:
                     self.hSimConnect, self.dll.EventID.EVENT_SIM_AIRCRAFT_LOADED, b"AircraftLoaded"
                 )
                 self.load_selected_aircraft()
-                self.dll.EnumerateInputEvents(self.hSimConnect, self.new_request_id().value)
 
     def _run(self):
         while self.quit == 0:
@@ -103,13 +103,11 @@ class SimConnect:
                     LOG.debug("Simconnect not connected yet, dispatch could not run. Trying again.")
                     sleep(1)
 
-
     def exit(self):
         self.quit = 1
         if self.timerThread.is_alive():
             self.timerThread.join()
         self.dll.Close(self.hSimConnect)
-
 
     def load_selected_aircraft(self):
         hr = self.dll.RequestSystemState(
@@ -117,7 +115,6 @@ class SimConnect:
             self.new_request_id().value,
             b"AircraftLoaded"
         )
-
 
     def _get_aircraft_directory(self, cfg_location):
         # TODO: Community made planes probably residing elsewhere.
@@ -140,11 +137,9 @@ class SimConnect:
         else:
             raise ValueError("Path must follow the structure: 'simobjects/airplanes/<aircraft_directory>'.")
 
-
     def IsHR(self, hr, value):
         _hr = HRESULT(hr)
         return c_ulong(_hr.value).value == value
-
 
     def handle_id_event(self, event):
         uEventID = event.uEventID
@@ -162,7 +157,6 @@ class SimConnect:
         if uEventID == self.dll.EventID.EVENT_SIM_UNPAUSED:
             LOG.info("SIM Unpaused")
             self.paused = False
-
 
     def handle_simobject_event(self, ObjData):
         def_id = self.dll.DATA_DEFINITION_ID(ObjData.dwDefineID)
@@ -186,7 +180,6 @@ class SimConnect:
         else:
             LOG.warning(f"Data Definition ID {def_id} not found.")
 
-
     def handle_simobject_bytype_event(self, ObjData):
         dwRequestID = ObjData.dwRequestID
 
@@ -204,16 +197,16 @@ class SimConnect:
         else:
             LOG.warning(f"Event ID: {dwRequestID} Not Handled.")
 
-
     def handle_state_event(self, pData):
         LOG.debug(f"System state event received: I: {pData.dwInteger}, F: {pData.fFloat}, S: {pData.szString}")
         aircraft = self._get_aircraft_directory(pData.szString)
         if aircraft is not None:
             if aircraft != self.selected_aircraft:
+                LOG.debug(f"Loading plane: {aircraft}")
                 self.selected_aircraft = aircraft
+                self.enumerate_input_events()
                 self.aircraft_changed = True
                 LOG.debug(f"Loaded plane: {self.selected_aircraft}")
-
 
     def handle_input_event_enum(self, pData):
         LOG.debug("Getting input event enumeration")
@@ -223,8 +216,11 @@ class SimConnect:
         for i in range(pData.dwArraySize):
             data = event_descriptors[i]
             # LOG.trace(f"{data.Name}, {data.Hash}")
-            self.input_event_hash[data.Name.decode()] = data.Hash
-
+            try:
+                self.input_event_hash[data.Name.decode()] = data.Hash
+            except KeyError:
+                LOG.debug(f"Key {data.Name.decode()} not found.")
+        LOG.debug("Input event enumeration finished.")
 
     def handle_event_filename(self, pData):
         LOG.debug("Getting Event Filename")
@@ -232,10 +228,11 @@ class SimConnect:
             aircraft = self._get_aircraft_directory(pData.zFileName)
             if aircraft is not None:
                 if aircraft != self.selected_aircraft:
+                    LOG.debug(f"Loading plane: {aircraft}")
                     self.selected_aircraft = aircraft
+                    self.enumerate_input_events()
                     self.aircraft_changed = True
                     LOG.debug(f"Loaded plane: {self.selected_aircraft}")
-
 
     def handle_get_input_event(self, pData):
         req_id = int(pData.RequestID)
@@ -246,7 +243,6 @@ class SimConnect:
         elif pData.eType == SIMCONNECT_INPUT_EVENT_TYPE.SIMCONNECT_INPUT_EVENT_TYPE_STRING:
             input_event_value = pData.Value.str_value
         print(req_id, input_event_value)
-
 
     def handle_subscribe_input_event(self, pData):
         input_event_hash = int(pData.Hash)
@@ -265,7 +261,6 @@ class SimConnect:
             if hash == input_event_hash:
                 self.subscribed_data[name] = input_event_value
                 break
-
 
     # TODO: update callbackfunction to expand functions.
     def my_dispatch_proc(self, pData, cbData, pContext):
@@ -325,7 +320,6 @@ class SimConnect:
                 LOG.error(f"Received event but not implemented: id:{dwID}, name {SIMCONNECT_RECV_ID(dwID).name}")
         return
 
-
     def map_to_sim_event(self, name):
         for m in self.dll.EventID:
             if name == m.name:
@@ -343,12 +337,10 @@ class SimConnect:
             LOG.error("MapToSimEvent")
             return None
 
-
     def add_to_notification_group(self, group, evnt, bMaskable=False):
         self.dll.AddClientEventToNotificationGroup(
             self.hSimConnect, group, evnt, bMaskable
         )
-
 
     def request_data(self, _Request):
         _Request.outData = None
@@ -362,7 +354,6 @@ class SimConnect:
         temp = DWORD(0)
         self.dll.GetLastSentPacketID(self.hSimConnect, temp)
         _Request.LastID = temp.value
-
 
     def create_data_definition(self, variables, data_def_id=None):
         """
@@ -409,7 +400,6 @@ class SimConnect:
             )
         return data_def_id
 
-
     def subscribe_to_data(self, data_definition_id,
                           request_id=None,
                           flags=SIMCONNECT_DATA_REQUEST_FLAG.SIMCONNECT_DATA_REQUEST_FLAG_CHANGED,
@@ -434,7 +424,6 @@ class SimConnect:
         )
         return request_id.value
 
-
     def unsubscribe_from_data(self, request_id, data_definition_id,
                               object_id=SIMCONNECT_OBJECT_ID_USER_AIRCRAFT):
         LOG.debug(f"Unsubscribing from data: data_definition_id: {data_definition_id}, request_id: {request_id}")
@@ -450,7 +439,6 @@ class SimConnect:
             0
         )
         self.clear_data_definition(data_definition_id)
-
 
     def set_simobject_data(self, vars):
         """
@@ -500,7 +488,6 @@ class SimConnect:
         else:
             return False
 
-
     def clear_data_definition(self, def_id):
         err = self.dll.ClearDataDefinition(self.hSimConnect, def_id)
         del self.data_definitions[def_id]
@@ -509,7 +496,6 @@ class SimConnect:
             return True
         else:
             return False
-
 
     def send_event(self, evnt, data=DWORD(0)):
         err = self.dll.TransmitClientEvent(
@@ -527,12 +513,10 @@ class SimConnect:
         else:
             return False
 
-
     def enumerate_input_events(self):
         request_id = self.new_request_id().value
         self.dll.EnumerateInputEvents(self.hSimConnect, request_id)
         return request_id
-
 
     # TODO: No meaningful implementation for processing the received input event, use subscribe instead
     def get_input_event(self, event_hash):
@@ -545,7 +529,6 @@ class SimConnect:
             return True
         else:
             return False
-
 
     def set_input_event(self, event_name, value=1.0):
         # Handle case where value is a float
@@ -574,9 +557,12 @@ class SimConnect:
         else:
             return False
 
-
     def subscribe_input_event(self, event_name):
-        event_hash = self.input_event_hash[event_name]
+        try:
+            event_hash = self.input_event_hash[event_name]
+        except KeyError:
+            LOG.error(f"Input event not found in input_event_hash: {event_name}")
+            return False
         err = self.dll.SubscribeInputEvent(self.hSimConnect, event_hash)
         if self.IsHR(err, 0):
             LOG.debug(f"Subscribed to input event: {event_name}: {event_hash}")
@@ -584,16 +570,18 @@ class SimConnect:
         else:
             return False
 
-
     def unsubscribe_input_event(self, event_name):
-        event_hash = self.input_event_hash[event_name]
+        try:
+            event_hash = self.input_event_hash[event_name]
+            return False
+        except KeyError:
+            LOG.error(f"Input event not found in input_event_hash: {event_name}")
         err = self.dll.UnsubscribeInputEvent(self.hSimConnect, event_hash)
         if self.IsHR(err, 0):
             LOG.debug(f"Unsubscribed from input event : {event_name}: {event_hash}")
             return True
         else:
             return False
-
 
     def new_def_id(self):
         _name = "DEFINITION_" + str(len(list(self.dll.DATA_DEFINITION_ID)))
@@ -602,7 +590,6 @@ class SimConnect:
         DEFINITION_ID = list(self.dll.DATA_DEFINITION_ID)[-1]
         return DEFINITION_ID
 
-
     def new_request_id(self):
         name = "REQUEST_" + str(len(self.dll.DATA_REQUEST_ID))
         names = [m.name for m in self.dll.DATA_REQUEST_ID] + [name]
@@ -610,7 +597,6 @@ class SimConnect:
         REQUEST_ID = list(self.dll.DATA_REQUEST_ID)[-1]
         LOG.debug(f"New Request ID created:{REQUEST_ID}, total num: {len(self.dll.DATA_REQUEST_ID)}")
         return REQUEST_ID
-
 
     def add_waypoints(self, _waypointlist):
         if self.DEFINITION_WAYPOINT is None:
@@ -634,7 +620,6 @@ class SimConnect:
         )
         sx = int(sizeof(c_double) * (len(pyarr) / len(_waypointlist)))
         return
-
 
     # hr = self.dll.SetDataOnSimObject(
     # 	self.hSimConnect,
@@ -697,7 +682,6 @@ class SimConnect:
         else:
             return False
 
-
     def load_flight(self, flt_path):
         hr = self.dll.FlightLoad(self.hSimConnect, flt_path.encode())
         if self.IsHR(hr, 0):
@@ -705,14 +689,12 @@ class SimConnect:
         else:
             return False
 
-
     def load_flight_plan(self, pln_path):
         hr = self.dll.FlightPlanLoad(self.hSimConnect, pln_path.encode())
         if self.IsHR(hr, 0):
             return True
         else:
             return False
-
 
     def save_flight(
             self,
@@ -743,7 +725,6 @@ class SimConnect:
 
         return False
 
-
     def get_paused(self):
         hr = self.dll.RequestSystemState(
             self.hSimConnect,
@@ -751,14 +732,12 @@ class SimConnect:
             b"Sim"
         )
 
-
     def dic_to_flight(self, dic, fpath):
         with open(fpath, "w") as tempfile:
             for root in dic:
                 tempfile.write("\n[%s]\n" % root)
                 for member in dic[root]:
                     tempfile.write("%s=%s\n" % (member, dic[root][member]))
-
 
     def flight_to_dic(self, fpath):
         while not os.path.isfile(fpath):
@@ -777,7 +756,6 @@ class SimConnect:
                         dic[index][temp[0]] = temp[1].strip()
         return dic
 
-
     def sendText(self, text, timeSeconds=5, TEXT_TYPE=SIMCONNECT_TEXT_TYPE.SIMCONNECT_TEXT_TYPE_PRINT_WHITE):
         pyarr = bytearray(text.encode())
         dataarray = (c_char * len(pyarr))(*pyarr)
@@ -790,7 +768,6 @@ class SimConnect:
             sizeof(c_double) * len(pyarr),
             pObjData
         )
-
 
     def createSimulatedObject(self, name, lat, lon, rqst, hdg=0, gnd=1, alt=0, pitch=0, bank=0, speed=0):
         simInitPos = SIMCONNECT_DATA_INITPOSITION()

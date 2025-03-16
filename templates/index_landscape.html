@@ -18,25 +18,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Leaflet CSS and JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w=="
-          crossorigin="anonymous">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-rotatedmarker@0.2.0/leaflet.rotatedMarker.min.js"></script>
-    <script src="https://unpkg.com/leaflet-providers@2.0.0/leaflet-providers.js"
-            integrity="sha512-CWnoN23M4hfBZ+/WH/EhkhiZ8lk2FvQd+JO+5vAU42/Jj8ZD8HoEviIz4b8bG5S7JhvxYlittv0vgLWO1qcWgA=="
-            crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet.marker.slideto@0.3.0/Leaflet.Marker.SlideTo.js"
-            integrity="sha512-4vUYc2nW/OaK16zVcqxG69y5dpd9BzWfTepmaEvLiLD4DUNlWc7C0tXyZnMhw74xoPfa5RU1lfON3wq70Rb0tQ=="
+     <!-- Maplibre GL JS -->
+    <script src="https://loc8.us/maplibre-gl-vector-text-protocol/dist/maplibre-gl-vector-text-protocol.js"
+            integrity="sha512-cVq67v+ih8xs11ivbwyyXStBtWqG2cOLgjM+gZuKnt9GfS1//XUrdL4b3sL8nOMhzmXv6AE0ZapM81tz8LXWVg=="
             crossorigin="anonymous"></script>
 
-    <!-- Leaflet KML plugin -->
-    <script src="https://cdn.jsdelivr.net/gh/windycom/leaflet-kml@master/L.KML.js"
-            integrity="sha512-fPpbleVmIWZdaUuskLwg7cKxQWD/Kr+DSGWAXNgHODUZEQ/nrR+Uc/oulvFlJlRoTHPciVnfI4TstQUtx1mVfw=="
-            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/maplibre-gl@5.2.0/dist/maplibre-gl.js" integrity="sha512-d4ir/AWapqCkIJ9yf6A3VISfbqj2JLbKR23FdG/TynXcwgvvIhRIqnGKobz9dmVcERNSQ4UpUY+JF/kXsWkciw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.2.0/dist/maplibre-gl.css" integrity="sha512-DBNed2oEjOrfIRj8Czuzs7padWawLWbA64OoDekn8gs2a3J6WOaR5xXfnFgaxKGpxIuSn/rAo/PsgOgO6PZ/vA==" crossorigin="anonymous">
 
     <!-- Bootstrap Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -46,6 +34,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
             integrity="sha512-KWZQo2EiUMmEMrjJUUZoWP8k/mL57L5PPjQF23Vv77jGidQK8WPsX/RoQ7uI0cnjDDCU8ZXa1NG24HkLOqI9sg=="
             crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"
+            integrity="sha256-1XhsCK5OmIs3qlwm3jKwUewuRoD2AvKpjKO8SzKONDI=" crossorigin="anonymous"></script>
 
     <!-- Set script root-->
     <script type=text/javascript>
@@ -65,18 +56,7 @@
 <div class="main-container">
     <div class="map-container content-wrapper">
         <div id="map"></div>
-        <div class="btn-group btn-group-map" role="group" aria-label="Map controls">
-            <button id="followModeButton" type="button" class="btn btn-primary btn-sm" style="margin: 0; "
-                    onclick="toggleFollowPlane();$(this).blur();"><span id="followMode">Unfollow Plane</span>
-            </button>
-            <button id="GPStrackButton" type="button" class="btn btn-primary btn-sm" style="margin: 0;"
-                    onclick="toggleGPStrack();$(this).blur();">GPS Track
-            </button>
-            <button id="FltPlnButton" type="button" class="btn btn-danger btn-sm" style="margin: 0;"
-                    onclick="loadFltPln();$(this).blur();"><span id="FltPlnText">Load Flight Plan</span></button>
-            <button id="SyncPlaneButton" type="button" class="btn btn-danger btn-sm" style="margin: 0;"
-                    onclick="syncPlane();$(this).blur();"><span id="FltPlnText">Sync UI/Plane</span></button>
-        </div>
+
 
     </div>
     <nav class="navbar navbar-dark d-flex flex-nowrap justify-content-between bg-dark">
@@ -146,79 +126,407 @@
     <script src="/static/js/aircrafts/{{ aircraft_dir }}.js"></script>
 {% endif %}
 <script src="/static/js/glass_landscape.js"></script>
+<style>
+    .maplibregl-ctrl button.maplibregl-ctrl-radar .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M6.634 1.135A7 7 0 0 1 15 8a.5.5 0 0 1-1 0 6 6 0 1 0-6.5 5.98v-1.005A5 5 0 1 1 13 8a.5.5 0 0 1-1 0 4 4 0 1 0-4.5 3.969v-1.011A2.999 2.999 0 1 1 11 8a.5.5 0 0 1-1 0 2 2 0 1 0-2.5 1.936v-1.07a1 1 0 1 1 1 0V15.5a.5.5 0 0 1-1 0v-.518a7 7 0 0 1-.866-13.847'/%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-radar-enabled .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%2333b5e5' viewBox='0 0 16 16'%3E%3Cpath d='M6.634 1.135A7 7 0 0 1 15 8a.5.5 0 0 1-1 0 6 6 0 1 0-6.5 5.98v-1.005A5 5 0 1 1 13 8a.5.5 0 0 1-1 0 4 4 0 1 0-4.5 3.969v-1.011A2.999 2.999 0 1 1 11 8a.5.5 0 0 1-1 0 2 2 0 1 0-2.5 1.936v-1.07a1 1 0 1 1 1 0V15.5a.5.5 0 0 1-1 0v-.518a7 7 0 0 1-.866-13.847'/%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-trail .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml,%3Csvg fill='%23333' height='22px' width='22px' version='1.1' id='trail' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 495.996 495.996' xml:space='preserve'%3E%3Cg%3E%3Cg%3E%3Cpath d='M103.736,227.184c-4.336-4.344-12.124-4.344-16.424,0c-2.176,2.168-3.412,5.152-3.412,8.216 c0,3.064,1.24,6.044,3.412,8.212c2.168,2.176,5.156,3.416,8.216,3.416s6.044-1.24,8.208-3.416 c2.176-2.168,3.416-5.148,3.416-8.212C107.152,232.336,105.908,229.352,103.736,227.184z'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cpath d='M135.672,374.552c-4.068,4.96-3.372,12.288,1.552,16.392c2.168,1.784,4.804,2.636,7.4,2.636 c3.372,0,6.664-1.436,8.988-4.224c4.076-4.96,3.372-12.28-1.588-16.356C147.104,368.892,139.74,369.596,135.672,374.552z'/%3E%3Cpath d='M138.852,247.028c6.388,0,11.624-5.196,11.624-11.624c0-6.432-5.232-11.624-11.624-11.624 c-6.432,0-11.624,5.192-11.624,11.624C127.228,241.832,132.416,247.028,138.852,247.028z'/%3E%3Cpath d='M142.108,422.096c-0.04-6.388-5.312-11.704-11.744-11.664c-6.392,0.036-11.548,5.412-11.508,11.808 c0.036,6.396,5.228,11.764,11.628,11.764c0.036,0,0.08,0,0.116,0C136.992,434.004,142.148,428.532,142.108,422.096z'/%3E%3Cpath d='M250.916,288.296c1.32,0,2.596-0.232,3.916-0.66c6.048-2.168,9.22-8.792,7.052-14.84 c-2.128-6.044-8.796-9.224-14.84-7.092c-6.044,2.172-9.224,8.796-7.056,14.84C241.66,285.312,246.148,288.296,250.916,288.296z' /%3E%3Cpath d='M137.804,452.832c-4.88,4.184-5.46,11.512-1.316,16.392c2.324,2.712,5.58,4.068,8.836,4.068 c2.676,0,5.384-0.892,7.556-2.788c4.884-4.184,5.464-11.512,1.28-16.392C150.012,449.228,142.648,448.688,137.804,452.832z'/%3E%3Cpath d='M182.132,247.028c6.432,0,11.624-5.196,11.624-11.624c0-6.432-5.192-11.624-11.624-11.624 c-6.392,0-11.624,5.192-11.624,11.624C170.508,241.832,175.74,247.028,182.132,247.028z'/%3E%3Cpath d='M218.016,253.964c1.864,1.084,3.876,1.628,5.892,1.628c3.988,0,7.864-2.056,10.036-5.736 c3.256-5.544,1.392-12.668-4.108-15.928c-5.54-3.256-12.672-1.396-15.924,4.108C210.656,243.576,212.476,250.708,218.016,253.964 z'/%3E%3Cpath d='M268.82,471.784c-6.432,0-11.624,5.192-11.624,11.624c0,6.428,5.192,11.624,11.624,11.624s11.624-5.196,11.624-11.624 C280.444,476.976,275.252,471.784,268.82,471.784z'/%3E%3Cpath d='M355.424,471.784c-6.388,0-11.624,5.192-11.624,11.624c0,6.428,5.236,11.624,11.624,11.624 c6.432,0,11.624-5.196,11.624-11.624C367.048,476.976,361.856,471.784,355.424,471.784z'/%3E%3Cpath d='M184.184,472.752c-0.04,0-0.04,0-0.04,0c-6.316-3.872-12.32,2.42-13.364,8.74c-1.048,6.352,3.256,11.48,9.572,12.528 c0.66,0.12,1.28,0.572,1.932,0.572c5.58,0,10.5-3.608,11.432-9.268C194.764,478.972,190.5,472.752,184.184,472.752z'/%3E%3Cpath d='M261.456,323.172c2.248-6.008-0.812-12.712-6.82-14.956c-6.004-2.248-12.712,0.816-14.96,6.816 c-2.248,6.008,0.816,12.716,6.824,14.96c1.356,0.504,2.712,0.736,4.068,0.736C255.296,330.728,259.708,327.86,261.456,323.172z' /%3E%3Cpath d='M312.144,471.784c-6.432,0-11.624,5.192-11.624,11.624c0,6.428,5.192,11.624,11.624,11.624 c6.392,0,11.624-5.196,11.624-11.624C323.768,476.976,318.54,471.784,312.144,471.784z'/%3E%3Cpath d='M179.076,348.976c-6.316,1.164-10.468,7.248-9.304,13.564c1.012,5.584,7.24,9.492,12.744,9.492 c0.7,0,3.484-0.032,3.484-0.188c0,0.032,0,0.032,0,0.032c3.876-1.16,9.148-7.244,7.992-13.564 C192.824,352,185.392,347.808,179.076,348.976z'/%3E%3Cpath d='M225.536,471.784c-6.432,0-11.624,5.192-11.624,11.624c0,6.428,5.192,11.624,11.624,11.624 c6.388,0,11.624-5.196,11.624-11.624C237.16,476.976,231.928,471.784,225.536,471.784z'/%3E%3Cpath d='M223.052,363.012c1.94,0,3.916-0.508,5.7-1.512c5.58-3.184,7.552-10.268,4.38-15.852 c-3.18-5.616-10.268-7.552-15.848-4.38c-5.584,3.14-7.52,10.264-4.38,15.848C215.076,360.876,218.988,363.008,223.052,363.012z' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cg%3E%3Cpath d='M407.24,475.188c-4.344-4.344-12.128-4.344-16.468,0c-2.132,2.132-3.376,5.152-3.376,8.216 c0,3.064,1.244,6.044,3.376,8.212c2.168,2.172,5.188,3.416,8.248,3.416c3.024,0,6.052-1.244,8.22-3.416 c2.172-2.168,3.408-5.148,3.408-8.212C410.648,480.34,409.412,477.356,407.24,475.188z'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cg%3E%3Cpath d='M96.264,0c-52.716,0-95.6,42.888-95.6,95.604c0,94.968,92.68,151.292,93.62,151.848C94.892,247.82,95.58,248,96.268,248 c0.688,0,1.372-0.18,1.984-0.548c0.94-0.556,93.62-56.88,93.62-151.848C191.864,42.888,148.98,0,96.264,0z M95.536,162.612 c-36.292,0-65.816-29.524-65.816-65.816c0-36.296,29.524-65.816,65.816-65.816c36.288,0.004,65.812,29.52,65.812,65.816 C161.348,133.088,131.824,162.612,95.536,162.612z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-trail-enabled .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml,%3Csvg fill='%2333b5e5' height='22px' width='22px' version='1.1' id='trail' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 495.996 495.996' xml:space='preserve'%3E%3Cg%3E%3Cg%3E%3Cpath d='M103.736,227.184c-4.336-4.344-12.124-4.344-16.424,0c-2.176,2.168-3.412,5.152-3.412,8.216 c0,3.064,1.24,6.044,3.412,8.212c2.168,2.176,5.156,3.416,8.216,3.416s6.044-1.24,8.208-3.416 c2.176-2.168,3.416-5.148,3.416-8.212C107.152,232.336,105.908,229.352,103.736,227.184z'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cpath d='M135.672,374.552c-4.068,4.96-3.372,12.288,1.552,16.392c2.168,1.784,4.804,2.636,7.4,2.636 c3.372,0,6.664-1.436,8.988-4.224c4.076-4.96,3.372-12.28-1.588-16.356C147.104,368.892,139.74,369.596,135.672,374.552z'/%3E%3Cpath d='M138.852,247.028c6.388,0,11.624-5.196,11.624-11.624c0-6.432-5.232-11.624-11.624-11.624 c-6.432,0-11.624,5.192-11.624,11.624C127.228,241.832,132.416,247.028,138.852,247.028z'/%3E%3Cpath d='M142.108,422.096c-0.04-6.388-5.312-11.704-11.744-11.664c-6.392,0.036-11.548,5.412-11.508,11.808 c0.036,6.396,5.228,11.764,11.628,11.764c0.036,0,0.08,0,0.116,0C136.992,434.004,142.148,428.532,142.108,422.096z'/%3E%3Cpath d='M250.916,288.296c1.32,0,2.596-0.232,3.916-0.66c6.048-2.168,9.22-8.792,7.052-14.84 c-2.128-6.044-8.796-9.224-14.84-7.092c-6.044,2.172-9.224,8.796-7.056,14.84C241.66,285.312,246.148,288.296,250.916,288.296z' /%3E%3Cpath d='M137.804,452.832c-4.88,4.184-5.46,11.512-1.316,16.392c2.324,2.712,5.58,4.068,8.836,4.068 c2.676,0,5.384-0.892,7.556-2.788c4.884-4.184,5.464-11.512,1.28-16.392C150.012,449.228,142.648,448.688,137.804,452.832z'/%3E%3Cpath d='M182.132,247.028c6.432,0,11.624-5.196,11.624-11.624c0-6.432-5.192-11.624-11.624-11.624 c-6.392,0-11.624,5.192-11.624,11.624C170.508,241.832,175.74,247.028,182.132,247.028z'/%3E%3Cpath d='M218.016,253.964c1.864,1.084,3.876,1.628,5.892,1.628c3.988,0,7.864-2.056,10.036-5.736 c3.256-5.544,1.392-12.668-4.108-15.928c-5.54-3.256-12.672-1.396-15.924,4.108C210.656,243.576,212.476,250.708,218.016,253.964 z'/%3E%3Cpath d='M268.82,471.784c-6.432,0-11.624,5.192-11.624,11.624c0,6.428,5.192,11.624,11.624,11.624s11.624-5.196,11.624-11.624 C280.444,476.976,275.252,471.784,268.82,471.784z'/%3E%3Cpath d='M355.424,471.784c-6.388,0-11.624,5.192-11.624,11.624c0,6.428,5.236,11.624,11.624,11.624 c6.432,0,11.624-5.196,11.624-11.624C367.048,476.976,361.856,471.784,355.424,471.784z'/%3E%3Cpath d='M184.184,472.752c-0.04,0-0.04,0-0.04,0c-6.316-3.872-12.32,2.42-13.364,8.74c-1.048,6.352,3.256,11.48,9.572,12.528 c0.66,0.12,1.28,0.572,1.932,0.572c5.58,0,10.5-3.608,11.432-9.268C194.764,478.972,190.5,472.752,184.184,472.752z'/%3E%3Cpath d='M261.456,323.172c2.248-6.008-0.812-12.712-6.82-14.956c-6.004-2.248-12.712,0.816-14.96,6.816 c-2.248,6.008,0.816,12.716,6.824,14.96c1.356,0.504,2.712,0.736,4.068,0.736C255.296,330.728,259.708,327.86,261.456,323.172z' /%3E%3Cpath d='M312.144,471.784c-6.432,0-11.624,5.192-11.624,11.624c0,6.428,5.192,11.624,11.624,11.624 c6.392,0,11.624-5.196,11.624-11.624C323.768,476.976,318.54,471.784,312.144,471.784z'/%3E%3Cpath d='M179.076,348.976c-6.316,1.164-10.468,7.248-9.304,13.564c1.012,5.584,7.24,9.492,12.744,9.492 c0.7,0,3.484-0.032,3.484-0.188c0,0.032,0,0.032,0,0.032c3.876-1.16,9.148-7.244,7.992-13.564 C192.824,352,185.392,347.808,179.076,348.976z'/%3E%3Cpath d='M225.536,471.784c-6.432,0-11.624,5.192-11.624,11.624c0,6.428,5.192,11.624,11.624,11.624 c6.388,0,11.624-5.196,11.624-11.624C237.16,476.976,231.928,471.784,225.536,471.784z'/%3E%3Cpath d='M223.052,363.012c1.94,0,3.916-0.508,5.7-1.512c5.58-3.184,7.552-10.268,4.38-15.852 c-3.18-5.616-10.268-7.552-15.848-4.38c-5.584,3.14-7.52,10.264-4.38,15.848C215.076,360.876,218.988,363.008,223.052,363.012z' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cg%3E%3Cpath d='M407.24,475.188c-4.344-4.344-12.128-4.344-16.468,0c-2.132,2.132-3.376,5.152-3.376,8.216 c0,3.064,1.244,6.044,3.376,8.212c2.168,2.172,5.188,3.416,8.248,3.416c3.024,0,6.052-1.244,8.22-3.416 c2.172-2.168,3.408-5.148,3.408-8.212C410.648,480.34,409.412,477.356,407.24,475.188z'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cg%3E%3Cpath d='M96.264,0c-52.716,0-95.6,42.888-95.6,95.604c0,94.968,92.68,151.292,93.62,151.848C94.892,247.82,95.58,248,96.268,248 c0.688,0,1.372-0.18,1.984-0.548c0.94-0.556,93.62-56.88,93.62-151.848C191.864,42.888,148.98,0,96.264,0z M95.536,162.612 c-36.292,0-65.816-29.524-65.816-65.816c0-36.296,29.524-65.816,65.816-65.816c36.288,0.004,65.812,29.52,65.812,65.816 C161.348,133.088,131.824,162.612,95.536,162.612z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-route .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml,%3Csvg id='route' xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 5120 5120'%3E%3Cg id='llTFoNqiV68L029AbNW8Ej' fill='%23333' style='transform: none;'%3E%3Cg style='transform: none;'%3E%3Cpath id='plgGcrESv' d='M558 4969 c-246 -48 -475 -272 -533 -523 -32 -137 -16 -315 39 -439 176 -398 676 -541 1032 -296 111 76 214 208 260 332 16 44 20 48 43 44 14 -3 305 -51 646 -108 l620 -103 -3 -95 c-2 -60 2 -124 12 -171 21 -101 91 -240 162 -318 l57 -63 -217 -326 -217 -325 -46 7 c-216 32 -431 -32 -585 -173 -144 -134 -216 -288 -226 -483 -13 -293 140 -543 412 -670 96 -45 192 -62 316 -56 176 9 317 70 452 195 l46 43 449 -224 448 -225 0 -143 c0 -124 3 -154 23 -213 65 -195 183 -335 354 -421 120 -60 212 -79 352 -73 189 9 317 67 456 207 138 139 201 291 201 486 0 201 -74 372 -219 507 -130 120 -269 178 -443 186 -202 9 -368 -54 -521 -196 l-46 -43 -449 224 -448 225 0 148 c0 136 -3 156 -27 225 -34 97 -85 183 -149 254 l-52 56 215 322 215 322 159 0 c148 1 164 2 234 28 206 75 373 244 436 440 32 99 43 254 24 349 -64 330 -351 568 -685 568 -192 0 -377 -80 -513 -222 l-33 -35 -704 118 c-387 64 -708 120 -714 123 -5 4 -13 21 -16 39 -11 47 -58 149 -96 204 -98 142 -240 241 -407 284 -81 20 -228 24 -314 8z m297 -358 c144 -67 225 -216 204 -378 -38 -290 -400 -410 -609 -203 -141 140 -141 370 0 510 107 108 265 135 405 71z m2560 -502 c290 -54 402 -404 194 -609 -210 -207 -561 -93 -608 196 -31 195 101 381 291 413 29 5 56 9 59 10 3 0 32 -4 64 -10z m-1030 -1864 c222 -58 330 -295 232 -508 -100 -216 -405 -268 -575 -97 -196 197 -108 533 158 604 72 19 113 19 185 1z m2145 -1067 c98 -30 192 -123 227 -223 22 -65 22 -175 0 -240 -34 -99 -119 -184 -219 -222 -26 -9 -75 -16 -124 -16 -70 0 -91 4 -145 30 -114 54 -193 158 -208 277 -34 268 211 473 469 394z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-route-enabled .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml,%3Csvg id='route' xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 5120 5120'%3E%3Cg id='llTFoNqiV68L029AbNW8Ej' fill='%2333b5e5' style='transform: none;'%3E%3Cg style='transform: none;'%3E%3Cpath id='plgGcrESv' d='M558 4969 c-246 -48 -475 -272 -533 -523 -32 -137 -16 -315 39 -439 176 -398 676 -541 1032 -296 111 76 214 208 260 332 16 44 20 48 43 44 14 -3 305 -51 646 -108 l620 -103 -3 -95 c-2 -60 2 -124 12 -171 21 -101 91 -240 162 -318 l57 -63 -217 -326 -217 -325 -46 7 c-216 32 -431 -32 -585 -173 -144 -134 -216 -288 -226 -483 -13 -293 140 -543 412 -670 96 -45 192 -62 316 -56 176 9 317 70 452 195 l46 43 449 -224 448 -225 0 -143 c0 -124 3 -154 23 -213 65 -195 183 -335 354 -421 120 -60 212 -79 352 -73 189 9 317 67 456 207 138 139 201 291 201 486 0 201 -74 372 -219 507 -130 120 -269 178 -443 186 -202 9 -368 -54 -521 -196 l-46 -43 -449 224 -448 225 0 148 c0 136 -3 156 -27 225 -34 97 -85 183 -149 254 l-52 56 215 322 215 322 159 0 c148 1 164 2 234 28 206 75 373 244 436 440 32 99 43 254 24 349 -64 330 -351 568 -685 568 -192 0 -377 -80 -513 -222 l-33 -35 -704 118 c-387 64 -708 120 -714 123 -5 4 -13 21 -16 39 -11 47 -58 149 -96 204 -98 142 -240 241 -407 284 -81 20 -228 24 -314 8z m297 -358 c144 -67 225 -216 204 -378 -38 -290 -400 -410 -609 -203 -141 140 -141 370 0 510 107 108 265 135 405 71z m2560 -502 c290 -54 402 -404 194 -609 -210 -207 -561 -93 -608 196 -31 195 101 381 291 413 29 5 56 9 59 10 3 0 32 -4 64 -10z m-1030 -1864 c222 -58 330 -295 232 -508 -100 -216 -405 -268 -575 -97 -196 197 -108 533 158 604 72 19 113 19 185 1z m2145 -1067 c98 -30 192 -123 227 -223 22 -65 22 -175 0 -240 -34 -99 -119 -184 -219 -222 -26 -9 -75 -16 -124 -16 -70 0 -91 4 -145 30 -114 54 -193 158 -208 277 -34 268 211 473 469 394z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+
+    .maplibregl-ctrl button.maplibregl-ctrl-center-plane .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z'/%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-unfollow-plane .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z'/%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl button.maplibregl-ctrl-follow-plane .maplibregl-ctrl-icon {
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='22px' height='22px' viewBox='0 0 22 22' version='1.1'%3E%3Cg id='surface1'%3E%3Cpath style=' stroke:none;fill-rule:nonzero;fill:rgb(0%25,0%25,0%25);fill-opacity:1;' d='M 11.003906 5.191406 C 11.238281 5.191406 11.449219 5.335938 11.535156 5.554688 L 17.21875 20.339844 C 17.300781 20.554688 17.25 20.792969 17.089844 20.949219 C 16.925781 21.109375 16.6875 21.15625 16.476562 21.074219 L 11.003906 18.882812 L 5.527344 21.074219 C 5.316406 21.15625 5.078125 21.109375 4.917969 20.949219 C 4.757812 20.792969 4.703125 20.550781 4.785156 20.339844 L 10.472656 5.554688 C 10.558594 5.335938 10.765625 5.191406 11.003906 5.191406 Z M 11.003906 5.191406 '/%3E%3Cpath style=' stroke:none;fill-rule:nonzero;fill:rgb(0%25,0%25,0%25);fill-opacity:1;' d='M 11 4.601562 C 10.738281 4.601562 10.527344 4.378906 10.527344 4.109375 L 10.527344 1.335938 C 10.527344 1.066406 10.738281 0.84375 11 0.84375 C 11.261719 0.84375 11.472656 1.066406 11.472656 1.335938 L 11.472656 4.109375 C 11.472656 4.378906 11.261719 4.601562 11 4.601562 Z M 11 4.601562 '/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .maplibregl-ctrl-select {
+        border: none !important;
+        cursor: pointer;
+        --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+        display: block;
+        width: 100%;
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--bs-body-color);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: var(--bs-body-bg);
+        background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+
+</style>
 
 <script>
-    // Create map object
+    var map = new maplibregl.Map({
+        attributionControl: false,
+        container: 'map',
+        style: 'https://tiles.stadiamaps.com/styles/osm_bright.json',
+        center: [-74.0060, 40.7128], // starting position [lng, lat]
+        zoom: 11 // starting zoom
+    })
+        .addControl(new maplibregl.AttributionControl({
+            compact: true
+        }))
+
+    maplibregl.addProtocol('kml', VectorTextProtocol.VectorTextProtocol);
+
+    // Store the trail as an array of [lng, lat] coordinates
+    let trackline = [];
+
+    const marker_el = document.createElement('div');
+    marker_el.className = 'marker';
+    marker_el.style.backgroundImage = `url('/static/img/ownship.svg')`;
+    marker_el.style.width = '45px';
+    marker_el.style.height = '45px';
+    marker_el.style.backgroundSize = '100%';
+
+    const marker = new maplibregl.Marker({element: marker_el})
+        .setLngLat([-74.0060, 40.7128])
+        .addTo(map);
+
     let followPlane = 1;
-    let trackGPS = true;
 
-    // Creating a Layer object
-    var simple = new L.tileLayer.provider('CartoDB.Voyager');
-    var openstreet = new L.tileLayer.provider('OpenStreetMap.Mapnik');
-    var grayscale = new L.tileLayer.provider('Stadia.AlidadeSmoothDark');
-    var basic = new L.tileLayer.provider('Stadia.Outdoors');
-    var topo = new L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        maxZoom: 17,
-        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    function initializeMap(map) {
+        // Terrain and hillshading
+        map.addSource("terrain", {
+            type: 'raster-dem',
+            tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
+            encoding: 'terrarium',
+            tileSize: 256,
+            maxzoom: 15,
+
+        });
+        map.addLayer(
+            {
+                id: 'hillshading',
+                source: 'terrain',
+                type: 'hillshade',
+                layout: {
+                    visibility: 'none'
+                },
+            }
+        );
+
+        // Aviation overlay
+        map.addSource('aviation', {
+            type: 'raster',
+            tiles: [
+                "https://a.api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.png?apiKey={{ api_key }}",
+                "https://b.api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.png?apiKey={{ api_key }}",
+                "https://c.api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.png?apiKey={{ api_key }}"
+            ],
+            tileSize: 256
+        });
+        map.addLayer({
+            id: 'aviation',
+            type: 'raster',
+            source: 'aviation',
+            layout: {
+                visibility: 'none'
+            },
+        });
+
+        // Add a GeoJSON line to store the trail
+        map.addSource('trail', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'LineString',
+                    coordinates: trackline
+                }
+            }
+        });
+
+        map.addLayer({
+            id: 'trail-line',
+            type: 'line',
+            source: 'trail',
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'round',
+                visibility: 'visible'
+            },
+            paint: {
+                'line-color': '#ff0000',
+                'line-width': 3
+            }
+        });
+
+        // Add a GeoJSON line to store the GPS waypoint
+        map.addSource('gpswp', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'LineString',
+                    coordinates: []
+                }
+            }
+        });
+
+        map.addLayer({
+            id: 'gpswp-line',
+            type: 'line',
+            source: 'gpswp',
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'butt',
+                visibility: 'none'
+            },
+            paint: {
+                'line-color': '#c842f5',
+                'line-width': 3,
+                'line-dasharray': [4, 2] // Dashed pattern: 4px dash, 2px gap
+            }
+        });
+
+
+        map.on('terrain', () => {
+            if (map.getLayer('hillshading')) {
+                map.setLayoutProperty('hillshading', 'visibility', !map.getStyle().terrain ? 'none' : 'visible');
+            }
+
+        });
+
+    }
+
+    map.on('load', () => {
+        initializeMap(map);
     });
 
-    // https://api.tiles.openaip.net/api/data/openaip/z/x/y.png
-    var openaip_cached_basemap = new L.TileLayer("http://{s}.api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.png?apiKey={{ api_key }}", {
-        maxZoom: 20, minZoom: 4, detectRetina: true, format: 'image/png', transparent: true,
-
+    map.on('dragstart', () => {
+        if (followPlane !== 3) {
+            followPlane = 3;
+            const button = document.getElementById("follow-plane");
+            button.className = 'maplibregl-ctrl-unfollow-plane';
+        }
     });
-    // Create map options
-    let mapOptions = {
-        center: [40.7128, -74.0060], zoom: 11, dragging: true, layers: basic
-    };
 
-    // Creating a map object
-    var map = new L.map('map', mapOptions);
 
-    var baseLayers = {
-        "Dark": grayscale, "Open Street": openstreet, "Pale": simple, "Topo": topo, "Default": basic,
+    class LayerSelector {
+        onAdd(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+            this._container.style.borderRadius = '6px';
+            this._container.innerHTML = `
+                    <select class="form-select" id="theme-switcher">
+                        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth.json">Alidade Smooth</option>
+                        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Alidade Smooth Dark</option>
+                        <option value="https://tiles.stadiamaps.com/styles/alidade_bright.json">Alidade Bright (Beta)</option>
+                        <option value="https://tiles.stadiamaps.com/styles/alidade_satellite.json">Alidade Satellite</option>
+                        <option value="https://raw.githubusercontent.com/go2garret/maps/main/src/assets/json/arcgis_hybrid.json">ArcGIS Hybrid Satellite</option>
+                        <option value="https://tiles.stadiamaps.com/styles/osm_bright.json" selected>OSM Bright</option>
+                        <option value="https://tiles.stadiamaps.com/styles/outdoors.json">Outdoors</option>
+                        <option value="https://tiles.stadiamaps.com/styles/stamen_terrain.json">Stamen Terrain</option>
+                    </select>
+
+            `;
+
+
+            const themeSwitcher = this._container.querySelector("#theme-switcher");
+
+            // Change map style on selection change
+            themeSwitcher.addEventListener("change", (event) => {
+                const newStyle = event.target.value;
+                map.setStyle(newStyle);
+                const checkIfStyleLoaded = setInterval(() => {
+                    if (map.isStyleLoaded()) {
+                        clearInterval(checkIfStyleLoaded);
+                        initializeMap(map);
+                    }
+                }, 100);
+                map.once('idle', () => {
+                    initializeMap(map);
+                });
+            });
+
+            return this._container;
+        }
     }
-    var overlays = {
-        "Aviation": openaip_cached_basemap
+
+    map.addControl(new LayerSelector(), 'top-left');
+
+    map
+        // Add zoom and rotation controls to the map
+        .addControl(new maplibregl.NavigationControl())
+        // Add a globe toggle control
+        .addControl(new maplibregl.GlobeControl(), 'top-left')
+        .addControl(new maplibregl.TerrainControl({
+            source: "terrain",
+            "exaggeration": 1
+        }), 'top-left')
+
+    class AviationLayerButton {
+        onAdd(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+            this._container.innerHTML = `
+            <button class="maplibregl-ctrl-radar" title="Toggle Aviation Layer">
+                <span class="maplibregl-ctrl-icon"></span>
+            </button>`;
+
+
+            this._container.addEventListener('click', () => {
+                const button = this._container.querySelector('button');
+                const visibility = map.getLayoutProperty('aviation', 'visibility');
+                if (visibility === 'visible') {
+                    map.setLayoutProperty('aviation', 'visibility', 'none');
+                    button.classList.add('maplibregl-ctrl-radar');
+                    button.classList.remove('maplibregl-ctrl-radar-enabled');
+                } else {
+                    map.setLayoutProperty('aviation', 'visibility', 'visible');
+                    button.classList.add('maplibregl-ctrl-radar-enabled');
+                    button.classList.remove('maplibregl-ctrl-radar');
+                }
+
+
+            });
+            return this._container;
+        }
+    }
+
+    map.addControl(new AviationLayerButton(), 'top-left');
+
+
+    class FollowPlaneButton {
+        onAdd(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+            this._container.innerHTML = `
+            <button class="maplibregl-ctrl-follow-plane" title="Center Plane on Map" id="follow-plane">
+                <span class="maplibregl-ctrl-icon"></span>
+            </button>`;
+
+            const button = this._container.querySelector('button');
+            this._container.addEventListener('click', () => {
+                if (followPlane === 1) {
+                    followPlane = 2;
+                    button.classList.add('maplibregl-ctrl-center-plane');
+                    button.classList.remove('maplibregl-ctrl-follow-plane');
+                    button.title = 'Center Plane on Map';
+                } else if (followPlane === 2) {
+                    followPlane = 3;
+                    button.classList.add('maplibregl-ctrl-unfollow-plane');
+                    button.classList.remove('maplibregl-ctrl-center-plane');
+                    button.title = 'Unfollow Plane';
+                } else if (followPlane === 3) {
+                    followPlane = 1;
+                    button.classList.add('maplibregl-ctrl-follow-plane');
+                    button.classList.remove('maplibregl-ctrl-unfollow-plane');
+                    button.title = 'Follow Plane on Map';
+                }
+
+
+            });
+            return this._container;
+        }
     }
 
 
-    // Add control
-    L.control.layers(baseLayers, overlays).addTo(map)
+    map.addControl(new FollowPlaneButton(), 'top-right');
 
-    map.attributionControl.setPosition('bottomright');
 
-    // Icon options
-    var iconOptions = {
-        iconUrl: '/static/img/plane.png', iconSize: [35, 35]
+    class GPSTrackButton {
+        onAdd(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+            this._container.innerHTML = `
+            <button class="maplibregl-ctrl-trail-enabled" title="Toggle GPS trail">
+                <span class="maplibregl-ctrl-icon"></span>
+            </button>`;
+
+
+            this._container.addEventListener('click', () => {
+                const button = this._container.querySelector('button');
+                const visibility = map.getLayoutProperty('trail-line', 'visibility');
+                if (visibility === 'visible') {
+                    map.setLayoutProperty('trail-line', 'visibility', 'none');
+                    button.classList.add('maplibregl-ctrl-trail');
+                    button.classList.remove('maplibregl-ctrl-trail-enabled');
+                } else {
+                    map.setLayoutProperty('trail-line', 'visibility', 'visible');
+                    button.classList.add('maplibregl-ctrl-trail-enabled');
+                    button.classList.remove('maplibregl-trail-radar');
+                }
+
+            });
+            return this._container;
+        }
     }
 
-    // Creating a custom icon
-    var customIcon = L.icon(iconOptions);
+    map.addControl(new GPSTrackButton(), 'top-right');
 
-    // Creating Marker Options
-    var markerOptions = {
-        clickable: false, draggable: false, icon: customIcon, rotationAngle: 0, rotationOrigin: "center"
+    class GPSWpButton {
+        onAdd(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+            this._container.innerHTML = `
+            <button class="maplibregl-ctrl-route" title="Toggle Next GPS Waypoint">
+                <span class="maplibregl-ctrl-icon"></span>
+            </button>`;
+
+
+            this._container.addEventListener('click', () => {
+                const button = this._container.querySelector('button');
+                const visibility = map.getLayoutProperty('gpswp-line', 'visibility');
+                if (visibility === 'visible') {
+                    map.setLayoutProperty('gpswp-line', 'visibility', 'none');
+                    button.classList.add('maplibregl-ctrl-route');
+                    button.classList.remove('maplibregl-ctrl-route-enabled');
+                } else {
+                    map.setLayoutProperty('gpswp-line', 'visibility', 'visible');
+                    button.classList.add('maplibregl-ctrl-route-enabled');
+                    button.classList.remove('maplibregl-route-radar');
+                }
+
+            });
+            return this._container;
+        }
     }
 
-    // Creating a Marker
-    var marker = L.marker([17.438139, 78.395830], markerOptions);
+    map.addControl(new GPSWpButton(), 'top-right');
 
-    // Adding marker to the map
-    marker.addTo(map);
-
-    // Add GPS Trackline
-    var trackline;
-    trackline = L.polyline([], {color: 'red', smoothFactor: 3}).addTo(map);
-
-    // Add GPS Waypoints
-    var gpswp;
-    gpswp = L.polyline([], {color: '#c842f5', smoothFactor: 3, dashArray: '20, 10'}).addTo(map);
-    gpswp.setStyle({opacity: 0});
-
-    // Add Flight Plan
-    var fltpln;
-    fltpln = L.polyline([], {color: '#f542bc', smoothFactor: 3}).addTo(map);
 
 </script>
 

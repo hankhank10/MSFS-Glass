@@ -104,7 +104,6 @@ if (mapCollapse.classList.contains('show')) {
 mapCollapse.addEventListener('shown.bs.collapse', () => {
     contentWrapper.classList.add('map-content');
     contentDiv.classList.add('map-content');
-    map.invalidateSize();
 });
 
 mapCollapse.addEventListener('hidden.bs.collapse', () => {

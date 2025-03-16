@@ -1,0 +1,229 @@
+<!-- EFIS Control Panel Header -->
+<div class="lead mb-3">EFIS Control Panel</div>
+
+<!-- Button Groups -->
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col" style="min-width: 400px">
+            <p class="mb-2">Minimums</p>
+            <br>
+            <button onclick="changeMinimums(-13);$(this).blur();"
+                    type="button" class="btn btn-secondary"
+                    style="width:45px;padding-left:5px;padding-right:5px;text-align:center">
+                -100
+            </button>
+            <button onclick="changeMinimums(-7);$(this).blur();"
+                    type="button" class="btn btn-secondary"
+                    style="width:45px;padding-left:5px;padding-right:5px;text-align:center">
+                -10
+            </button>
+            <button onclick="changeMinimums(-1);$(this).blur();"
+                    type="button" class="btn btn-secondary"
+                    style="width:45px;padding-left:0px;padding-right:0px;text-align:center">-1
+            </button>
+            <button onclick="triggerSimEvent('EFIS_RST_1',1,true,'input');$(this).blur();"
+                    type="button" class="btn btn-light"
+                    style="width:65px;padding-left:0px;padding-right:0px;text-align:center">
+                RST
+            </button>
+            <button onclick="changeMinimums(1);$(this).blur();"
+                    type="button" class="btn btn-secondary"
+                    style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                +1
+            </button>
+            <button onclick="changeMinimums(7);$(this).blur();"
+                    type="button" class="btn btn-secondary"
+                    style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                +10
+            </button>
+            <button onclick="changeMinimums(13);$(this).blur();"
+                    type="button" class="btn btn-secondary"
+                    style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                +100
+            </button>
+            <p class="font-italic text-secondary">Be patient with changing the minimums.<br>You might need to correct
+                +-1 after changing it by 10 or 100.</p>
+            Minimums reference:
+            <button onclick="triggerSimEvent('EFIS_MINS_REF_1',EFIS_MINS_REF_1 === 0 ? 1 : 0,true,'input');$(this).blur();"
+                    id="mins-ref"
+                    type="button" class="btn btn-secondary"
+                    style="width:65px;padding-left:0px;padding-right:0px;text-align:center">
+                Radio
+            </button>
+            <br>
+        </div>
+        <div class="col" style="text-align: center">
+            <br>
+            <button onclick="triggerSimEvent('EFIS_FPV_1',0,true,'input');$(this).blur();"
+                    type="button" style="width:55px;--bs-btn-padding-x: 0; border-radius: 99px"
+                    class="btn btn-secondary">FPV
+            </button>
+
+            <button onclick="triggerSimEvent('EFIS_VSD_1',0,true,'input');$(this).blur();"
+                    type="button" style="width:45px;--bs-btn-padding-x: 0" class="btn btn-secondary">VSD
+            </button>
+
+            <button onclick="triggerSimEvent('EFIS_MTRS_1',0,true,'input');$(this).blur();"
+                    type="button" style="width:55px;--bs-btn-padding-x: 0; border-radius: 99px"
+                    class="btn btn-secondary">MTRS
+            </button>
+        </div>
+        <div class="col">
+            <p class="mb-2">Baro</p>
+            <br>
+            <button type="button"
+                    onpointerdown="presshold(function(){ triggerSimEvent('KOHLSMAN_DEC',0,true) }, 400, 0.6, 90);"
+                    onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();"
+                    class="btn btn-secondary" style="width:44px;" title="Decrements altimeter setting"><i
+                    class="bi bi-dash"></i>
+            </button>
+            <button onclick="triggerSimEvent('EFIS_BARO_STD_1',0,true,'input');$(this).blur();"
+                    type="button" style="width:45px;--bs-btn-padding-x: 0; border-radius: 99px"
+                    class="btn btn-light">STD
+            </button>
+            <button type="button"
+                    onpointerdown="presshold(function(){ triggerSimEvent('KOHLSMAN_INC',0,true) }, 400, 0.6, 90);"
+                    onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();"
+                    class="btn btn-secondary" style="width:44px" title="Decrements altimeter setting"><i
+                    class="bi bi-plus"></i>
+            </button>
+            <br>
+            <br>
+            Baro unit:
+            <button onclick="triggerSimEvent('EFIS_BARO_UNIT_1',EFIS_BARO_UNIT_1 === 0 ? 1 : 0,true,'input');$(this).blur();"
+                    id="baro-unit"
+                    type="button" class="btn btn-secondary"
+                    style="width:65px;padding-left:0px;padding-right:0px;text-align:center">
+                IN
+            </button>
+        </div>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="mt-4">
+        <p class="mb-2">Mode Selector</p>
+        <div class="row row-cols-3 row-cols-md-5 gy-2">
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_MODE_1',0,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">APP
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_MODE_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">VOR
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_MODE_1',2,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">MAP
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_MODE_1',3,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">PLN
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_CTR_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-light w-100">CTR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Range Selector -->
+    <div class="mt-4">
+        <p class="mb-2">Range Selector</p>
+        <div class="row row-cols-4 row-cols-sm-8 gy-2">
+            {% for range in [5, 10, 20, 40, 80, 160, 320, 640] %}
+                <div class="col">
+                    <button onclick="triggerSimEvent('EFIS_RANGE_1',{{ loop.index0 }},true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0"
+                            class="btn btn-secondary w-100">{{ range }}</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+
+    <!-- First Button Row -->
+    <div class="mt-4">
+        <p class="mb-2">Bottom Softkeys</p>
+        <div class="row row-cols-4 row-cols-sm-8 gy-2">
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_WXR_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">WXR
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_STA_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">STA
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_WPT_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">WPT
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_ARPT_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">ARPT
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_DATA_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">DATA
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_POS_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">POS
+                </button>
+            </div>
+            <div class="col">
+                <button onclick="triggerSimEvent('EFIS_TERR_1',1,true,'input');$(this).blur();"
+                        type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary w-100">TERR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Controls -->
+    <div class="mt-4">
+        <p class="mb-2">VOR/ADF Selectors</p>
+        <table class="text-white">
+            <tr>
+                <td>VOR/ADF 1:</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                    <button onclick="triggerSimEvent('EFIS_VOR_ADF_1_1',0,true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary btn-sm">VOR
+                    </button>
+                    <button onclick="triggerSimEvent('EFIS_VOR_ADF_1_1',1,true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0" class="btn btn-danger btn-sm">OFF
+                    </button>
+                    <button onclick="triggerSimEvent('EFIS_VOR_ADF_1_1',2,true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary btn-sm">ADF
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>VOR/ADF 2:</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                    <button onclick="triggerSimEvent('EFIS_VOR_ADF_2_1',0,true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary btn-sm">VOR
+                    </button>
+                    <button onclick="triggerSimEvent('EFIS_VOR_ADF_2_1',1,true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0" class="btn btn-danger btn-sm">OFF
+                    </button>
+                    <button onclick="triggerSimEvent('EFIS_VOR_ADF_2_1',2,true,'input');$(this).blur();"
+                            type="button" style="--bs-btn-padding-x: 0" class="btn btn-secondary btn-sm">ADF
+                    </button>
+                </td>
+            </tr>
+            <!-- Add similar rows for other controls -->
+        </table>
+    </div>
+</div>

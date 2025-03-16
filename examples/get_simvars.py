@@ -15,16 +15,16 @@ sm = SimConnect()
 
 
 variables = {
-   "FD_ON_LVAR": {
-      "DatumName": b'(L:XMLVAR_AS1000_Course_PFD_Value)',
-      "UnitsName": b'Number',
+   "XMLVAR_FCC_CWS_1_VALUE": {
+      "DatumName": b'L:XMLVAR_FCC_CWS_1_VALUE',
+      "UnitsName": b'Bool',
+      "fEpsilon": 0.5,
+   },
+   "latitude": {
+      "DatumName": b'AUTOTHROTTLE ACTIVE',
+      "UnitsName": b'Bool',
       "DatumType": SIMCONNECT_DATATYPE.SIMCONNECT_DATATYPE_FLOAT64,
    },
-   # "latitude": {
-   #    "DatumName": b'AUTOPILOT VERTICAL HOLD VAR',
-   #    "UnitsName": b'Feet/minute',
-   #    "DatumType": SIMCONNECT_DATATYPE.SIMCONNECT_DATATYPE_FLOAT64,
-   # },
    # "speed": {
    #    "DatumName": b'AIRSPEED INDICATED',
    #    "UnitsName": b'Knots',

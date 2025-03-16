@@ -1,6 +1,17 @@
 # Change Log
 
-**Update 03/01/2025 Version 2.0.0-alpha-2 Changelog:**
+**Update 03/16/2025 Version 2.0.0-beta Changelog:**
+- First binary release to the public
+- Adding multiple control profiles for aircraft commonly used in MSFS 2024 career mode
+- Refining UI, removing quirks and bugs
+
+**Known issues:**
+- G1000 Range and FMS knobs are only working if they remain unchanged within the sim. (Their inputEvents always return 0 upon change which is an MSFS/SimConnect bug, so they are implemented with a clumsy workaround that stores their value in the application & are not synced with the sim.)
+- MSFS 2024 flight plan files has changed, the flight plan is present in a separate .PLN file and not the .FLT file, so the flight path is not displayed on the map. Only the 1st waypoint based on the GPS. I plan to add this feature, but an ICAO facility lookup needs to be implemented as the Lat/Lon information is not displayed anymore in the flightplan, only ICAO codes.
+- Unfortunately I had to remove KML support for now, Maplibre is not displaying the custom graphics one can put in KML files.
+- Airplane and avionics in MSFS 2024 have been created by multiple dev teams, the behavior of these are really different, so feature parity between the different planes is impossible
+
+**Update 01/04/2025 - 03/01/2025 Version 2.0.0-alpha-3 Changelog:**
 - Credit where credit is due:
    - [https://github.com/mracko/MSFS-Mobile-Companion-App](https://github.com/mracko/MSFS-Mobile-Companion-App/)
    - [https://github.com/odwdinc/Python-SimConnect](https://github.com/odwdinc/Python-SimConnect)
@@ -17,13 +28,13 @@
 - Optimizing imports and memory footprint
 - Created a framework for logging including debug log level and logging to file for easier debugging
 - MSFS Glass now can be launched before the sim, it will try to connect every 5 seconds
-- **Started replacing Leaflet map implementation with MapLibre**
-- Optimized performance by simplifying SimVar getting and setting. The UI now subscribes for data, that arrives periodically (quicker than before for important data, and maybe slower for not so important). Furthermore, the MSFS will now only send data if it has changed in the simulator. We store the data locally in the backend, so the UI/API does not need to wait for the simulator. (This can cause late/missed data though, but we are more okay with that than UI hangs.)
+- **Maplibre GL JS is the new map framework instead of Leaflet**
+- Optimized performance by simplifying SimVar getting and setting. The number of variables we get from the Sim is not affecting the performance anymore. The UI now subscribes for data, that arrives periodically (quicker than before for important data, and maybe slower for not so important). Furthermore, MSFS will now only send data if it has changed in the simulator. We store the data locally in the backend, so the UI/API does not need to wait for the simulator. (This can cause late/missed data though, but we are more okay with that than UI freezes.)
 - Cleaned up unnecessary async operations
 - Reduced global variable usage
 - Cleaned up multithreading. Current implementation runs on 3 threads:
   - Simconnect library Callback function
-  - Simconnect client code for getting variables for the frontend
+  - Simconnect client code for interacting with the frontend
   - Webserver
 - Resolved a memory leak during getting SimVars
 - Cleand up and unified logging for easier debugging
@@ -35,10 +46,6 @@
 - **NO BINARIES HAVE BEEN BUILT FOR THIS VERSION**
 - Paid 3rd party aircraft support removed due to the removal of MobiFlight. Might get re-added later if they become available on Marketplace & InputEvents/LVars can be used to control them
 
-**Known issues:**
-- G1000 Range and FMS knobs are only working if they remain unchanged within the sim. (Their inputEvents always return 0 upon change which is an MSFS/SimConnect bug, so they are implemented with a clumsy workaround that stores their value in the application & are not synced with the sim.)
-- MSFS 2024 flight plan files has changed, so the flight path is not displayed on the map. Only the 1st waypoint based on the GPS.
-- Map cannot be moved if Following plane. `Unfollow plane` button should be clicked and the map can be moved afterwards.
 
 **v1.9.1 November 3, 2021:**
 - Added controls profile for the Ju-52 Classic and Retrofit by Asobo

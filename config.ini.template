@@ -1,5 +1,6 @@
 [CONFIG]
-msfsbasedir = C:\Users\[username]\AppData\Local\Packages\Microsoft.Limitless_8wekyb3d8bbwe (for MS store version)
-openaipapikey = [OpenAip API key here]
+msfsbasedir = C:\Users\[username]\AppData\Local\Packages\Microsoft.Limitless_8wekyb3d8bbwe
 loglevel = info
+;openaipapikey = [OpenAip API key here] ;necessary if the Avionics layer on the map does not work
+; logfile = glass.log ;this is only necessary if you want to save the logs into a file for troubleshooting
 

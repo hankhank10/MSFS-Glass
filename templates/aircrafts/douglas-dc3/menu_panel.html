@@ -1,0 +1,124 @@
+<!-- First Row-->
+<div class="row">
+
+    <!-- Lights -->
+    <div class="col" style="max-width:270px; min-width:270px;">
+        <div class="lead">Lights</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all"
+                        type="button" class="btn btn-warning" style="width:245px">Toggle All Lights
+                </button>
+                <br>
+                <table style="width:245px">
+                    <tr>
+                        <td>Landing Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LANDING_LIGHTS_TOGGLE',0,true);$(this).blur();"
+                                    id="light-landing" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>NAV Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Beacon Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_BEACON_LIGHTS',0,true);$(this).blur();"
+                                    id="light-beacon" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Compass Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('INSTRUMENT_SWITCH_COMPASS',INSTRUMENT_SWITCH_COMPASS === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-compass" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Panel Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('INSTRUMENT_LIGHTING_UVGAUGE',INSTRUMENT_LIGHTING_UVGAUGE === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-panel" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cockpit Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_CABIN_4',LIGHTING_CABIN_4 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-cockpit" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pilot Sidewall Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_CABIN_3',LIGHTING_CABIN_3 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-cpt-sidewall" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Copilot Sidewall Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_CABIN_2',LIGHTING_CABIN_2 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-fo-sidewall" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rear Wall Spotlights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_CABIN_1',LIGHTING_CABIN_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                                    id="light-rear-wall" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pitot & Deicing -->
+    <div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+        <div class="lead">Pitot Heat & Deicing</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();"
+                        id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('ANTI_ICE_TOGGLE',0,true);$(this).blur();" id="anti-ice" type="button"
+                        class="btn btn-danger" style="width:190px">General Anti-Ice
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('DEICE_WINDSHIELD_1',DEICE_WINDSHIELD_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="deice-windshield" type="button"
+                        class="btn btn-danger" style="width:190px">Windshield Deice
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('INSTRUMENT_SWITCH_PILOTWIPER',INSTRUMENT_SWITCH_PILOTWIPER === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="pilot-wiper" type="button"
+                        class="btn btn-danger" style="width:190px">Pilot Wipers
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Last Row Information -->
+<div class="row">
+    <div class="col">
+        <p class="font-italic text-secondary">Some controls will work differently depending on the plane.</p>
+    </div>
+</div>

@@ -8,3 +8,5 @@ SimConnect/__pycache__/
 .*
 SimConnect/SimConnect.dllc
 glass_server.spec
+templates/index.html.old
+templates/index_landscape.html.old

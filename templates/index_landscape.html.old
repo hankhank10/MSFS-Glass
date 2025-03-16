@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MSFS Glass</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- JQuery UI -->
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"
+            integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w=="
+          crossorigin="anonymous">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-rotatedmarker@0.2.0/leaflet.rotatedMarker.min.js"></script>
+    <script src="https://unpkg.com/leaflet-providers@2.0.0/leaflet-providers.js"
+            integrity="sha512-CWnoN23M4hfBZ+/WH/EhkhiZ8lk2FvQd+JO+5vAU42/Jj8ZD8HoEviIz4b8bG5S7JhvxYlittv0vgLWO1qcWgA=="
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet.marker.slideto@0.3.0/Leaflet.Marker.SlideTo.js"
+            integrity="sha512-4vUYc2nW/OaK16zVcqxG69y5dpd9BzWfTepmaEvLiLD4DUNlWc7C0tXyZnMhw74xoPfa5RU1lfON3wq70Rb0tQ=="
+            crossorigin="anonymous"></script>
+
+    <!-- Leaflet KML plugin -->
+    <script src="https://cdn.jsdelivr.net/gh/windycom/leaflet-kml@master/L.KML.js"
+            integrity="sha512-fPpbleVmIWZdaUuskLwg7cKxQWD/Kr+DSGWAXNgHODUZEQ/nrR+Uc/oulvFlJlRoTHPciVnfI4TstQUtx1mVfw=="
+            crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+          integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+          crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
+            integrity="sha512-KWZQo2EiUMmEMrjJUUZoWP8k/mL57L5PPjQF23Vv77jGidQK8WPsX/RoQ7uI0cnjDDCU8ZXa1NG24HkLOqI9sg=="
+            crossorigin="anonymous"></script>
+
+    <!-- Set script root-->
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <!-- Set favicon and Apple touch device home screen icon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/site.webmanifest">
+
+    <link rel="stylesheet" href="/static/css/glass_landscape.css">
+
+</head>
+<body>
+<div class="main-container">
+    <div class="map-container content-wrapper">
+        <div id="map"></div>
+        <div class="btn-group btn-group-map" role="group" aria-label="Map controls">
+            <button id="followModeButton" type="button" class="btn btn-primary btn-sm" style="margin: 0; "
+                    onclick="toggleFollowPlane();$(this).blur();"><span id="followMode">Unfollow Plane</span>
+            </button>
+            <button id="GPStrackButton" type="button" class="btn btn-primary btn-sm" style="margin: 0;"
+                    onclick="toggleGPStrack();$(this).blur();">GPS Track
+            </button>
+            <button id="FltPlnButton" type="button" class="btn btn-danger btn-sm" style="margin: 0;"
+                    onclick="loadFltPln();$(this).blur();"><span id="FltPlnText">Load Flight Plan</span></button>
+            <button id="SyncPlaneButton" type="button" class="btn btn-danger btn-sm" style="margin: 0;"
+                    onclick="syncPlane();$(this).blur();"><span id="FltPlnText">Sync UI/Plane</span></button>
+        </div>
+
+    </div>
+    <nav class="navbar navbar-dark d-flex flex-nowrap justify-content-between bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> <img src="/static/img/msfs-glass-brand.png" style="height:32px;"
+                                                   alt="MSFS Glass"></a>
+            <ul class="navbar-nav me-auto mb-lg-0 navbar-nav-scroll d-flex flex-row">
+
+                {% for tab in aircraft_menu_tabs %}
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="$(this).blur();"
+                           data-bs-toggle="collapse" data-bs-target="#collapse{{ tab[1] }}"
+                           aria-controls="collapse{{ tab[1] }}">{{ tab[0] }}</a>
+                    </li>
+                {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link" onclick="$(this).blur();"
+                       data-bs-toggle="collapse" data-bs-target="#collapseData"
+                       aria-controls="collapseData">
+                        Data
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="$(this).blur();"
+                       data-bs-toggle="collapse" data-bs-target="#collapseOptions"
+                       aria-controls="collapseOptions">Options
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper content-container sidebar bg-dark text-white">
+        <div class="content" id="contentPages">
+            {% for tab in aircraft_menu_tabs %}
+                <div class="collapse {% if loop.first %}show{% endif %}" id="collapse{{ tab[1] }}"
+                     data-bs-parent="#contentPages">
+                    <div class="{{ tab[1] }}-container" id="{{ tab[1] }}">
+                        {% include "aircrafts/" + aircraft_dir + "/menu_" + tab[1] + ".html" %}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="collapse" id="collapseData" data-bs-parent="#contentPages">
+                <div class="data-container" id="data">
+                    {% include 'menu_data.html' %}
+                </div>
+            </div>
+            <div class="collapse" id="collapseOptions" data-bs-parent="#contentPages">
+                <div class="options-container" id="options">
+                    {% include 'menu_options.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--Boostrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+
+<!-- Custom JS imports -->
+<script src="/static/js/get_sim_data.js"></script>
+{% if not aircraft_dir.startswith('default')  %}
+    <script src="/static/js/aircrafts/{{ aircraft_dir }}.js"></script>
+{% endif %}
+<script src="/static/js/glass_landscape.js"></script>
+
+<script>
+    // Create map object
+    let followPlane = 1;
+    let trackGPS = true;
+
+    // Creating a Layer object
+    var simple = new L.tileLayer.provider('CartoDB.Voyager');
+    var openstreet = new L.tileLayer.provider('OpenStreetMap.Mapnik');
+    var grayscale = new L.tileLayer.provider('Stadia.AlidadeSmoothDark');
+    var basic = new L.tileLayer.provider('Stadia.Outdoors');
+    var topo = new L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    });
+
+    // https://api.tiles.openaip.net/api/data/openaip/z/x/y.png
+    var openaip_cached_basemap = new L.TileLayer("http://{s}.api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.png?apiKey={{ api_key }}", {
+        maxZoom: 20, minZoom: 4, detectRetina: true, format: 'image/png', transparent: true,
+
+    });
+    // Create map options
+    let mapOptions = {
+        center: [40.7128, -74.0060], zoom: 11, dragging: true, layers: basic
+    };
+
+    // Creating a map object
+    var map = new L.map('map', mapOptions);
+
+    var baseLayers = {
+        "Dark": grayscale, "Open Street": openstreet, "Pale": simple, "Topo": topo, "Default": basic,
+    }
+    var overlays = {
+        "Aviation": openaip_cached_basemap
+    }
+
+
+    // Add control
+    L.control.layers(baseLayers, overlays).addTo(map)
+
+    map.attributionControl.setPosition('bottomright');
+
+    // Icon options
+    var iconOptions = {
+        iconUrl: '/static/img/plane.png', iconSize: [35, 35]
+    }
+
+    // Creating a custom icon
+    var customIcon = L.icon(iconOptions);
+
+    // Creating Marker Options
+    var markerOptions = {
+        clickable: false, draggable: false, icon: customIcon, rotationAngle: 0, rotationOrigin: "center"
+    }
+
+    // Creating a Marker
+    var marker = L.marker([17.438139, 78.395830], markerOptions);
+
+    // Adding marker to the map
+    marker.addTo(map);
+
+    // Add GPS Trackline
+    var trackline;
+    trackline = L.polyline([], {color: 'red', smoothFactor: 3}).addTo(map);
+
+    // Add GPS Waypoints
+    var gpswp;
+    gpswp = L.polyline([], {color: '#c842f5', smoothFactor: 3, dashArray: '20, 10'}).addTo(map);
+    gpswp.setStyle({opacity: 0});
+
+    // Add Flight Plan
+    var fltpln;
+    fltpln = L.polyline([], {color: '#f542bc', smoothFactor: 3}).addTo(map);
+
+</script>
+
+</body>
+</html>
+

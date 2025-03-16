@@ -131,123 +131,10 @@ map_size_fix = 0;
 let btnhold;
 
 //General Data
-let current_aircraft_ui_friendly
-let current_plane
+let current_aircraft_ui_friendly;
 
-//JF PA-28R Vars
-let JF_PA_28R_AP_HDG;
-let JF_PA_28R_AP_ROLL;
-let JF_PA_28R_AP_MODE;
-let JF_PA_28R_LIGHT_BCN;
-let JF_PA_28R_AP_NAV;
-let JF_PA_28R_FUEL_SEL;
 
-//MilViz Corsair Vars
-let MILVIZ_CORSAIR_OIL_COOLER;
-let MILVIZ_CORSAIR_INTERCOOLER;
-let MILVIZ_CORSAIR_COWL_FLAPS;
-let MILVIZ_CORSAIR_COWL_FLAPS2;
-let MILVIZ_CORSAIR_SUPERCHARGER;
-let MILVIZ_CORSAIR_FUEL_SELECT;
-let MILVIZ_CORSAIR_LOCK_TAILWHEEL;
-let MILVIZ_CORSAIR_GUN_LIGHT;
-let MILVIZ_CORSAIR_FUEL_PUMP;
-let MILVIZ_CORSAIR_EXT_LIGHTS;
-let MILVIZ_CORSAIR_WING_LIGHTS;
-let MILVIZ_CORSAIR_TAIL_LIGHTS;
-let MILVIZ_CORSAIR_FORM_LIGHTS;
-let MILVIZ_CORSAIR_SECTION_LIGHTS;
-let MILVIZ_CORSAIR_SECSEL_LIGHTS;
-let MILVIZ_CORSAIR_APP_LIGHTS;
-let MILVIZ_CORSAIR_COCKPIT_LIGHTS;
-let MILVIZ_CORSAIR_CHART_LIGHTS;
-let MILVIZ_CORSAIR_LPANEL_LIGHTS;
-let MILVIZ_CORSAIR_RPANEL_LIGHTS;
-let MILVIZ_CORSAIR_LINST_LIGHTS;
-let MILVIZ_CORSAIR_RINST_LIGHTS;
-let MILVIZ_CORSAIR_DEFROST;
-let MILVIZ_CORSAIR_PITOT_HEAT;
-let MILVIZ_CORSAIR_RECPT;
 
-//PMDG DC-6
-let PMDG_DC6_AFE_BEFORE_START;
-let PMDG_DC6_AFE_AFTER_START;
-let PMDG_DC6_AFE_BEFORE_TAKEOFF;
-let PMDG_DC6_AFE_TAKEOFF_DRY;
-let PMDG_DC6_AFE_TAKEOFF_WET;
-let PMDG_DC6_AFE_CRUISE;
-let PMDG_DC6_AFE_DESCENT;
-let PMDG_DC6_AFE_INRANGE;
-let PMDG_DC6_AFE_BEFORE_LANDING;
-let PMDG_DC6_AFE_AFTER_LANDING;
-let PMDG_DC6_AFE_PARKING;
-let PMDG_DC6_ADF_ACTIVE;
-let PMDG_DC6_ADF_STBY;
-let PMDG_DC6_DME_MODE;
-let PMDG_DC6_GYRO_PILOT;
-let PMDG_DC6_ALTITUDE_CONTROL;
-let PMDG_DC6_GYRO_PILOT_MODE;
-let PMDG_DC6_AP_MECHANICAL;
-let PMDG_DC6_GUST_LOCK;
-let PMDG_DC6_AP_TURN;
-let PMDG_DC6_AP_CLIMB_WHEEL;
-let PMDG_DC6_AP_AILERON_TRIM;
-let PMDG_DC6_COM1_STANDBY;
-let PMDG_DC6_COM1_ACTIVE;
-let PMDG_DC6_COM2_STANDBY;
-let PMDG_DC6_COM2_ACTIVE;
-let PMDG_DC6_COM1_SPACING;
-let PMDG_DC6_COM2_SPACING;
-let PMDG_DC6_ADF_MODE;
-
-//FBW A32NX
-let FBW_A32NX_EFIS_CSTR;
-let FBW_A32NX_EFIS_WPT;
-let FBW_A32NX_EFIS_VORD;
-let FBW_A32NX_EFIS_NDB;
-let FBW_A32NX_EFIS_ARPT;
-let FBW_A32NX_EFIS_NAV_MODE;
-let FBW_A32NX_EFIS_RANGE;
-let FBW_A32NX_EFIS_NAV_AID_L1;
-let FBW_A32NX_EFIS_NAV_AID_L2;
-let FBW_A32NX_EFIS_LS;
-let FBW_A32NX_EFIS_FD;
-let FBW_A32NX_AP_SPD_INDICATOR;
-let FBW_A32NX_AP_HDG_INDICATOR;
-let FBW_A32NX_AP_SPD_SLOT;
-let FBW_A32NX_AP_HDG_SLOT;
-let FBW_A32NX_AP_VS_SLOT;
-let FBW_A32NX_AP_ALT_SLOT;
-let FBW_A32NX_AP_LOC_MODE;
-let FBW_A32NX_AP_ATHR_MODE;
-let FBW_A32NX_AP_EXPED_MODE;
-let FBW_A32NX_AP_APPR_MODE;
-let FBW_A32NX_AP_VS_FPA_INDICATOR;
-let FBW_A32NX_AP_ALT_INC_MODE;
-let FBW_A32NX_AP_ALT_INDICATOR;
-let FBW_A32NX_AP_ACTIVE;
-let FBW_A32NX_AP_HDG_UNIT;
-let FBW_A32NX_AP_VS_UNIT;
-let FBW_A32NX_AP_SPD_UNIT;
-let FBW_A32NX_OVHD_ANTIICE_ENG1;
-let FBW_A32NX_OVHD_ANTIICE_ENG2;
-let FBW_A32NX_OVHD_ANTIICE_WING;
-let FBW_A32NX_OVHD_PROBESWINDOW;
-let FBW_A32NX_OVHD_STROBE;
-let FBW_A32NX_OVHD_NOSE;
-let FBW_A32NX_OVHD_RWY;
-let FBW_A32NX_OVHD_LAND;
-
-//Asobo Ju-52
-let ASO_JU52_ADF_MODE;
-let ASO_JU52_DMI;
-let ASO_JU52C_ALTIMETER_1;
-let ASO_JU52C_ALTIMETER_2;
-let ASO_JU52C_COM1;
-let ASO_JU52C_AP;
-let ASO_JU52C_AP_DISENG;
-let ASO_JU52C_AP_HEADING;
-let ASO_JU52C_PITOT;
 
 function mapRefreshFix() {
     map_size_fix = map_size_fix + 1;
@@ -258,8 +145,6 @@ function mapRefreshFix() {
     } else {
         $('#map_row').height('-=1');
     }
-
-
     map_size_fix = map_size_fix * 1;
 }
 
@@ -327,8 +212,9 @@ window.setInterval(function () {
         = getSimulatorData();
     if (isConnected) {
         displayData();
+        updateMap();
     }
-    updateMap();
+
 }, 200);
 
 function xpndrplus1() {
@@ -1067,11 +953,10 @@ function getSimulatorData() {
             // UI Friendly name here
             current_aircraft_ui_friendly = data.current_aircraft_ui_friendly;
             // Dir name here
-            if (data.current_plane) {
-                if (current_local_plane !== data.current_plane) {
-                    localStorage.setItem("current_local_plane", data.current_plane);
+            if (data.current_aircraft) {
+                if (current_local_plane !== data.current_aircraft) {
+                    localStorage.setItem("current_local_plane", data.current_aircraft);
                     if (!$("#manual_aircraft_selection").is(":checked")) {
-                        current_aircraft_ui_friendly = data.current_plane;
                         location.reload();
                     }
                 }
@@ -1081,7 +966,7 @@ function getSimulatorData() {
             }
 
             //Navigation
-            compass = data.MAGNETIC_COMPASS;
+            heading_magnetic = data.PLANE_HEADING_DEGREES_MAGNETIC;
             latitude = data.LATITUDE;
             longitude = data.LONGITUDE;
 
@@ -1107,9 +992,10 @@ function getSimulatorData() {
             autopilot_airspeed_hold_var = data.AP_AIRSPEED_HOLD_VAR;
             airspeed_indicated = data.AIRSPEED_INDICATED;
             autopilot_loc_mode = data.AP_LOC_MODE;
-            autopilot_appr_mode = data.AP_APPR_MODE;
+            autopilot_appr_mode = data.AP_APPROACH_HOLD;
             autopilot_yaw_damper = data.AP_YAW_DAMPER;
             plane_heading_degrees = data.HEADING;
+
 
             //NAV
             nav1_obs_deg = Number(data.NAV1_OBS);
@@ -1160,7 +1046,7 @@ function getSimulatorData() {
             fltpln_arr = data.FLT_PLN;
             gps_next_lat = data.GPS_WP_NEXT_LAT;
             gps_next_lon = data.GPS_WP_NEXT_LON;
-            gps_next_wp_arr = [[latitude, longitude], [gps_next_lat, gps_next_lon]];
+            gps_next_wp_arr = (gps_next_lat === 0 && gps_next_lon === 0) ? [] : [[longitude, latitude], [gps_next_lon, gps_next_lat]];
 
             //Flight Controls
             gear = data.GEAR_POSITION;
@@ -1168,129 +1054,6 @@ function getSimulatorData() {
             spoilers = data.SPOILERS_HANDLE_POSITION;
             parking_brake = data.BRAKE_PARKING_POSITION;
 
-            //JF PA-28R
-            if (current_aircraft_ui_friendly.substring(0, 6) == "PA-28R") {
-                JF_PA_28R_LIGHT_BCN = data.JF_PA_28R_LIGHT_BCN;
-                JF_PA_28R_AP_HDG = data.JF_PA_28R_AP_HDG;
-                JF_PA_28R_AP_NAV = data.JF_PA_28R_AP_NAV;
-                JF_PA_28R_AP_ROLL = data.JF_PA_28R_AP_ROLL;
-                JF_PA_28R_AP_MODE = data.JF_PA_28R_AP_MODE;
-                JF_PA_28R_FUEL_SEL = data.JF_PA_28R_FUEL_SEL;
-            }
-            //MILVIZ Corsair
-            if (current_aircraft_ui_friendly.substring(0, 5) == "FG-1D") {
-                MILVIZ_CORSAIR_OIL_COOLER = data.MILVIZ_CORSAIR_OIL_COOLER;
-                MILVIZ_CORSAIR_INTERCOOLER = data.MILVIZ_CORSAIR_INTERCOOLER;
-                MILVIZ_CORSAIR_SUPERCHARGER = data.MILVIZ_CORSAIR_SUPERCHARGER;
-                MILVIZ_CORSAIR_FUEL_SELECT = data.MILVIZ_CORSAIR_FUEL_SELECT;
-                MILVIZ_CORSAIR_LOCK_TAILWHEEL = data.MILVIZ_CORSAIR_LOCK_TAILWHEEL;
-                MILVIZ_CORSAIR_GUN_LIGHT = data.MILVIZ_CORSAIR_GUN_LIGHT;
-                MILVIZ_CORSAIR_FUEL_PUMP = data.MILVIZ_CORSAIR_FUEL_PUMP;
-                MILVIZ_CORSAIR_EXT_LIGHTS = data.MILVIZ_CORSAIR_EXT_LIGHTS;
-                MILVIZ_CORSAIR_WING_LIGHTS = data.MILVIZ_CORSAIR_WING_LIGHTS;
-                MILVIZ_CORSAIR_TAIL_LIGHTS = data.MILVIZ_CORSAIR_TAIL_LIGHTS;
-                MILVIZ_CORSAIR_FORM_LIGHTS = data.MILVIZ_CORSAIR_FORM_LIGHTS;
-                MILVIZ_CORSAIR_SECTION_LIGHTS = data.MILVIZ_CORSAIR_SECTION_LIGHTS;
-                MILVIZ_CORSAIR_SECSEL_LIGHTS = data.MILVIZ_CORSAIR_SECSEL_LIGHTS;
-                MILVIZ_CORSAIR_APP_LIGHTS = data.MILVIZ_CORSAIR_APP_LIGHTS;
-                MILVIZ_CORSAIR_COCKPIT_LIGHTS = data.MILVIZ_CORSAIR_COCKPIT_LIGHTS;
-                MILVIZ_CORSAIR_CHART_LIGHTS = data.MILVIZ_CORSAIR_CHART_LIGHTS;
-                MILVIZ_CORSAIR_LPANEL_LIGHTS = data.MILVIZ_CORSAIR_LPANEL_LIGHTS;
-                MILVIZ_CORSAIR_RPANEL_LIGHTS = data.MILVIZ_CORSAIR_RPANEL_LIGHTS;
-                MILVIZ_CORSAIR_LINST_LIGHTS = data.MILVIZ_CORSAIR_LINST_LIGHTS;
-                MILVIZ_CORSAIR_RINST_LIGHTS = data.MILVIZ_CORSAIR_RINST_LIGHTS;
-                MILVIZ_CORSAIR_DEFROST = data.MILVIZ_CORSAIR_DEFROST;
-                MILVIZ_CORSAIR_PITOT_HEAT = data.MILVIZ_CORSAIR_PITOT_HEAT;
-                MILVIZ_CORSAIR_RECPT = data.MILVIZ_CORSAIR_RECPT;
-                MILVIZ_CORSAIR_BNC_LIGHTS = data.MILVIZ_CORSAIR_BNC_LIGHTS;
-                MILVIZ_CORSAIR_RECOGN_LIGHTS = data.MILVIZ_CORSAIR_RECOGN_LIGHTS;
-                MILVIZ_CORSAIR_LANDING_LIGHTS = data.MILVIZ_CORSAIR_LANDING_LIGHTS;
-            }
-            //PMDG DC-6
-            if (current_aircraft_ui_friendly.substring(0, 4) == "DC-6") {
-                PMDG_DC6_AFE_BEFORE_START = data.PMDG_DC6_AFE_BEFORE_START;
-                PMDG_DC6_AFE_AFTER_START = data.PMDG_DC6_AFE_AFTER_START;
-                PMDG_DC6_AFE_BEFORE_TAKEOFF = data.PMDG_DC6_AFE_BEFORE_TAKEOFF;
-                PMDG_DC6_AFE_TAKEOFF_DRY = data.PMDG_DC6_AFE_TAKEOFF_DRY;
-                PMDG_DC6_AFE_TAKEOFF_WET = data.PMDG_DC6_AFE_TAKEOFF_WET;
-                PMDG_DC6_AFE_CRUISE = data.PMDG_DC6_AFE_CRUISE;
-                PMDG_DC6_AFE_DESCENT = data.PMDG_DC6_AFE_DESCENT;
-                PMDG_DC6_AFE_INRANGE = data.PMDG_DC6_AFE_INRANGE;
-                PMDG_DC6_AFE_BEFORE_LANDING = data.PMDG_DC6_AFE_BEFORE_LANDING;
-                PMDG_DC6_AFE_AFTER_LANDING = data.PMDG_DC6_AFE_AFTER_LANDING;
-                PMDG_DC6_AFE_PARKING = data.PMDG_DC6_AFE_PARKING;
-                PMDG_DC6_ADF_ACTIVE = Number(data.PMDG_DC6_ADF_ACTIVE).toFixed(2);
-                PMDG_DC6_ADF_STBY = Number(data.PMDG_DC6_ADF_STBY).toFixed(2);
-                PMDG_DC6_ADF2_ACTIVE = Number(data.PMDG_DC6_ADF2_ACTIVE).toFixed(2);
-                PMDG_DC6_ADF2_STBY = Number(data.PMDG_DC6_ADF2_STBY).toFixed(2);
-                PMDG_DC6_DME_MODE = data.PMDG_DC6_DME_MODE;
-                PMDG_DC6_GYRO_PILOT = data.PMDG_DC6_GYRO_PILOT;
-                PMDG_DC6_ALTITUDE_CONTROL = data.PMDG_DC6_ALTITUDE_CONTROL;
-                PMDG_DC6_GYRO_PILOT_MODE = data.PMDG_DC6_GYRO_PILOT_MODE;
-                PMDG_DC6_AP_MECHANICAL = data.PMDG_DC6_AP_MECHANICAL;
-                PMDG_DC6_GUST_LOCK = data.PMDG_DC6_GUST_LOCK;
-                PMDG_DC6_AP_TURN = Number(data.PMDG_DC6_AP_TURN).toFixed(0);
-                PMDG_DC6_AP_CLIMB_WHEEL = Number(data.PMDG_DC6_AP_CLIMB_WHEEL).toFixed(0);
-                PMDG_DC6_AP_AILERON_TRIM = Number(data.PMDG_DC6_AP_AILERON_TRIM).toFixed(0);
-                PMDG_DC6_COM1_STANDBY = Number(data.PMDG_DC6_COM1_STANDBY).toFixed(3);
-                PMDG_DC6_COM2_STANDBY = Number(data.PMDG_DC6_COM2_STANDBY).toFixed(3);
-                PMDG_DC6_COM1_ACTIVE = Number(data.PMDG_DC6_COM1_ACTIVE).toFixed(3);
-                PMDG_DC6_COM2_ACTIVE = Number(data.PMDG_DC6_COM2_ACTIVE).toFixed(3);
-                PMDG_DC6_COM1_SPACING = data.PMDG_DC6_COM1_SPACING;
-                PMDG_DC6_COM2_SPACING = data.PMDG_DC6_COM2_SPACING;
-                PMDG_DC6_ADF_MODE = data.PMDG_DC6_ADF_MODE;
-            }
-            //FBW A32NX
-            if (current_aircraft_ui_friendly.substring(0, 5) == "A32NX") {
-                FBW_A32NX_EFIS_CSTR = data.FBW_A32NX_EFIS_CSTR;
-                FBW_A32NX_EFIS_WPT = data.FBW_A32NX_EFIS_WPT;
-                FBW_A32NX_EFIS_VORD = data.FBW_A32NX_EFIS_VORD;
-                FBW_A32NX_EFIS_NDB = data.FBW_A32NX_EFIS_NDB;
-                FBW_A32NX_EFIS_ARPT = data.FBW_A32NX_EFIS_ARPT;
-                FBW_A32NX_EFIS_NAV_MODE = data.FBW_A32NX_EFIS_NAV_MODE;
-                FBW_A32NX_EFIS_RANGE = data.FBW_A32NX_EFIS_RANGE;
-                FBW_A32NX_EFIS_NAV_AID_L1 = data.FBW_A32NX_EFIS_NAV_AID_L1;
-                FBW_A32NX_EFIS_NAV_AID_L2 = data.FBW_A32NX_EFIS_NAV_AID_L2;
-                FBW_A32NX_EFIS_LS = data.FBW_A32NX_EFIS_LS;
-                FBW_A32NX_EFIS_FD = data.FBW_A32NX_EFIS_FD;
-                FBW_A32NX_AP_SPD_INDICATOR = data.FBW_A32NX_AP_SPD_INDICATOR;
-                FBW_A32NX_AP_HDG_INDICATOR = data.FBW_A32NX_AP_HDG_INDICATOR;
-                FBW_A32NX_AP_SPD_SLOT = data.FBW_A32NX_AP_SPD_SLOT;
-                FBW_A32NX_AP_HDG_SLOT = data.FBW_A32NX_AP_HDG_SLOT;
-                FBW_A32NX_AP_VS_SLOT = data.FBW_A32NX_AP_VS_SLOT;
-                FBW_A32NX_AP_ALT_SLOT = data.FBW_A32NX_AP_ALT_SLOT;
-                FBW_A32NX_AP_LOC_MODE = data.FBW_A32NX_AP_LOC_MODE;
-                FBW_A32NX_AP_ATHR_MODE = data.FBW_A32NX_AP_ATHR_MODE;
-                FBW_A32NX_AP_EXPED_MODE = data.FBW_A32NX_AP_EXPED_MODE;
-                FBW_A32NX_AP_APPR_MODE = data.FBW_A32NX_AP_APPR_MODE;
-                FBW_A32NX_AP_VS_FPA_INDICATOR = data.FBW_A32NX_AP_VS_FPA_INDICATOR;
-                FBW_A32NX_AP_ALT_INC_MODE = data.FBW_A32NX_AP_ALT_INC_MODE;
-                FBW_A32NX_AP_ALT_INDICATOR = data.FBW_A32NX_AP_ALT_INDICATOR;
-                FBW_A32NX_AP_ACTIVE = data.FBW_A32NX_AP_ACTIVE;
-                FBW_A32NX_AP_HDG_UNIT = data.FBW_A32NX_AP_HDG_UNIT;
-                FBW_A32NX_AP_VS_UNIT = data.FBW_A32NX_AP_VS_UNIT;
-                FBW_A32NX_AP_SPD_UNIT = data.FBW_A32NX_AP_SPD_UNIT;
-                FBW_A32NX_OVHD_ANTIICE_ENG1 = data.FBW_A32NX_OVHD_ANTIICE_ENG1;
-                FBW_A32NX_OVHD_ANTIICE_ENG2 = data.FBW_A32NX_OVHD_ANTIICE_ENG2;
-                FBW_A32NX_OVHD_ANTIICE_WING = data.FBW_A32NX_OVHD_ANTIICE_WING;
-                FBW_A32NX_OVHD_PROBESWINDOW = data.FBW_A32NX_OVHD_PROBESWINDOW;
-                FBW_A32NX_OVHD_STROBE = data.FBW_A32NX_OVHD_STROBE;
-                FBW_A32NX_OVHD_NOSE = data.FBW_A32NX_OVHD_NOSE;
-                FBW_A32NX_OVHD_RWY = data.FBW_A32NX_OVHD_RWY;
-                FBW_A32NX_OVHD_LAND = data.FBW_A32NX_OVHD_LAND;
-            }
-            //FBW A32NX
-            if (current_aircraft_ui_friendly.substring(0, 5) == "Ju-52") {
-                ASO_JU52_ADF_MODE = data.ASO_JU52_ADF_MODE;
-                ASO_JU52_DMI = data.ASO_JU52_DMI;
-                ASO_JU52C_ALTIMETER_1 = (Number(data.ASO_JU52C_ALTIMETER_1) * 33.864).toFixed(2);
-                ASO_JU52C_ALTIMETER_2 = (Number(data.ASO_JU52C_ALTIMETER_2) * 33.864).toFixed(2);
-                ASO_JU52C_COM1 = Number(data.ASO_JU52C_COM1).toFixed(3)
-                ASO_JU52C_AP = data.ASO_JU52C_AP;
-                ASO_JU52C_AP_DISENG = data.ASO_JU52C_AP_DISENG;
-                ASO_JU52C_AP_HEADING = data.ASO_JU52C_AP_HEADING;
-                ASO_JU52C_PITOT = data.ASO_JU52C_PITOT;
-            }
         }
     });
     return connected;
@@ -1331,9 +1094,6 @@ function displayData() {
     checkAndUpdateButton("#pitot-heat", pitot_heat, "Pitot Heat (On)", "Pitot Heat (Off)");
     checkAndUpdateButton("#anti-ice", eng_anti_ice, "General Anti-Ice (On)", "General Anti-Ice (Off)");
     checkAndUpdateButton("#structural-deice", structural_deice, "Structural Deice (On)", "Structural Deice (Off)");
-    checkAndUpdateButton("#a320-autothrottle", autopilot_autothrottle);
-    checkAndUpdateButton("#a320-loc-ap", autopilot_loc_mode);
-    checkAndUpdateButton("#a320-appr-ap", autopilot_appr_mode);
     checkAndUpdateButton("#gear", gear, "Gear (Down)", "Gear (Up)");
     checkAndUpdateButton("#spoilers", spoilers, "Spoilers (On)", "Spoilers (Off)");
     checkAndUpdateButton("#parking-brake", parking_brake, "Parking Brake (On)", "Parking Brake (Off)");
@@ -1370,8 +1130,9 @@ function displayData() {
     //Other/Data
     $("#cur_ias").text(airspeed_indicated);
     $("#cur_alt").text(altitude);
-    $("#cur_hdg").text(plane_heading_degrees);
+    $("#cur_hdg").text(heading_magnetic);
     $("#flaps-position").text(flaps_position + "%");
+    $("#spoilers-position").text(spoilers + "%");
     $("#landing-vs1").text(landing_vs1);
     $("#landing-t1").text(landing_t1);
     $("#landing-g1").text(landing_g1);
@@ -1383,222 +1144,6 @@ function displayData() {
     $("#landing-g3").text(landing_g3);
     $("#sim-rate").text(sim_rate);
 
-    //JF PA-28R
-    if (current_aircraft_ui_friendly.substring(0, 6) == "PA-28R") {
-        checkAndUpdateButton("#jf_pa28_bcn_light", JF_PA_28R_LIGHT_BCN);
-        checkAndUpdateButton("#jf_pa28_ap_hdg", JF_PA_28R_AP_HDG);
-        checkAndUpdateButtonCustom("#jf_pa28_ap_mode_nav", JF_PA_28R_AP_MODE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NAV", offText = "NAV");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_mode_omni", JF_PA_28R_AP_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "OMNI", offText = "OMNI");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_mode_hdg", JF_PA_28R_AP_MODE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "HDG", offText = "HDG");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_mode_locn", JF_PA_28R_AP_MODE, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "LOC-N", offText = "LOC-N");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_mode_locr", JF_PA_28R_AP_MODE, 4, onBtn = "btn-light", offBtn = "btn-secondary", onText = "LOC-R", offText = "LOC-R");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_l30", JF_PA_28R_AP_ROLL, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "L30°", offText = "L30°");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_l20", JF_PA_28R_AP_ROLL, 10, onBtn = "btn-light", offBtn = "btn-secondary", onText = "L20°", offText = "L20°");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_l10", JF_PA_28R_AP_ROLL, 20, onBtn = "btn-light", offBtn = "btn-secondary", onText = "L10°", offText = "L10°");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_off", JF_PA_28R_AP_ROLL, 30, onBtn = "btn-light", offBtn = "btn-secondary", onText = "OFF", offText = "OFF");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_r10", JF_PA_28R_AP_ROLL, 40, onBtn = "btn-light", offBtn = "btn-secondary", onText = "R10°", offText = "R10°");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_r20", JF_PA_28R_AP_ROLL, 50, onBtn = "btn-light", offBtn = "btn-secondary", onText = "R20°", offText = "R20°");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_roll_r30", JF_PA_28R_AP_ROLL, 60, onBtn = "btn-light", offBtn = "btn-secondary", onText = "R30°", offText = "R30°");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_nav1", JF_PA_28R_AP_NAV, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NAV1", offText = "NAV1");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_nav2", JF_PA_28R_AP_NAV, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NAV2", offText = "NAV2");
-        checkAndUpdateButtonCustom("#jf_pa28_ap_off", JF_PA_28R_AP_NAV, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "OFF", offText = "OFF");
-        checkAndUpdateButtonCustom("#jf_pa28_fuel_cut", JF_PA_28R_FUEL_SEL, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Cut", offText = "Cut");
-        checkAndUpdateButtonCustom("#jf_pa28_fuel_left", JF_PA_28R_FUEL_SEL, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Left", offText = "Left");
-        checkAndUpdateButtonCustom("#jf_pa28_fuel_right", JF_PA_28R_FUEL_SEL, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Right", offText = "Right");
-    }
-
-    //MILVIZ Corsair
-    if (current_aircraft_ui_friendly.substring(0, 5) == "FG-1D") {
-        $("#milviz_corsair_supercharger").text(Math.round(MILVIZ_CORSAIR_SUPERCHARGER) + "%");
-        $("#milviz_corsair_oilcooler").text(Math.round(MILVIZ_CORSAIR_OIL_COOLER) + "%");
-        $("#milviz_corsair_intercooler").text(Math.round(MILVIZ_CORSAIR_INTERCOOLER) + "%");
-        $("#milviz_corsair_chartb").text(Math.round(MILVIZ_CORSAIR_CHART_LIGHTS) + "%");
-        $("#milviz_corsair_lpanel").text(Math.round(MILVIZ_CORSAIR_LPANEL_LIGHTS) + "%");
-        $("#milviz_corsair_rpanel").text(Math.round(MILVIZ_CORSAIR_RPANEL_LIGHTS) + "%");
-        $("#milviz_corsair_linst").text(Math.round(MILVIZ_CORSAIR_LINST_LIGHTS) + "%");
-        $("#milviz_corsair_rinst").text(Math.round(MILVIZ_CORSAIR_RINST_LIGHTS) + "%");
-        checkAndUpdateButton("#milviz_corsair_fuel_pump", MILVIZ_CORSAIR_FUEL_PUMP);
-        checkAndUpdateButton("#milviz_corsair_dive_brake", spoilers, "Dive Brake (On)", "Dive Brake (Off)");
-        checkAndUpdateButton("#milviz_corsair_tail_wheel", MILVIZ_CORSAIR_LOCK_TAILWHEEL, "Lock Tail Wheel (On)", "Lock Tail Wheel (Off)");
-        checkAndUpdateButton("#milviz_corsair_cockpit_lights", MILVIZ_CORSAIR_COCKPIT_LIGHTS, "Cockpit Lights (On)", "Cockpit Lights (Off)");
-        checkAndUpdateButton("#milviz_corsair_defrost", MILVIZ_CORSAIR_DEFROST, "Defrost (On)", "Defrost (Off)");
-        checkAndUpdateButton("#milviz_corsair_pitotheat", MILVIZ_CORSAIR_PITOT_HEAT, "Pitot Heat (On)", "Pitot Heat (Off)");
-        checkAndUpdateButton("#milviz_corsair_recpt", MILVIZ_CORSAIR_RECPT, "Recpt (On)", "Recpt (Off)");
-        checkAndUpdateButtonCustom("#milviz_corsair_fuel_off", MILVIZ_CORSAIR_FUEL_SELECT, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_fuel_main", MILVIZ_CORSAIR_FUEL_SELECT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Main", offText = "Main");
-        checkAndUpdateButtonCustom("#milviz_corsair_fuel_reserve", MILVIZ_CORSAIR_FUEL_SELECT, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Reserve", offText = "Reserve");
-        checkAndUpdateButtonCustom("#milviz_corsair_fuel_lh", MILVIZ_CORSAIR_FUEL_SELECT, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "L.H.Wing", offText = "L.H.Wing");
-        checkAndUpdateButtonCustom("#milviz_corsair_fuel_rh", MILVIZ_CORSAIR_FUEL_SELECT, 4, onBtn = "btn-light", offBtn = "btn-secondary", onText = "R.H.Wing", offText = "R.H.Wing");
-        checkAndUpdateButtonCustom("#milviz_corsair_fuel_cntr", MILVIZ_CORSAIR_FUEL_SELECT, 5, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Cntr Drop", offText = "Cntr Drop");
-        checkAndUpdateButtonCustom("#milviz_corsair_bcn_down", MILVIZ_CORSAIR_BNC_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Down", offText = "Down");
-        checkAndUpdateButtonCustom("#milviz_corsair_bcn_off", MILVIZ_CORSAIR_BNC_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_bcn_red", MILVIZ_CORSAIR_BNC_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Red", offText = "Red");
-        checkAndUpdateButtonCustom("#milviz_corsair_recogn_steady", MILVIZ_CORSAIR_RECOGN_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Steady", offText = "Steady");
-        checkAndUpdateButtonCustom("#milviz_corsair_recogn_off", MILVIZ_CORSAIR_RECOGN_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_recogn_flash", MILVIZ_CORSAIR_RECOGN_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Flash", offText = "Flash");
-        checkAndUpdateButtonCustom("#milviz_corsair_landing_on", MILVIZ_CORSAIR_LANDING_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "On", offText = "On");
-        checkAndUpdateButtonCustom("#milviz_corsair_landing_off", MILVIZ_CORSAIR_LANDING_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_landing_amber", MILVIZ_CORSAIR_LANDING_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Amber", offText = "Amber");
-        checkAndUpdateButtonCustom("#milviz_corsair_extl_steady", MILVIZ_CORSAIR_EXT_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Steady", offText = "Steady");
-        checkAndUpdateButtonCustom("#milviz_corsair_extl_off", MILVIZ_CORSAIR_EXT_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_extl_flash", MILVIZ_CORSAIR_EXT_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Flash", offText = "Flash");
-        checkAndUpdateButtonCustom("#milviz_corsair_wing_brigth", MILVIZ_CORSAIR_WING_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Bright", offText = "Bright");
-        checkAndUpdateButtonCustom("#milviz_corsair_wing_off", MILVIZ_CORSAIR_WING_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_wing_dim", MILVIZ_CORSAIR_WING_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Dim", offText = "Dim");
-        checkAndUpdateButtonCustom("#milviz_corsair_tail_bright", MILVIZ_CORSAIR_TAIL_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Bright", offText = "Bright");
-        checkAndUpdateButtonCustom("#milviz_corsair_tail_off", MILVIZ_CORSAIR_TAIL_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_tail_dim", MILVIZ_CORSAIR_TAIL_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Dim", offText = "Dim");
-        checkAndUpdateButtonCustom("#milviz_corsair_form_bright", MILVIZ_CORSAIR_FORM_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Bright", offText = "Bright");
-        checkAndUpdateButtonCustom("#milviz_corsair_form_off", MILVIZ_CORSAIR_FORM_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_form_dim", MILVIZ_CORSAIR_FORM_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Dim", offText = "Dim");
-        checkAndUpdateButtonCustom("#milviz_corsair_section_bright", MILVIZ_CORSAIR_SECTION_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Bright", offText = "Bright");
-        checkAndUpdateButtonCustom("#milviz_corsair_section_off", MILVIZ_CORSAIR_SECTION_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_section_dim", MILVIZ_CORSAIR_SECTION_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Dim", offText = "Dim");
-        checkAndUpdateButtonCustom("#milviz_corsair_secsel_steady", MILVIZ_CORSAIR_SECSEL_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Bright", offText = "Bright");
-        checkAndUpdateButtonCustom("#milviz_corsair_secsel_off", MILVIZ_CORSAIR_SECSEL_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_secsel_code", MILVIZ_CORSAIR_SECSEL_LIGHTS, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Dim", offText = "Dim");
-        checkAndUpdateButtonCustom("#milviz_corsair_app_off", MILVIZ_CORSAIR_APP_LIGHTS, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#milviz_corsair_app_on", MILVIZ_CORSAIR_APP_LIGHTS, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "On", offText = "On");
-
-    }
-
-    //PMDG DC-6
-    if (current_aircraft_ui_friendly.substring(0, 4) == "DC-6") {
-        $("#pmdg_dc6_adf1_active").text(PMDG_DC6_ADF_ACTIVE);
-        $("#pmdg_dc6_adf1_standby").text(PMDG_DC6_ADF_STBY);
-        $("#pmdg_dc6_adf2_active").text(PMDG_DC6_ADF2_ACTIVE);
-        $("#pmdg_dc6_adf2_standby").text(PMDG_DC6_ADF2_STBY);
-        $("#pmdg-dc6-ap-gyropilot-settings").text(PMDG_DC6_GYRO_PILOT_MODE);
-        $("#pmdg-dc6-ap-turn").text(PMDG_DC6_AP_TURN);
-        $("#pmdg-dc6-ap-glide-climb").text(PMDG_DC6_AP_CLIMB_WHEEL);
-        $("#pmdg-dc6-ap-aileron").text(PMDG_DC6_AP_AILERON_TRIM);
-        $("#pmdg-dc6-com1-spacing").text(PMDG_DC6_COM1_SPACING);
-        $("#pmdg-dc6-com2-spacing").text(PMDG_DC6_COM2_SPACING);
-        $("#pmdg-dc6-com1-active").text(PMDG_DC6_COM1_ACTIVE);
-        $("#pmdg-dc6-com1-standby").text(PMDG_DC6_COM1_STANDBY);
-        $("#pmdg-dc6-com2-active").text(PMDG_DC6_COM2_ACTIVE);
-        $("#pmdg-dc6-com2-standby").text(PMDG_DC6_COM2_STANDBY);
-        checkAndUpdateButton("#pmdg-dc6-ap-mechnical", PMDG_DC6_AP_MECHANICAL, "Gyropilot Lever Enganged", "Gyropilot Lever Disenganged");
-        checkAndUpdateButton("#pmdg-dc6-ap-gyropilot", PMDG_DC6_GYRO_PILOT, "Gyropilot (On)", "Gyropilot (Off)");
-        checkAndUpdateButton("#pmdg-dc6-ap-altitude-controls", PMDG_DC6_ALTITUDE_CONTROL, "Altitude (On)", "Altitude (Off)");
-        checkAndUpdateButton("#pmdg-dc6-afe-before-start", PMDG_DC6_AFE_BEFORE_START);
-        checkAndUpdateButton("#pmdg-dc6-afe-after-start", PMDG_DC6_AFE_AFTER_START);
-        checkAndUpdateButton("#pmdg-dc6-afe-before-takeoff", PMDG_DC6_AFE_BEFORE_TAKEOFF);
-        checkAndUpdateButton("#pmdg-dc6-afe-takeoff-dry", PMDG_DC6_AFE_TAKEOFF_DRY);
-        checkAndUpdateButton("#pmdg-dc6-afe-takeoff-wet", PMDG_DC6_AFE_TAKEOFF_WET);
-        checkAndUpdateButton("#pmdg-dc6-afe-cruise", PMDG_DC6_AFE_CRUISE);
-        checkAndUpdateButton("#pmdg-dc6-afe-descent", PMDG_DC6_AFE_DESCENT);
-        checkAndUpdateButton("#pmdg-dc6-afe-in-range", PMDG_DC6_AFE_INRANGE);
-        checkAndUpdateButton("#pmdg-dc6-afe-before-landing", PMDG_DC6_AFE_BEFORE_LANDING);
-        checkAndUpdateButton("#pmdg-dc6-afe-after-landing", PMDG_DC6_AFE_AFTER_LANDING);
-        checkAndUpdateButton("#pmdg-dc6-afe-parking", PMDG_DC6_AFE_PARKING);
-        checkAndUpdateButtonCustom("#pmdg-dc6-gust-lock", PMDG_DC6_GUST_LOCK, 0, onBtn = "btn-success", offBtn = "btn-danger", onText = "Gust Lock (On)", offText = "Gust Lock (Off)");
-        checkAndUpdateButtonCustom("#pmdg-dc6-dme1", PMDG_DC6_DME_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "DME NAV1", offText = "DME NAV1");
-        checkAndUpdateButtonCustom("#pmdg-dc6-dme2", PMDG_DC6_DME_MODE, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "DME NAV2", offText = "DME NAV2");
-        checkAndUpdateButtonCustom("#pmdg-dc6-dme1-direct", PMDG_DC6_DME_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "DME NAV1", offText = "DME NAV1");
-        checkAndUpdateButtonCustom("#pmdg-dc6-dme2-direct", PMDG_DC6_DME_MODE, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "DME NAV2", offText = "DME NAV2");
-        checkAndUpdateButtonCustom("#PMDG_DC6_ADF1_SELECT", PMDG_DC6_ADF_MODE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ADF 1 Active", offText = "ADF 1");
-        checkAndUpdateButtonCustom("#PMDG_DC6_ADF2_SELECT", PMDG_DC6_ADF_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ADF 2 Active", offText = "ADF 2");
-        if (PMDG_DC6_ADF_MODE == 0) {
-            $("#PMDG_DC6_ADF_NUM").text("ADF 1");
-            $("#PMDG_DC6_ADF_TUNE_NUM").text("Tune ADF 1");
-        } else {
-            $("#PMDG_DC6_ADF_NUM").text("ADF 2");
-            $("#PMDG_DC6_ADF_TUNE_NUM").text("Tune ADF 2");
-        }
-    }
-
-    //FBW A32NX
-    if (current_aircraft_ui_friendly.substring(0, 5) == "A32NX") {
-        $("#FBW-A32NX-airspeed-hold-var").attr('placeholder', FBW_A32NX_AP_SPD_INDICATOR);
-        $("#FBW-A32NX-heading-lock-dir").attr('placeholder', FBW_A32NX_AP_HDG_INDICATOR);
-        $("#FBW-A32NX-vertical-hold-var").attr('placeholder', FBW_A32NX_AP_VS_FPA_INDICATOR);
-        $("#FBW-A32NX-altitude-lock-var").attr('placeholder', FBW_A32NX_AP_ALT_INDICATOR);
-        $("#FBW-A32NX_SPD_unit").text(FBW_A32NX_AP_SPD_UNIT);
-        $("#FBW-A32NX_HDG_unit").text(FBW_A32NX_AP_HDG_UNIT);
-        $("#FBW-A32NX_VS_unit").text(FBW_A32NX_AP_VS_UNIT);
-        checkAndUpdateButton("#FBW_A32NX_autopilot-master", FBW_A32NX_AP_ACTIVE, "Engaged", "Disengaged");
-        checkAndUpdateButton("#FBW_A32NX_LOC", FBW_A32NX_AP_LOC_MODE);
-        checkAndUpdateButton("#FBW_A32NX_ATHR", FBW_A32NX_AP_ATHR_MODE);
-        checkAndUpdateButton("#FBW_A32NX_EXPED", FBW_A32NX_AP_EXPED_MODE);
-        checkAndUpdateButton("#FBW_A32NX_APPR", FBW_A32NX_AP_APPR_MODE);
-        checkAndUpdateButton("#FBW_A32NX-fd", FBW_A32NX_EFIS_FD);
-        checkAndUpdateButton("#FBW_A32NX-ils", FBW_A32NX_EFIS_LS);
-        checkAndUpdateButton("#FBW_A32NX_rwy", FBW_A32NX_OVHD_RWY);
-        checkAndUpdateButton("#FBW_A32NX_anti_ice_wing", FBW_A32NX_OVHD_ANTIICE_WING, "Wing Anti-Ice (On)", "Wing Anti-Ice (Off)");
-        checkAndUpdateButton("#FBW_A32NX_anti_ice_eng1", FBW_A32NX_OVHD_ANTIICE_ENG1, "ENG1 Anti-Ice (On)", "ENG1 Anti-Ice (Off)");
-        checkAndUpdateButton("#FBW_A32NX_anti_ice_eng2", FBW_A32NX_OVHD_ANTIICE_ENG2, "ENG2 Anti-Ice (On)", "ENG2 Anti-Ice (Off)");
-        checkAndUpdateButton("#FBW_A32NX_window_heat", FBW_A32NX_OVHD_PROBESWINDOW, "Probe/Window Heat (On)", "Probe/Window Heat (Off)");
-        checkAndUpdateButtonCustom("#FBW_A32NX_SPD_selected", FBW_A32NX_AP_SPD_SLOT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Selected SPD", offText = "Selected SPD");
-        checkAndUpdateButtonCustom("#FBW_A32NX_SPD_managed", FBW_A32NX_AP_SPD_SLOT, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Managed SPD", offText = "Managed SPD");
-        checkAndUpdateButtonCustom("#FBW_A32NX_HDG_selected", FBW_A32NX_AP_HDG_SLOT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Selected HDG", offText = "Selected HDG");
-        checkAndUpdateButtonCustom("#FBW_A32NX_HDG_managed", FBW_A32NX_AP_HDG_SLOT, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Managed HDG", offText = "Managed HDG");
-        checkAndUpdateButtonCustom("#FBW_A32NX_increment_100", FBW_A32NX_AP_ALT_INC_MODE, 100, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Increment 100", offText = "Increment 100");
-        checkAndUpdateButtonCustom("#FBW_A32NX_increment_1000", FBW_A32NX_AP_ALT_INC_MODE, 1000, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Increment 1000", offText = "Increment 1000");
-        checkAndUpdateButtonCustom("#FBW_A32NX_ALT_selected", FBW_A32NX_AP_ALT_SLOT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Selected ALT", offText = "Selected ALT");
-        checkAndUpdateButtonCustom("#FBW_A32NX_ALT_managed", FBW_A32NX_AP_ALT_SLOT, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Managed ALT", offText = "Managed ALT");
-        checkAndUpdateButtonCustom("#FBW_A32NX-cstr", FBW_A32NX_EFIS_CSTR, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "CSTR", offText = "CSTR");
-        checkAndUpdateButtonCustom("#FBW_A32NX-wpt", FBW_A32NX_EFIS_WPT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "WPT", offText = "WPT");
-        checkAndUpdateButtonCustom("#FBW_A32NX-vord", FBW_A32NX_EFIS_VORD, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "VOR.D", offText = "VOR.D");
-        checkAndUpdateButtonCustom("#FBW_A32NX-ndb", FBW_A32NX_EFIS_NDB, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NDB", offText = "NDB");
-        checkAndUpdateButtonCustom("#FBW_A32NX-arpt", FBW_A32NX_EFIS_ARPT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ARPT", offText = "ARPT");
-        checkAndUpdateButtonCustom("#FBW_A32NX-ls", FBW_A32NX_EFIS_NAV_MODE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "LS", offText = "LS");
-        checkAndUpdateButtonCustom("#FBW_A32NX-vor", FBW_A32NX_EFIS_NAV_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "VOR", offText = "VOR");
-        checkAndUpdateButtonCustom("#FBW_A32NX-nav", FBW_A32NX_EFIS_NAV_MODE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NAV", offText = "NAV");
-        checkAndUpdateButtonCustom("#FBW_A32NX-arc", FBW_A32NX_EFIS_NAV_MODE, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ARC", offText = "ARC");
-        checkAndUpdateButtonCustom("#FBW_A32NX-plan", FBW_A32NX_EFIS_NAV_MODE, 4, onBtn = "btn-light", offBtn = "btn-secondary", onText = "PLAN", offText = "PLAN");
-        checkAndUpdateButtonCustom("#FBW_A32NX-10", FBW_A32NX_EFIS_RANGE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "10", offText = "10");
-        checkAndUpdateButtonCustom("#FBW_A32NX-20", FBW_A32NX_EFIS_RANGE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "20", offText = "20");
-        checkAndUpdateButtonCustom("#FBW_A32NX-40", FBW_A32NX_EFIS_RANGE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "40", offText = "40");
-        checkAndUpdateButtonCustom("#FBW_A32NX-80", FBW_A32NX_EFIS_RANGE, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "80", offText = "80");
-        checkAndUpdateButtonCustom("#FBW_A32NX-160", FBW_A32NX_EFIS_RANGE, 4, onBtn = "btn-light", offBtn = "btn-secondary", onText = "160", offText = "160");
-        checkAndUpdateButtonCustom("#FBW_A32NX-320", FBW_A32NX_EFIS_RANGE, 5, onBtn = "btn-light", offBtn = "btn-secondary", onText = "320", offText = "320");
-        checkAndUpdateButtonCustom("#FBW_A32NX-320", FBW_A32NX_EFIS_RANGE, 5, onBtn = "btn-light", offBtn = "btn-secondary", onText = "320", offText = "320");
-        checkAndUpdateButtonCustom("#FBW_A32NX-l1-adf", FBW_A32NX_EFIS_NAV_AID_L1, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ADF", offText = "ADF");
-        checkAndUpdateButtonCustom("#FBW_A32NX-l1-off", FBW_A32NX_EFIS_NAV_AID_L1, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#FBW_A32NX-l1-vor", FBW_A32NX_EFIS_NAV_AID_L1, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "VOR", offText = "VOR");
-        checkAndUpdateButtonCustom("#FBW_A32NX-l2-adf", FBW_A32NX_EFIS_NAV_AID_L2, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ADF", offText = "ADF");
-        checkAndUpdateButtonCustom("#FBW_A32NX-l2-off", FBW_A32NX_EFIS_NAV_AID_L2, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#FBW_A32NX-l2-vor", FBW_A32NX_EFIS_NAV_AID_L2, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "VOR", offText = "VOR");
-        checkAndUpdateButtonCustom("#FBW_A32NX_strobe_on", FBW_A32NX_OVHD_STROBE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "On", offText = "On");
-        checkAndUpdateButtonCustom("#FBW_A32NX_strobe_auto", FBW_A32NX_OVHD_STROBE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Auto", offText = "Auto");
-        checkAndUpdateButtonCustom("#FBW_A32NX_strobe_off", FBW_A32NX_OVHD_STROBE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#FBW_A32NX_nose_on", FBW_A32NX_OVHD_NOSE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "TO", offText = "TO");
-        checkAndUpdateButtonCustom("#FBW_A32NX_nose_auto", FBW_A32NX_OVHD_NOSE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Taxi", offText = "Taxi");
-        checkAndUpdateButtonCustom("#FBW_A32NX_nose_off", FBW_A32NX_OVHD_NOSE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#FBW_A32NX_land", FBW_A32NX_OVHD_LAND, 0, onBtn = "btn-success", offBtn = "btn-danger", onText = "On", offText = "Off");
-    }
-
-    //Asobo Ju-52
-    if (current_aircraft_ui_friendly.substring(0, 5) == "Ju-52") {
-        $("#ASO_JU52C_ALTIMETER_1").text(ASO_JU52C_ALTIMETER_1);
-        $("#ASO_JU52C_ALTIMETER_2").text(ASO_JU52C_ALTIMETER_2);
-        $("#ASO_JU52C_ALTIMETER_1d").text(ASO_JU52C_ALTIMETER_1);
-        $("#ASO_JU52C_ALTIMETER_2d").text(ASO_JU52C_ALTIMETER_2);
-        $("#ASO_JU52C_COM1").text(ASO_JU52C_COM1);
-        checkAndUpdateButton("#ASO_JU52_anti-ice", eng_anti_ice, "Carburetor Heat (On)", "Carburetor Heat (Off)");
-        checkAndUpdateButtonCustom("#ASO_JU52_ADF_OFF", ASO_JU52_ADF_MODE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "OFF", offText = "OFF");
-        checkAndUpdateButtonCustom("#ASO_JU52_ADF_ANT", ASO_JU52_ADF_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ANT", offText = "ANT");
-        checkAndUpdateButtonCustom("#ASO_JU52_ADF_ADF", ASO_JU52_ADF_MODE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ADF", offText = "ADF");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_NM", ASO_JU52_DMI, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NM", offText = "NM");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_MIN", ASO_JU52_DMI, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "MIN", offText = "MIN");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_KTS", ASO_JU52_DMI, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "KTS", offText = "KTS");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_TEST", ASO_JU52_DMI, 4, onBtn = "btn-light", offBtn = "btn-secondary", onText = "TEST", offText = "TEST");
-        checkAndUpdateButtonCustom("#ASO_JU52_ADF_OFF_DIRECT", ASO_JU52_ADF_MODE, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "OFF", offText = "OFF");
-        checkAndUpdateButtonCustom("#ASO_JU52_ADF_ANT_DIRECT", ASO_JU52_ADF_MODE, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ANT", offText = "ANT");
-        checkAndUpdateButtonCustom("#ASO_JU52_ADF_ADF_DIRECT", ASO_JU52_ADF_MODE, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "ADF", offText = "ADF");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_NM_DIRECT", ASO_JU52_DMI, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "NM", offText = "NM");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_MIN_DIRECT", ASO_JU52_DMI, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "MIN", offText = "MIN");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_KTS_DIRECT", ASO_JU52_DMI, 3, onBtn = "btn-light", offBtn = "btn-secondary", onText = "KTS", offText = "KTS");
-        checkAndUpdateButtonCustom("#ASO_JU52_DME_TEST_DIRECT", ASO_JU52_DMI, 4, onBtn = "btn-light", offBtn = "btn-secondary", onText = "TEST", offText = "TEST");
-        checkAndUpdateButtonCustom("#ASO_JU52C_AP", ASO_JU52C_AP, 1, onBtn = "btn-success", offBtn = "btn-danger", onText = "Kurssteuerung (On)", offText = "Kurssteuerung (Off)");
-        checkAndUpdateButtonCustom("#ASO_JU52C_AP_DISENG", ASO_JU52C_AP_DISENG, 1, onBtn = "btn-success", offBtn = "btn-danger", onText = "Kurssteuerung Notauslösung (On)", offText = "Kurssteuerung Notauslösung (Off)");
-        checkAndUpdateButtonCustom("#ASO_JU52C_PITOT_0", ASO_JU52C_PITOT, 0, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Off", offText = "Off");
-        checkAndUpdateButtonCustom("#ASO_JU52C_PITOT_1", ASO_JU52C_PITOT, 1, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Staurohr", offText = "Staurohr");
-        checkAndUpdateButtonCustom("#ASO_JU52C_PITOT_2", ASO_JU52C_PITOT, 2, onBtn = "btn-light", offBtn = "btn-secondary", onText = "Vergaser", offText = "Vergaser");
-        checkAndUpdateButton("#ASO_JU52C_AP_HEADING", ASO_JU52C_AP_HEADING, "On", "Off");
-        checkAndUpdateButton("#ASU_JU52C_ENTEISER", structural_deice, "Enteiser (On)", "Enteiser (Off)");
-    }
 }
 
 function checkAndUpdateButton(buttonName, variableToCheck, onText = "On", offText = "Off") {
@@ -1666,66 +1211,147 @@ function syncPlane() {
         });
 }
 
+function slideMarker(newLng, newLat) {
+    const start = marker.getLngLat();
+    const end = {lng: newLng, lat: newLat};
+    const duration = 200; // Animation duration in milliseconds
+    const startTime = performance.now();
+
+    function animateMarker(timestamp) {
+        const elapsed = timestamp - startTime;
+        const t = Math.min(1, elapsed / duration); // Normalize time (0 to 1)
+        const easedT = t * (2 - t); // Smooth easing
+
+        // Interpolate marker position
+        const interpolatedLng = start.lng + (end.lng - start.lng) * easedT;
+        const interpolatedLat = start.lat + (end.lat - start.lat) * easedT;
+
+        marker.setLngLat([interpolatedLng, interpolatedLat]); // Move marker
+
+        if (t < 1) {
+            requestAnimationFrame(animateMarker);
+        }
+    }
+
+    requestAnimationFrame(animateMarker);
+}
+
+function slideMap(newLng, newLat) {
+    map.easeTo({
+        center: [newLng, newLat],
+        duration: 200, // Duration in milliseconds
+        easing: (t) => t * (2 - t), // Smooth easing
+        essential: true
+    });
+}
+
+function slideMapWithRotation(newLng, newLat, newHeading) {
+    map.easeTo({
+        center: [newLng, newLat],
+        bearing: newHeading,
+        duration: 200, // Duration in milliseconds
+        easing: (t) => t * (2 - t), // Smooth easing
+        essential: true
+    });
+}
+
+// Update the trail on the map
+function updateTrail() {
+    if (map.getSource('trail')) {
+        map.getSource('trail').setData({
+            type: 'Feature',
+            geometry: {
+                type: 'LineString',
+                coordinates: trackline
+            }
+        });
+    }
+}
+
+// Update the trail on the map
+function updateGPSWp() {
+    if (map.getSource('gpswp')) {
+        map.getSource('gpswp').setData({
+            type: 'Feature',
+            geometry: {
+                type: 'LineString',
+                coordinates: gps_next_wp_arr
+            }
+        });
+    }
+}
+
+
+
 const highResLimit = 1000; // Keep the last 3000 points in full resolution (10 mins)
 const minDistance = 10; // Minimum distance to add a new point (10m)
 const compressThreshold = 1000; // 300 points (roughly 1 minute of data)
 
+
 function updateMap() {
-    let pos = L.latLng(latitude, longitude);
-    let latLngs = trackline.getLatLngs();
-    let lastPos = latLngs.length > 0 ? latLngs[latLngs.length - 1] : null;
+    let pos = [longitude, latitude];
+    let last_pos = trackline.length > 0 ? trackline[trackline.length - 1] : null;
     var keepAtCenter;
     keepAtCenter = followPlane === 1;
     keepAtCenter = false;
 
-    marker.slideTo([latitude, longitude], {
-        duration: 0, keepAtCenter: keepAtCenter
-    });
-    marker.setRotationAngle(plane_heading_degrees);
 
-    // Only add a point if the aircraft has moved at least `minDistance` meters
-    if (!lastPos || pos.distanceTo(lastPos) > minDistance) {
-        // Trackline clear when distance between points > 2000m (MSFS places the plane in menu to 0,0)
-        if (lastPos && pos.distanceTo(lastPos) > 2000) {
-            latLngs = [];
-            // Force Frequecy Sync
-            syncRadio();
+    if (connected) {
+        // slideMarker(longitude, latitude);
+        marker.setLngLat(pos);
+
+        if (followPlane === 1) {
+            marker.setRotation(0);
+            slideMapWithRotation(longitude, latitude, plane_heading_degrees);
+        } else if (followPlane === 2) {
+            const rotation = map.getBearing();
+            marker.setRotation(plane_heading_degrees - rotation);
+            slideMap(longitude, latitude);
+        } else if (followPlane === 3) {
+            const rotation = map.getBearing();
+            marker.setRotation(plane_heading_degrees - rotation);
         }
-        latLngs.push(pos);
 
-    }
-    if (latLngs.length % 10 === 0) {
-    }
 
-    // Compress in every 10 minutes, only keep 6000 points, the first 3000 points will be lossless
-    // but after that the rest of the 3000 points will be in exponentially lower resolution
-    if (latLngs.length % compressThreshold === 0) {
-        // Skip the most recent `highResLimit` points and simplify only older points
-        let recentPoints = latLngs.slice(-highResLimit);
-        let olderPoints = latLngs.slice(0, -highResLimit);
-        let simplified = [];
-        console.info("Compression. Total number of points: " + latLngs.length);
-
-        for (let i = 0; i < olderPoints.length; i++) {// Reduce resolution by two
-            if (i % 2 === 0) simplified.push(olderPoints[i]);
+        let last_pos_distance = null;
+        if (last_pos) {
+            last_pos_distance = turf.distance(pos, last_pos, {units: 'meters'})
         }
-        // Merge simplified older points with full-resolution recent points
-        console.info("Compression finished. Total number of points: " + simplified.concat(recentPoints));
-        trackline.setLatLngs(simplified.concat(recentPoints));
-    } else {
-        trackline.setLatLngs(latLngs);
+
+        // Only add a point if the aircraft has moved at least `minDistance` meters
+        if (!last_pos || last_pos_distance > minDistance) {
+            // Trackline clear when distance between points > 2000m (MSFS places the plane in menu to 0,0)
+            if (last_pos && last_pos_distance > 2000) {
+                trackline = [];
+                // Force Frequecy Sync
+                syncRadio();
+            }
+            trackline.push(pos);
+            updateTrail();
+        }
+
+        // Compress in every 10 minutes, only keep 6000 points, the first 3000 points will be lossless
+        // but after that the rest of the 3000 points will be in exponentially lower resolution
+        if (trackline.length % compressThreshold === 0) {
+            // Skip the most recent `highResLimit` points and simplify only older points
+            let recentPoints = trackline.slice(-highResLimit);
+            let olderPoints = trackline.slice(0, -highResLimit);
+            let simplified = [];
+            console.info("Compression. Total number of points: " + trackline.length);
+
+            for (let i = 0; i < olderPoints.length; i++) {// Reduce resolution by two
+                if (i % 2 === 0) simplified.push(olderPoints[i]);
+            }
+            // Merge simplified older points with full-resolution recent points
+            console.info("Compression finished. Total number of points: " + trackline.length);
+            trackline = simplified.concat(recentPoints);
+        }
     }
 
     // GPS Next WP Polyline Update
     if (gps_next_wp_arr[1] != null) {
-        gpswp.setLatLngs(gps_next_wp_arr);
+        updateGPSWp();
     }
-}
-
-function refreshMapSize() {
-    setInterval(function () {
-        map.invalidateSize();
-    }, 1000);
 }
 
 function setSimDatapoint(datapointToSet, valueToUse) {

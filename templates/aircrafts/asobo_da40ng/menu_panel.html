@@ -1,0 +1,97 @@
+<!-- First Row-->
+<div class="row">
+
+    <!-- Lights -->
+    <div class="col" style="max-width:270px; min-width:270px;">
+        <div class="lead">Lights</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all"
+                        type="button" class="btn btn-warning" style="width:245px">Toggle All Exterior Lights
+                </button>
+                <br>
+                <table style="width:245px">
+                                        <tr>
+                        <td>Landing Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LANDING_LIGHTS_TOGGLE',0,true);$(this).blur();"
+                                    id="light-landing" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taxi Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_TAXI_LIGHTS',0,true);$(this).blur();"
+                                    id="light-taxi" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Position Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Strobe Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('STROBES_TOGGLE',0,true);$(this).blur();" id="light-strobe"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Instrument Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('PANEL_LIGHTS_TOGGLE', 0,true);$(this).blur();"
+                                    id="light-panel" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Floodlights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_GLARESHIELD_1', LIGHTING_GLARESHIELD_1 === 0 ? 100 : 0,true, 'input');$(this).blur();"
+                                    id="light-glr" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cabin Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_CABIN_LIGHTS',0,true);$(this).blur();"
+                                    id="light-cabin" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+
+                   
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pitot & Deicing -->
+    <div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+        <div class="lead">Pitot Heat & Deicing</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();"
+                        id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">Pitot Heat
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Last Row Information -->
+<div class="row">
+    <div class="col">
+        <p class="font-italic text-secondary">Some controls will work differently depending on the plane.</p>
+    </div>
+</div>

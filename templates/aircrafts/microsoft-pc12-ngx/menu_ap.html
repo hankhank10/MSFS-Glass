@@ -1,0 +1,145 @@
+				<!-- First Row-->
+				<div class="row">
+					
+					<!-- AP -->
+					<div class="col">
+						<div class="lead" style="margin-bottom:-15px">AP Master</div>
+						
+						<button onclick="triggerSimEvent('AP_MASTER',0,true);$(this).blur();" id="autopilot-master" type="button" class="btn mt-3 btn-block btn-danger btn-lg">?</button>
+						
+						<hr class="bg-secondary" style="margin-bottom:5px">
+						
+						<!-- Default AP Controls -->
+						<table style="border-collapse:separate; border-spacing:0 5px; vertical-align: middle; text-align: left">
+							<tr>
+								<td width="120">NAV Mode</td>
+								<td width="66"><button onclick="triggerSimEvent('AP_NAV1_HOLD',0,true);$(this).blur();" id="autopilot-nav1-lock" type="button" class="btn m-1 btn-danger" style="width:62px">?</button></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Heading (deg)</td>
+								<td><button onclick="triggerSimEvent('AP_PANEL_HEADING_HOLD',0,true);$(this).blur();" id="autopilot-heading-lock" type="button" class="btn btn-danger" style="width:62px;margin-bottom:0px;margin-left:3px">?</button></td>
+								<td>
+									<div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+										<input id="autopilot-heading-lock-dir" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('AP_hdg_set').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="?" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("autopilot-heading-lock-dir").value <= 360 && document.getElementById("autopilot-heading-lock-dir").value >= 0 && document.getElementById("autopilot-heading-lock-dir").value != "") {triggerSimEventFromField ("HEADING_BUG_SET", "autopilot-heading-lock-dir");$("#autopilot-heading-lock-dir").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set AP heading in degrees" id="AP_hdg_set">Set</button>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('HEADING_BUG_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="margin-left:3px;width:62px;margin-top:0px">-1°</button>
+									<button type="button" onclick="triggerSimEventFromVar ('HEADING_BUG_SET', plane_heading_degrees, false);$(this).blur();" class="btn btn-sm btn-secondary" title="Sync HDG with current HDG" style="width:84px;margin-top:0px">Sync</button>
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('HEADING_BUG_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="width:62px;margin-top:0px">+1°</button>
+								</td>
+							</tr>
+							<tr>
+								<td>Altitude (ft)</td>
+								<td><button id="autopilot-altitude-lock" type="button" class="btn btn-danger" style="width:62px;margin-bottom:0px;margin-left:4px;" onclick="triggerSimEvent('AP_ALT_HOLD',0,true);$(this).blur();">?</button></td>
+								<td>
+									<div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+										<input id="autopilot-altitude-lock-var" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('AP_alt_set').click();" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="?" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("autopilot-altitude-lock-var").value <= 100000 && document.getElementById("autopilot-altitude-lock-var").value >= 0 && document.getElementById("autopilot-altitude-lock-var").value != "") {triggerSimEventFromField ("AP_ALT_VAR_SET_ENGLISH", "autopilot-altitude-lock-var");$("#autopilot-altitude-lock-var").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set AP altitude in feet" id="AP_alt_set">Set</button>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('AP_ALT_VAR_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="margin-left:3px;width:62px;margin-top:0px;margin-bottom:0px;padding-left:0px;padding-right:0px">ALT -</button>
+									<button type="button" onclick="triggerSimEventFromVar ('AP_ALT_VAR_SET_ENGLISH', altitude, false);$(this).blur();" class="btn btn-sm btn-secondary" title="Sync HDG with current HDG" style="width:84px;margin-top:0px;margin-bottom:0px">Sync</button>
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('AP_ALT_VAR_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="width:62px;margin-top:0px;margin-bottom:0px;padding-left:0px;padding-right:0px">ALT +</button>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">
+									<button type="button" onclick="triggerSimEvent('AP_ALT_HOLD_OFF',0,true);$(this).blur();" class="btn btn-danger btn-sm" style="margin-left:3px;width:106px;margin-top:0px">Diseng. ALT</button>
+									<button type="button" onclick="triggerSimEvent('AP_ALT_HOLD_ON',0,true);$(this).blur();" class="btn btn-success btn-sm" style="width:106px;margin-top:0px">Engage SET</button>
+								</td>
+							</tr>
+							<tr>
+								<td>V. Speed (fpm)</td>
+								<td><button onclick="triggerSimEvent('AP_PANEL_VS_HOLD',0,true);$(this).blur();" id="autopilot-vertical-hold" type="button" class="btn btn-danger" style="width:62px;margin-bottom:0px;margin-left:4px;">?</button></td>
+								<td>
+									<div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+										<div class="input-group-prepend">
+											<button onclick='document.getElementById("autopilot-vertical-hold-var").value = document.getElementById("autopilot-vertical-hold-var").value * (-1); $(this).blur();' class="btn btn-secondary" type="button" style="margin-top:0px;margin-bottom:0px;width:37px; padding-left: 0; padding-right: 0;border-bottom-right-radius:0;border-top-right-radius:0;" title="Set positive/negative value" id="AP_vs_pos_neg">+/-</button>
+										</div>
+										<input id="autopilot-vertical-hold-var" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('AP_vs_set').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="?" aria-describedby="basic-addon2" style = "padding-left:10px;padding-right:0px">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("autopilot-vertical-hold-var").value <= 10000 && document.getElementById("autopilot-vertical-hold-var").value >= -10000 && document.getElementById("autopilot-vertical-hold-var").value != "") {triggerSimEventFromField ("AP_VS_VAR_SET_ENGLISH", "autopilot-vertical-hold-var");$("#autopilot-vertical-hold-var").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:50px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set AP airspeed in knots" id="AP_vs_set">Set</button>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('AP_VS_VAR_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="margin-left:3px;width:106px;margin-top:0px">Nose DN</button>
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('AP_VS_VAR_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="width:106px;margin-top:0px">Nose UP</button>
+								</td>
+							</tr>
+							<tr>
+								<td>FLC (kts)</td>
+								<td><button onclick="triggerSimEvent('FLIGHT_LEVEL_CHANGE',0,true);if (autopilot_airspeed_hold_var == 0 && autopilot_airspeed_hold == 0) {triggerSimEvent ('AP_SPD_VAR_SET', airspeed_indicated, true)}; $(this).blur();" id="autopilot-airspeed-hold" type="button" class="btn btn-danger" style="width:62px;margin-bottom:0px;margin-left:4px;">?</button></td>
+								<td>
+									<div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+										<input id="autopilot-airspeed-hold-var" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('AP_spd_set').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="?" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button onclick='if (document.getElementById("autopilot-airspeed-hold-var").value <= 3000 && document.getElementById("autopilot-airspeed-hold-var").value >= 0 && document.getElementById("autopilot-airspeed-hold-var").value != "") {triggerSimEventFromField ("AP_SPD_VAR_SET", "autopilot-airspeed-hold-var");$("#autopilot-airspeed-hold-var").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set AP airspeed in knots" id="AP_spd_set">Set</button>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('AP_SPD_VAR_DEC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="margin-left:3px;width:106px;margin-top:0px">FLC -</button>
+									<button type="button" onpointerdown="presshold(function(){ triggerSimEvent('AP_SPD_VAR_INC',0,true) }, 400, 0.6, 90);" onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();" class="btn btn-sm btn-secondary" style="width:106px;margin-top:0px">FLC +</button>
+								</td>
+							</tr>
+							<tr>
+								<td>Auto-throttle</td>
+								<td><button onclick="triggerSimEvent('AUTO_THROTTLE_ARM',0,true);$(this).blur();" id="pc-12-autopilot-autothrottle" type="button" class="btn m-1 btn-danger" style="width: 62px">?</button></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Back-course</td>
+								<td><button onclick="triggerSimEvent('AP_BC_HOLD',0,true);$(this).blur();" id="autopilot-backcourse-hold" type="button" class="btn m-1 btn-danger" style="width: 62px">?</button></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Approach</td>
+								<td><button onclick="triggerSimEvent('AP_APR_HOLD',0,true);$(this).blur();" id="autopilot-approach-hold" type="button" class="btn m-1 btn-danger" style="width: 62px">?</button></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Yaw damper</td>
+								<td><button onclick="triggerSimEvent('YAW_DAMPER_TOGGLE',0,true);$(this).blur();" id="autopilot-yaw-damper" type="button" class="btn m-1 btn-danger" style="width: 62px">?</button></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Flight director</td>
+								<td><button onclick="triggerSimEvent('TOGGLE_FLIGHT_DIRECTOR',0,true);$(this).blur();" id="autopilot-fd-active" type="button" class="btn m-1 btn-danger" style="width: 62px">?</button></td>
+								<td></td>
+							</tr>
+						</table>
+						<br>
+						
+						<!-- AP Sources-->
+						<div class="lead">AP Sources</div>
+						<button type="button" onclick="triggerSimEvent ('TOGGLE_GPS_DRIVES_NAV1', 0, true); $(this).blur();" class="btn btn-secondary" style="width:180px" title="Toggle between GPS and NAV 1 driving NAV 1 OBS display (and AP)">Toggle GPS/NAV</button>
+						<br>
+						<button type="button" onclick="triggerSimEvent ('AP_NAV_SELECT_SET', 1, true);$(this).blur();" class="btn btn-secondary btn-sm" style="width:88px" title="Set NAV1 for CDI/AP">NAV1</button>
+						<button type="button" onclick="triggerSimEvent ('AP_NAV_SELECT_SET', 2, true);$(this).blur();" class="btn btn-secondary btn-sm" style="width:88px" title="Set NAV2 for CDI/AP">NAV2</button>
+                        <br>
+                                    <p class="font-italic text-secondary">Autopilot Course 1/2 setting is available on the NAV tab.</p>
+					
+					</div>
+				</div>

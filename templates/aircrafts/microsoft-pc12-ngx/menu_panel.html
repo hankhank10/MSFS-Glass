@@ -1,0 +1,166 @@
+<!-- First Row-->
+<div class="row">
+
+    <!-- Lights -->
+    <div class="col" style="max-width:270px; min-width:270px;">
+        <div class="lead">Lights</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('ALL_LIGHTS_TOGGLE',0,true);$(this).blur();" id="light-all"
+                        type="button" class="btn btn-warning" style="width:245px">Toggle All Exterior Lights
+                </button>
+                <br>
+                <br>
+                <table style="width:245px">
+                    <tr>
+                        <td>Wing Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_WING_LIGHTS',0,true);$(this).blur();"
+                                    id="light-wings" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>NAV Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_NAV_LIGHTS',0,true);$(this).blur();" id="light-nav"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Beacon Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_BEACON_LIGHTS',0,true);$(this).blur();"
+                                    id="light-beacon" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Strobe Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('STROBES_TOGGLE',0,true);$(this).blur();" id="light-strobe"
+                                    type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taxi Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('TOGGLE_TAXI_LIGHTS',0,true);$(this).blur();"
+                                    id="light-taxi" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landing Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LANDING_LIGHTS_TOGGLE',0,true);$(this).blur();"
+                                    id="light-landing" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Recognition Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('INSTRUMENT_LIGHTING_SWITCH_RECOG_PULSE', INSTRUMENT_LIGHTING_SWITCH_RECOG_PULSE === 0 ? 1 : INSTRUMENT_LIGHTING_SWITCH_RECOG_PULSE === 1 ? 2 : 0,true,'input');$(this).blur();"
+                                    id="pc-12-light-recognition" type="button" class="btn btn-danger"
+                                    style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Glareshield Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_GLARESHIELD_1',LIGHTING_GLARESHIELD_1 > 0 ? 0 : 100,true, 'input');$(this).blur();"
+                                    id="light-glareshield" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Panel Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_POTENTIOMETER_20',LIGHTING_POTENTIOMETER_20 > 0 ? 0 : 100,true, 'input');$(this).blur();"
+                                    id="light-panel" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Floodlight</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_CABIN_1',LIGHTING_CABIN_1 > 0 ? 0 : 100,true, 'input');$(this).blur();"
+                                    id="light-flood" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cabin Lights</td>
+                        <td>
+                            <button onclick="triggerSimEvent('LIGHTING_CABIN_2',LIGHTING_CABIN_2 > 0 ? 0 : 100,true, 'input');$(this).blur();"
+                                    id="light-cabin" type="button" class="btn btn-danger" style="width:55px">?
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Screen Brightness</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="range" min="0" max="100" step="1" value="100"
+                                   oninput="changeScreenBrightness(this.value);" id="screen-slider">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pitot & Deicing -->
+    <div class="col" style="margin-top:20px; max-width:220px; min-width:210px;">
+        <div class="lead">Pitot Heat & Deicing</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('PITOT_HEAT_SET', pitot_heat === 0 ? 1 : 0, true);$(this).blur();"
+                        id="pitot-heat" type="button" class="btn btn-danger" style="width:190px">
+                    Pitot Heat
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('DEICE_WINDSHIELD_1',DEICE_WINDSHIELD_1 === 2 ? 0 : 2 ,true, 'input');triggerSimEvent('DEICE_WINDSHIELD_2',DEICE_WINDSHIELD_1 === 2 ? 0 : 2 ,true, 'input');$(this).blur();"
+                        id="windshield-deice" type="button"
+                        class="btn btn-danger" style="width:190px">Windsh. Deice
+                </button>
+                <br>
+
+                <button onclick="triggerSimEvent('DEICE_ENGINE_1',DEICE_ENGINE_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="anti-ice-isd" type="button"
+                        class="btn btn-danger" style="width:190px">Inertial Separator
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('DEICE_PROPELLER_1',DEICE_PROPELLER_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="prop-deice"
+                        type="button"
+                        class="btn btn-danger" style="width:190px">Prop Deice
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('DEICE_AIRFRAME_1',DEICE_AIRFRAME_1 === 0 ? 1 : 0,true, 'input');$(this).blur();"
+                        id="airframe-deice" type="button"
+                        class="btn btn-danger" style="width:190px">Airframe Deice
+                </button>
+                <br>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Last Row Information -->
+<div class="row">
+    <div class="col">
+        <p class="font-italic text-secondary">Some controls will work differently depending on the plane.</p>
+    </div>
+</div>

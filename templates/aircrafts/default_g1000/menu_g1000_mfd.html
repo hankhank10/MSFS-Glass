@@ -1,6 +1,172 @@
 <!-- First Row-->
 <div class="row" style="margin-top:-23px">
 
+    <!-- NAV Knob -->
+    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
+        <div class="lead">MFD NAV Knob</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_NAV_LARGE_MFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_NAV_SMALL_MFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_NAV_PUSH_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-light"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH
+                </button>
+                <button onclick="triggerSimEvent('AS1000_NAV_SMALL_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_NAV_LARGE_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_NAV_SWITCH_PFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center"><->
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HDG Knob -->
+    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
+        <div class="lead">MFD HDG Knob</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_HEADING_MFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_HEADING_SYNC_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-light"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH
+                </button>
+                <button onclick="triggerSimEvent('AS1000_HEADING_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- AP Softkeys -->
+    <div class="col" style="margin-top:20px; max-width:232px; min-width:230px">
+        <div class="lead">MFD AP Buttons</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_AP_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">AP
+                </button>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_FD_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">FD
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_HEADING_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">HDG
+                </button>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_ALTITUDE_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">ALT
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_NAVIGATION_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">NAV
+                </button>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_VERTICAL_NAVIGATION_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">VNV
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_APPROACH_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">APR
+                </button>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_BACKCOURSE_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">BC
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_VERTICALSPEED_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">VS
+                </button>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_VERTICALSPEED_UP_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">N. UP
+                </button>
+                <br>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_FLIGHTLEVELCHANGE_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">FLC
+                </button>
+                <button onclick="triggerSimEvent('AS1000_AUTOPILOT_VERTICALSPEED_DOWN_MFD',1,true,'input');$(this).blur();"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">N. DN
+                </button>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALT Knob -->
+    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
+        <div class="lead">MFD Alt Knob</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AP_ALT_VAR_DEC_1000',0,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+                <button onclick="triggerSimEvent('AP_ALT_VAR_DEC',0,true);$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left"></i>
+                </button>
+                <button onclick="triggerSimEvent('AP_ALT_VAR_INC',0,true);$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right"></i>
+                </button>
+                <button onclick="triggerSimEvent('AP_ALT_VAR_INC_1000',0,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Lower Softkeys -->
     <div class="col" style="margin-top:20px; max-width:400px; min-width:332px">
         <div class="lead">MFD Lower Softkeys</div>
@@ -58,38 +224,6 @@
         </div>
     </div>
 
-    <!-- FMS Softkeys -->
-    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
-        <div class="lead">MFD FMS Knob</div>
-        <div class="row" style="margin-bottom:10px">
-            <div class="col">
-                <button onclick="triggerSimEvent('AS1000_FMS_LOWER_MFD',-1,true,'input');$(this).blur();"
-                        type="button" class="btn btn-secondary"
-                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
-                    <i class="bi bi-caret-left-fill"></i>
-                </button>
-                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_MFD',-1,true,'input');$(this).blur();"
-                        type="button" class="btn btn-secondary"
-                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
-                    <i class="bi bi-caret-left"></i>
-                </button>
-                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_PUSH_MFD',1,true,'input');$(this).blur();"
-                        type="button" class="btn btn-light"
-                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH
-                </button>
-                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_MFD',1,true,'input');$(this).blur();"
-                        type="button" class="btn btn-secondary"
-                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
-                    <i class="bi bi-caret-right"></i>
-                </button>
-                <button onclick="triggerSimEvent('AS1000_FMS_LOWER_MFD',1,true,'input');$(this).blur();"
-                        type="button" class="btn btn-secondary"
-                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
-                    <i class="bi bi-caret-right-fill"></i>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Joystick Softkeys -->
     <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
@@ -173,6 +307,39 @@
                         style="width:65px;padding-left:0px;padding-right:0px;text-align:center">ENT
                 </button>
                 <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- FMS Softkeys -->
+    <div class="col" style="margin-top:20px; max-width:295px; min-width:294px">
+        <div class="lead">MFD FMS Knob</div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col">
+                <button onclick="triggerSimEvent('AS1000_FMS_LOWER_MFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_MFD',-1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-left"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_PUSH_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-light"
+                        style="width:65px;padding-left:0px;padding-right:0px;text-align:center">PUSH
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_UPPER_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right"></i>
+                </button>
+                <button onclick="triggerSimEvent('AS1000_FMS_LOWER_MFD',1,true,'input');$(this).blur();"
+                        type="button" class="btn btn-secondary"
+                        style="width:45px;padding-left:0px;padding-right:0px;text-align:center">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
             </div>
         </div>
     </div>

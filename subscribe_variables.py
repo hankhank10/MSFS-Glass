@@ -1,13 +1,15 @@
+from subscribe_input_variables import microsoft_sf50
+
 pos_vars = {
     "latitude": {
         "DatumName": b'PLANE LATITUDE',
         "UnitsName": b'Degrees',
-        "fEpsilon": 0.01,
+        "fEpsilon": 0.001,
     },
     "longitude": {
         "DatumName": b'PLANE LONGITUDE',
         "UnitsName": b'Degrees',
-        "fEpsilon": 0.01,
+        "fEpsilon": 0.001,
     },
     "altitude": {
         "DatumName": b'INDICATED ALTITUDE',
@@ -222,11 +224,6 @@ ui_vars = {
         "UnitsName": b'Degrees',
         "fEpsilon": 1.0,
     },
-    "sim_rate": {
-        "DatumName": b'SIMULATION RATE',
-        "UnitsName": b'Number',
-        "fEpsilon": 0.5,
-    },
     "gps_wp_next_lat": {
         "DatumName": b'GPS WP NEXT LAT',
         "UnitsName": b'Degrees',
@@ -248,8 +245,8 @@ ui_vars = {
     },
     "spoilers_handle_position": {
         "DatumName": b'SPOILERS HANDLE POSITION',
-        "UnitsName": b'percent over 100',
-        "fEpsilon": 1.0,
+        "UnitsName": b'Percent over 100',
+        "fEpsilon": 0.01,
     },
 
     "light_landing": {
@@ -327,7 +324,65 @@ ui_vars = {
 ##########################################################################
 
 
+
+
+asobo_b737max = {
+
+    "XMLVAR_FCC_CMD_1_VALUE": {
+        "DatumName": b'L:XMLVAR_FCC_CMD_1_VALUE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "XMLVAR_FCC_CMD_2_VALUE": {
+        "DatumName": b'L:XMLVAR_FCC_CMD_2_VALUE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "XMLVAR_INDICATOR_INFO_FCC_CWS_1_ACTIVE": {
+        "DatumName": b'L:XMLVAR_INDICATOR_INFO_FCC_CWS_1_ACTIVE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "XMLVAR_FCC_CWS_2_VALUE": {
+        "DatumName": b'L:XMLVAR_FCC_CWS_2_VALUE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+}
+
+
+
 microsoft_a320neo = {
+    "ap_1": {
+        "DatumName": b'L:INI_AP1_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_2": {
+        "DatumName": b'L:INI_AP2_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_athr": {
+        "DatumName": b'L:INI_ATHR_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_loc_mode": {
+        "DatumName": b'L:INI_MCU_LOC_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_exped_mode": {
+        "DatumName": b'L:A320_EXPEDITE_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_appr_mode": {
+        "DatumName": b'L:INI_MCU_LAND_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
     "fd1_sel": {
         "DatumName": b'L:INI_FD1_ON',
         "UnitsName": b'Bool',
@@ -358,4 +413,188 @@ microsoft_a320neo = {
         "UnitsName": b'Knots',
         "fEpsilon": 0.5,
     },
+    "eng1_anti_ice": {
+        "DatumName": b'L:INI_ENG1_ANTI_ICE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "eng2_anti_ice": {
+        "DatumName": b'L:INI_ENG2_ANTI_ICE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "wing_anti_ice": {
+        "DatumName": b'L:INI_WING_ANTI_ICE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "probe_heat": {
+        "DatumName": b'L:INI_PROBE_HEAT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+}
+
+microsoft_a321 = {
+    "ap_1": {
+        "DatumName": b'L:INI_AP1_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_2": {
+        "DatumName": b'L:INI_AP2_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_athr": {
+        "DatumName": b'L:INI_ATHR_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_loc_mode": {
+        "DatumName": b'L:INI_MCU_LOC_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_exped_mode": {
+        "DatumName": b'L:A320_EXPEDITE_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_appr_mode": {
+        "DatumName": b'L:INI_MCU_LAND_LIGHT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "fd1_sel": {
+        "DatumName": b'L:INI_FD1_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ls1_sel": {
+        "DatumName": b'L:INI_LS_CAPTAIN',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "ap_hdg": {
+        "DatumName": b'L:INI_HEADING_DIAL',
+        "UnitsName": b'Degrees',
+        "fEpsilon": 0.5,
+    },
+    "ap_spd": {
+        "DatumName": b'L:INI_Airspeed_Dial',
+        "UnitsName": b'Knots',
+        "fEpsilon": 0.5,
+    },
+    "ap_spd_mach": {
+        "DatumName": b'L:INI_Airspeed_Dial_Mach_knots',
+        "UnitsName": b'Knots',
+        "fEpsilon": 0.5,
+    },
+    "ap_spd_is_mach": {
+        "DatumName": b'L:INI_Airspeed_is_mach',
+        "UnitsName": b'Knots',
+        "fEpsilon": 0.5,
+    },
+    "eng1_anti_ice": {
+        "DatumName": b'L:INI_ENG1_ANTI_ICE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "eng2_anti_ice": {
+        "DatumName": b'L:INI_ENG2_ANTI_ICE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "wing_anti_ice": {
+        "DatumName": b'L:INI_WING_ANTI_ICE',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "probe_heat": {
+        "DatumName": b'L:INI_PROBE_HEAT',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+}
+
+microsoft_sf50 = {
+    "SF50_AUTOTHROTTLE_STATUS": {
+        "DatumName": b'L:SF50_AUTOTHROTTLE_STATUS',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "WTAP_GARMIN_APPROACH_MODE_ON": {
+        "DatumName": b'L:WTAP_GARMIN_APPROACH_MODE_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "WTAP_GARMIN_NAV_MODE_ON": {
+        "DatumName": b'L:WTAP_GARMIN_NAV_MODE_ON',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+
+}
+
+asobo_tbm930 = {
+    "LIGHTING_PANEL_LIGHT": {
+        "DatumName": b'LIGHT POTENTIOMETER:14',
+        "UnitsName": b'Percent',
+        "fEpsilon": 1,
+    },
+    "DEICE_PROPELLER_1": {
+        "DatumName": b'PROP DEICE SWITCH:1',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+
+}
+
+microsoft_pc12_ngx = {
+    "DEICE_PROPELLER_1": {
+        "DatumName": b'PROP DEICE SWITCH:1',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "DEICE_AIRFRAME_1": {
+        "DatumName": b'L:DEICE_AIRFRAME_1',
+        "UnitsName": b'Number',
+        "fEpsilon": 0.5,
+    }
+}
+asobo_bonanza_g36 = {
+    "DEICE_PROPELLER_1": {
+        "DatumName": b'L:DEICE_PROPELLER_1',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    }
+}
+
+gotfriends_patey_aviation_dracox = {
+    "SWITCHFLIRCAMERA": {
+        "DatumName": b'L:SWITCHFLIRCAMERA',
+        "UnitsName": b'Bool',
+        "fEpsilon": 0.5,
+    },
+    "SWITCHNOSELIGHTSELECTED": {
+        "DatumName": b'L:SWITCHNOSELIGHTSELECTED',
+        "UnitsName": b'Number',
+        "fEpsilon": 0.5,
+    },
+    "SWITCHTIPTAXILIGHTSELECTED": {
+        "DatumName": b'L:SWITCHTIPTAXILIGHTSELECTED',
+        "UnitsName": b'Number',
+        "fEpsilon": 0.5,
+    },
+    "SWITCHDNTAXILIGHTSELECTED": {
+        "DatumName": b'L:SWITCHDNTAXILIGHTSELECTED',
+        "UnitsName": b'Number',
+        "fEpsilon": 0.5,
+    },
+    "SWITCHNAVLIGHTSELECTED": {
+        "DatumName": b'L:SWITCHNAVLIGHTSELECTED',
+        "UnitsName": b'Number',
+        "fEpsilon": 0.5,
+    }
 }
