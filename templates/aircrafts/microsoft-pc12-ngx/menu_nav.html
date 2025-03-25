@@ -440,6 +440,23 @@
                     Altimeter:
                 </div>
                 <div class="col">
+                    <div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+                        <input id="baro-inhg-var2" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('baro_inhg_set2').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="29.92" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button onclick='if (document.getElementById("baro-inhg-var2").value <= 30000000 && document.getElementById("baro-inhg-var2").value >= 0 && document.getElementById("baro-inhg-var2").value != "") {triggerSimEventFromFieldBaroInHg ("KOHLSMAN_SET", "baro-inhg-var2");$("#baro-inhg-var2").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set Baro pressure in inhg" id="baro_inhg_set2">Set InHg</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+                        <input id="baro-hpa-var2" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('baro_hpa_set2').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="1013.25" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button onclick='if (document.getElementById("baro-hpa-var2").value <= 30000000 && document.getElementById("baro-hpa-var2").value >= 0 && document.getElementById("baro-hpa-var2").value != "") {triggerSimEventFromFieldBaroHpa ("KOHLSMAN_SET", "baro-hpa-var2");$("#baro-hpa-var2").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set Baro pressure in hpa" id="baro_hpa_set2">Set Hpa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
                     <button type="button"
                             onpointerdown="presshold(function(){ triggerSimEvent('KOHLSMAN_DEC',0,true) }, 400, 0.6, 90);"
                             onpointerup="releasehold();$(this).blur();" onpointerout="releasehold();$(this).blur();"
@@ -647,6 +664,24 @@
                 <div class="col align-self-center" style="max-width:88px; padding-right:0px">
                     Altimeter:
                 </div>
+                <div class="col">
+                        <div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+                            <input id="baro-inhg-var" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('baro_inhg_set').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="29.92" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button onclick='if (document.getElementById("baro-inhg-var").value <= 30000000 && document.getElementById("baro-inhg-var").value >= 0 && document.getElementById("baro-inhg-var").value != "") {triggerSimEventFromFieldBaroInHg ("KOHLSMAN_SET", "baro-inhg-var");$("#baro-inhg-var").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set Baro pressure in InHg" id="baro_inhg_set">Set inhg</button>
+                            </div>
+                        </div>
+                </div>
+                <div class="col">
+                    <div class="input-group sim-input-field" style="width:150px;margin-bottom:-2px;margin-left:-2px">
+                        <input id="baro-hpa-var" type="number" onkeydown = "if (event.keyCode == 13) document.getElementById('baro_hpa_set').click()" inputmode="numeric" pattern="[0-9]*" class="form-control" placeholder="1013.25" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button onclick='if (document.getElementById("baro-hpa-var").value <= 30000000 && document.getElementById("baro-hpa-var").value >= 0 && document.getElementById("baro-hpa-var").value != "") {triggerSimEventFromFieldBaroHpa ("KOHLSMAN_SET", "baro-hpa-var");$("#baro-hpa-var").val("");}; $(this).blur();' class="btn btn-warning" type="button" style="margin-top:0px;margin-bottom:0px;width:62px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set Baro pressure in hpa" id="baro_hpa_set">Set Hpa</button>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="col">
                     <button type="button"
                             onpointerdown="presshold(function(){ triggerSimEvent('KOHLSMAN_DEC',0,true) }, 400, 0.6, 90);"

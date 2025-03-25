@@ -1369,6 +1369,48 @@ function triggerSimEvent(eventToTrigger, valueToUse, hideAlert = false, eventTyp
     }
 }
 
+function triggerSimEventFromFieldBaroInHg(eventToTrigger, fieldToUse, messageToDisplay = null, eventType = null) {
+    // Get the field and the value in there
+    fieldToUse = "#" + fieldToUse
+    valueToUse = $(fieldToUse).val();
+    valueToUse = valueToUse * 541.8
+
+    // Pass it to the API
+    url_to_call = "/event/" + eventToTrigger + "/trigger";
+    $.post(url_to_call, {value_to_use: JSON.stringify(valueToUse), event_type: eventType});
+
+    // Clear the field so it can be repopulated with the placeholder
+    //$(fieldToUse).val("")
+
+    if (messageToDisplay) {
+        temporaryAlert('', messageToDisplay + " to " + valueToUse, "success")
+    }
+
+}
+
+function triggerSimEventFromFieldBaroHpa(eventToTrigger, fieldToUse, messageToDisplay = null, eventType = null) {
+    // Get the field and the value in there
+    fieldToUse = "#" + fieldToUse
+    valueToUse = $(fieldToUse).val();
+    valueToUse = valueToUse * 541.8 * 0.02952998057228
+
+    // Pass it to the API
+    url_to_call = "/event/" + eventToTrigger + "/trigger";
+    $.post(url_to_call, {value_to_use: JSON.stringify(valueToUse), event_type: eventType});
+
+    // Clear the field so it can be repopulated with the placeholder
+    //$(fieldToUse).val("")
+
+    if (messageToDisplay) {
+        temporaryAlert('', messageToDisplay + " to " + valueToUse, "success")
+    }
+
+}
+
+
+
+
+
 function triggerSimEventFromField(eventToTrigger, fieldToUse, messageToDisplay = null, eventType = null) {
     // Get the field and the value in there
     fieldToUse = "#" + fieldToUse
