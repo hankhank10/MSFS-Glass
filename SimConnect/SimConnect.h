@@ -8,20 +8,6 @@
 #ifndef _SIMCONNECT_H_
 #define _SIMCONNECT_H_
 
-// <ASOBO-MOD - GM - now in 64 bit
-#ifndef SIMCONNECT_H_NOMANIFEST
-#if _MSC_FULL_VER >= 140040130
-#if defined(_M_IX86) || defined(_M_X64)
-//#pragma comment(linker,"/manifestdependency:\"type='win32' " \
-//    "name='" "Microsoft.FlightSimulator.SimConnect" "' " \
-//    "version='" "" "' " \
-//    "processorArchitecture='amd64' " \
-//    "publicKeyToken='" "dd3546d27f3ecf37" "'\"")
-#endif // #if defined(_M_IX86) || defined(_M_X64)
-#endif // #if _MSC_FULL_VER >= 140040130
-#endif // #ifndef SIMCONNECT_H_NOMANIFEST
-// ASOBO-MOD/>
-
 #ifndef DWORD_MAX
 #define DWORD_MAX 0xFFFFFFFF
 #endif
@@ -126,9 +112,6 @@ SIMCONNECT_ENUM SIMCONNECT_RECV_ID
     SIMCONNECT_RECV_ID_EVENT_MULTIPLAYER_SESSION_ENDED,
     SIMCONNECT_RECV_ID_EVENT_RACE_END,
     SIMCONNECT_RECV_ID_EVENT_RACE_LAP,
-#ifdef ENABLE_SIMCONNECT_EXPERIMENTAL
-    SIMCONNECT_RECV_ID_PICK,
-#endif //ENABLE_SIMCONNECT_EXPERIMENTAL
     SIMCONNECT_RECV_ID_EVENT_EX1,
     SIMCONNECT_RECV_ID_FACILITY_DATA,
     SIMCONNECT_RECV_ID_FACILITY_DATA_END,
@@ -365,6 +348,7 @@ SIMCONNECT_ENUM SIMCONNECT_INPUT_EVENT_TYPE : DWORD
     SIMCONNECT_INPUT_EVENT_TYPE_STRING
 };
 
+
 SIMCONNECT_ENUM_FLAGS SIMCONNECT_VOR_FLAGS;            // flags for SIMCONNECT_RECV_ID_VOR_LIST 
     static const DWORD SIMCONNECT_RECV_ID_VOR_LIST_HAS_NAV_SIGNAL  = 0x00000001;   // Has Nav signal
     static const DWORD SIMCONNECT_RECV_ID_VOR_LIST_HAS_LOCALIZER   = 0x00000002;   // Has localizer
@@ -422,18 +406,6 @@ SIMCONNECT_ENUM_FLAGS SIMCONNECT_VIEW_SYSTEM_EVENT_DATA;                // dwDat
 SIMCONNECT_ENUM_FLAGS SIMCONNECT_SOUND_SYSTEM_EVENT_DATA;            // dwData contains these flags for the "Sound" System Event
     static const DWORD SIMCONNECT_SOUND_SYSTEM_EVENT_DATA_MASTER    = 0x00000001;      // Sound Master
 
-#ifdef ENABLE_SIMCONNECT_EXPERIMENTAL
-
-SIMCONNECT_ENUM_FLAGS SIMCONNECT_PICK_FLAGS
-{
-    SIMCONNECT_PICK_GROUND           = 0x01,    // pick ground/ pick result item is ground location
-    SIMCONNECT_PICK_AI               = 0x02,    // pick AI    / pick result item is AI, (dwSimObjectID is valid)
-    SIMCONNECT_PICK_SCENERY          = 0x04,    // pick scenery/ pick result item is scenery object (hSceneryObject is valid)
-    SIMCONNECT_PICK_ALL              = SIMCONNECT_PICK_SCENERY | SIMCONNECT_PICK_AI | SIMCONNECT_PICK_GROUND, // pick all / (not valid on pick result item)
-    SIMCONNECT_PICK_COORDSASPIXELS   = 0x08,
-};
-
-#endif //ENABLE_SIMCONNECT_EXPERIMENTAL
 
 //----------------------------------------------------------------------------
 //        User-defined enums
@@ -862,6 +834,7 @@ SIMCONNECT_REFSTRUCT SIMCONNECT_RECV_ENUMERATE_INPUT_EVENT_PARAMS : public SIMCO
 };
 
 
+
 SIMCONNECT_REFSTRUCT SIMCONNECT_VERSION_BASE_TYPE
 {
     unsigned short Major;
@@ -894,6 +867,7 @@ SIMCONNECT_REFSTRUCT SIMCONNECT_RECV_ENUMERATE_SIMOBJECT_AND_LIVERY_LIST : publi
 {
     SIMCONNECT_FIXEDTYPE_DATAV(SIMCONNECT_ENUMERATE_SIMOBJECT_LIVERY, rgData, dwArraySize, U1 /*member of UnmanagedType enum*/, SIMCONNECT_ENUMERATE_SIMOBJECT_LIVERY /*cli type*/);
 };
+
 
 #pragma pack(pop)
 

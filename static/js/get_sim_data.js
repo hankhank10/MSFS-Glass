@@ -8,6 +8,7 @@ let latitude;
 latitude = 0;
 let longitude;
 longitude = 0;
+let plane_pos;
 
 let nav1_active;
 let nav1_standby;
@@ -111,6 +112,7 @@ let eng_anti_ice;
 let structural_deice;
 
 let fltpln_arr;
+let fltpln_data;
 let gps_next_lat;
 let gps_next_lon;
 let gps_next_wp_arr = [[], []];
@@ -132,8 +134,6 @@ let btnhold;
 
 //General Data
 let current_aircraft_ui_friendly;
-
-
 
 
 function mapRefreshFix() {
@@ -969,6 +969,7 @@ function getSimulatorData() {
             heading_magnetic = data.PLANE_HEADING_DEGREES_MAGNETIC;
             latitude = data.LATITUDE;
             longitude = data.LONGITUDE;
+            plane_pos = [longitude, latitude];
 
             //Autopilot
             autopilot_master = data.AP_MASTER;
@@ -1043,10 +1044,11 @@ function getSimulatorData() {
             sim_rate = data.SIMULATION_RATE;
 
             //Flight Plan
-            fltpln_arr = data.FLT_PLN;
+            fltpln_arr = data.FLTPLN_ARR;
+            fltpln_data = data.FLTPLN_DATA;
             gps_next_lat = data.GPS_WP_NEXT_LAT;
             gps_next_lon = data.GPS_WP_NEXT_LON;
-            gps_next_wp_arr = (gps_next_lat === 0 && gps_next_lon === 0) ? [] : [[longitude, latitude], [gps_next_lon, gps_next_lat]];
+            gps_next_wp_arr = (gps_next_lat === 0 && gps_next_lon === 0) ? [] : [plane_pos, [gps_next_lon, gps_next_lat]];
 
             //Flight Controls
             gear = data.GEAR_POSITION;
@@ -1268,7 +1270,7 @@ function updateTrail() {
     }
 }
 
-// Update the trail on the map
+// Update the gpswp on the map
 function updateGPSWp() {
     if (map.getSource('gpswp')) {
         map.getSource('gpswp').setData({
@@ -1281,6 +1283,37 @@ function updateGPSWp() {
     }
 }
 
+// Update the flightplan on the map
+function updateFltpln() {
+    if (map.getSource('fltpln')) {
+        map.getSource('fltpln').setData({
+            type: 'Feature',
+            geometry: {
+                type: 'LineString',
+                coordinates: fltpln_arr
+            }
+        });
+    }
+    if (map.getSource('fltpln-labels')) {
+        const fltpln_labels = {
+            type: 'FeatureCollection',
+            features: fltpln_arr.map((coord, index) => ({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: coord
+                },
+                properties: {
+                    altitude: fltpln_data[index] ? fltpln_data[index][0] + ' FT' : '',
+                    waypoint: fltpln_data[index] ? fltpln_data[index][1] : '',
+                    instruction: fltpln_data[index] ? fltpln_data[index][2] : '',
+                    icon: fltpln_data[index] ? (fltpln_data[index][3] === 'A' ? 'airport': 'blue-triangle') : '',
+                }
+            }))
+        };
+        map.getSource('fltpln-labels').setData(fltpln_labels);
+    }
+}
 
 
 const highResLimit = 1000; // Keep the last 3000 points in full resolution (10 mins)
@@ -1349,7 +1382,21 @@ function updateMap() {
     }
 
     // GPS Next WP Polyline Update
-    if (gps_next_wp_arr[1] != null) {
+    if (fltpln_arr != null && fltpln_arr[1] != null) {
+        updateFltpln();
+        const fltpln_points = turf.featureCollection(
+            fltpln_arr.map(coord => turf.point(coord))
+        );
+
+        const closest_point = turf.nearestPoint(
+            turf.point(plane_pos),
+            fltpln_points
+        );
+
+        gps_next_wp_arr = [plane_pos, closest_point.geometry.coordinates];
+        updateGPSWp()
+
+    } else if (gps_next_wp_arr != null && gps_next_wp_arr[1] != null) {
         updateGPSWp();
     }
 }
@@ -1444,29 +1491,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function updatePolylineFltPln() {
-    fltpln.setLatLngs(fltpln_arr);
-}
-
-function loadFltPln() {
-    loadfltpln_switch = (loadfltpln_switch + 1) % 2;
-
-    if (loadfltpln_switch === 1) {
-        temporaryAlert('', "Loading flight plan.", "success", 2500);
-        $("#FltPlnText").text("Hide Flight Plan");
-        $("#FltPlnButton").removeClass("btn-danger").addClass("btn-primary");
-        url_to_call = "/fltpln";
-        $.post(url_to_call);
-        setTimeout(updatePolylineFltPln, 2500);
-        gpswp.setStyle({opacity: 1.0});
-    } else {
-        $("#FltPlnText").text("Load Flight Plan");
-        $("#FltPlnButton").removeClass("btn-primary").addClass("btn-danger");
-        fltpln.setLatLngs([]);
-        gpswp.setStyle({opacity: 0});
-    }
-
-}
 
 function presshold(action, start, speedup, minspeed) {
 

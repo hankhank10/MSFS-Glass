@@ -18,13 +18,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-     <!-- Maplibre GL JS -->
+    <!-- Maplibre GL JS -->
     <script src="https://loc8.us/maplibre-gl-vector-text-protocol/dist/maplibre-gl-vector-text-protocol.js"
             integrity="sha512-cVq67v+ih8xs11ivbwyyXStBtWqG2cOLgjM+gZuKnt9GfS1//XUrdL4b3sL8nOMhzmXv6AE0ZapM81tz8LXWVg=="
             crossorigin="anonymous"></script>
 
-    <script src="https://unpkg.com/maplibre-gl@5.2.0/dist/maplibre-gl.js" integrity="sha512-d4ir/AWapqCkIJ9yf6A3VISfbqj2JLbKR23FdG/TynXcwgvvIhRIqnGKobz9dmVcERNSQ4UpUY+JF/kXsWkciw==" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.2.0/dist/maplibre-gl.css" integrity="sha512-DBNed2oEjOrfIRj8Czuzs7padWawLWbA64OoDekn8gs2a3J6WOaR5xXfnFgaxKGpxIuSn/rAo/PsgOgO6PZ/vA==" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.3.0/dist/maplibre-gl.min.js"
+            integrity="sha512-zzQ8Ii8vLkc0SdhaXNaV6dBz6NzSSOSR6AA08lrEMn2fMTap1nC07La39XLvi1OEVAlkCjH3DQloZWgIIasgCA=="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.3.0/dist/maplibre-gl.min.css"
+          integrity="sha512-NSH/cifMPaXfWYBxJtPx+Oun1RjmbTZf3K1Bg2CsF7LLwvO+MEQZlGN4fJKkbYEPSpwRGvYEKu5DRPWBnawsSQ=="
+          crossorigin="anonymous">
 
     <!-- Bootstrap Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -35,7 +39,7 @@
             integrity="sha512-KWZQo2EiUMmEMrjJUUZoWP8k/mL57L5PPjQF23Vv77jGidQK8WPsX/RoQ7uI0cnjDDCU8ZXa1NG24HkLOqI9sg=="
             crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"
             integrity="sha256-1XhsCK5OmIs3qlwm3jKwUewuRoD2AvKpjKO8SzKONDI=" crossorigin="anonymous"></script>
 
     <!-- Set script root-->
@@ -122,7 +126,7 @@
 
 <!-- Custom JS imports -->
 <script src="/static/js/get_sim_data.js"></script>
-{% if not aircraft_dir.startswith('default')  %}
+{% if not aircraft_dir.startswith('default') %}
     <script src="/static/js/aircrafts/{{ aircraft_dir }}.js"></script>
 {% endif %}
 <script src="/static/js/glass_landscape.js"></script>
@@ -221,7 +225,7 @@
 
     let followPlane = 1;
 
-    function initializeMap(map) {
+    async function initializeMap(map) {
         // Terrain and hillshading
         map.addSource("terrain", {
             type: 'raster-dem',
@@ -313,6 +317,70 @@
                 'line-color': '#c842f5',
                 'line-width': 3,
                 'line-dasharray': [4, 2] // Dashed pattern: 4px dash, 2px gap
+            }
+        });
+        map.addSource('fltpln', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'LineString',
+                    coordinates: []
+                }
+            }
+        });
+
+        map.addLayer({
+            id: 'fltpln-line',
+            type: 'line',
+            source: 'fltpln',
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'butt',
+                visibility: 'none'
+            },
+            paint: {
+                'line-color': '#ff54d7',
+                'line-width': 3,
+            }
+        });
+
+        blueTriangleImg = await map.loadImage('/static/img/blue-triangle.png');
+        map.addImage('blue-triangle', blueTriangleImg.data);
+
+        airportImg = await map.loadImage('/static/img/airport.png');
+        map.addImage('airport', airportImg.data);
+
+        map.addSource('fltpln-labels', {
+            type: 'geojson',
+            data: {
+                type: 'FeatureCollection',
+                features: []
+            }
+        });
+
+        map.addLayer({
+            id: 'fltpln-labels',
+            type: 'symbol',
+            source: 'fltpln-labels',
+            layout: {
+                'icon-image': ['get', 'icon'],
+                'icon-size': 0.25,
+                'icon-offset': [-1, 0],
+                'text-field': [
+                    'format',
+                    ['get', 'waypoint'], {'font-scale': 1.0},
+                    '\n', {},
+                    ['get', 'altitude'], {'font-scale': 0.8}
+                ],
+                'text-size': 14,
+                'text-offset': [1, 0], // Move text slightly to the right of the point
+                'text-anchor': 'left',
+                'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'], // Ensure font compatibility
+                visibility: 'none'
+            },
+            paint: {
+                'text-color': '#ff54d7'
             }
         });
 
@@ -507,14 +575,21 @@
             </button>`;
 
 
-            this._container.addEventListener('click', () => {
+             this._container.addEventListener('click', () => {
                 const button = this._container.querySelector('button');
-                const visibility = map.getLayoutProperty('gpswp-line', 'visibility');
+                const visibility = map.getLayoutProperty('fltpln-line', 'visibility');
                 if (visibility === 'visible') {
+                    fltpln_arr = []
+                    map.setLayoutProperty('fltpln-line', 'visibility', 'none');
+                    map.setLayoutProperty('fltpln-labels', 'visibility', 'none');
                     map.setLayoutProperty('gpswp-line', 'visibility', 'none');
                     button.classList.add('maplibregl-ctrl-route');
                     button.classList.remove('maplibregl-ctrl-route-enabled');
+                    fltpln_arr = []
                 } else {
+                    $.post("/fltpln");
+                    map.setLayoutProperty('fltpln-line', 'visibility', 'visible');
+                    map.setLayoutProperty('fltpln-labels', 'visibility', 'visible');
                     map.setLayoutProperty('gpswp-line', 'visibility', 'visible');
                     button.classList.add('maplibregl-ctrl-route-enabled');
                     button.classList.remove('maplibregl-route-radar');
