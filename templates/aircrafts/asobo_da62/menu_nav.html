@@ -679,6 +679,56 @@
             </div>
         </div>
 
+        
+        <!-- Baro Pressure Direct -->
+        <div class="col" style="margin-top:20px; max-width:382px; min-width:320px;">
+            <div class="lead">Baro pressure</div>
+
+            <!-- baro-inhg-var -->
+            <div class="row" style="margin-bottom:10px; margin-top:10px">
+                <div class="col">
+                    <div class="input-group" style="width:278px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-body" id="inputGroup-sizing-default"
+                                    style="background-color:#B3B6B8; border-color:#B3B6B8; width:150px;border-bottom-right-radius:0;border-top-right-radius:0;">Inhg</span>
+                        </div>
+                        <input lang="en-US" class="form-control" type="numeric"
+                                onkeydown="if (event.keyCode == 13) document.getElementById('baro_inhg_set').click()"
+                                inputmode="numeric" pattern="[0-9]*" id="baro-inhg-var" aria-label="Baro pressure"
+                                aria-describedby="baro-inhg-var" placeholder="29.92">
+                        <div class="input-group-append">
+                            <button onclick='if (document.getElementById("baro-inhg-var").value <= 40 && document.getElementById("baro-inhg-var").value >= 0 && document.getElementById("baro-inhg-var").value != "") {triggerSimEventFromFieldBaroInHg ("KOHLSMAN_SET", "baro-inhg-var"); $("#baro-inhg-var").val("");}; $(this).blur();'
+                                    class="btn btn-warning" type="button" id="baro_inhg_set"
+                                    style="margin-top:0px;margin-bottom:0px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set barometric pressure in inHg">Set
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- baro-hpa  -->
+            <div class="row" style="margin-bottom:10px; margin-top:10px">
+                <div class="col">
+                    <div class="input-group" style="width:278px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-body" id="inputGroup-sizing-default"
+                                    style="background-color:#B3B6B8; border-color:#B3B6B8; width:150px;border-bottom-right-radius:0;border-top-right-radius:0;">Hpa</span>
+                        </div>
+                        <input lang="en-US" class="form-control" type="numeric"
+                                onkeydown="if (event.keyCode == 13) document.getElementById('baro_hpa_set').click()"
+                                inputmode="numeric" pattern="[0-9]*" id="baro-hpa-var" aria-label="Baro pressure"
+                                aria-describedby="baro-hpa-var" placeholder="1013">
+                        <div class="input-group-append">
+                            <button onclick='if (document.getElementById("baro-hpa-var").value <= 1100 && document.getElementById("baro-hpa-var").value >= 900 && document.getElementById("baro-hpa-var").value != "") {triggerSimEventFromFieldBaroHpa ("KOHLSMAN_SET", "baro-hpa-var"); $("#baro-hpa-var").val("");}; $(this).blur();'
+                                    class="btn btn-warning" type="button" id="baro_hpa_set"
+                                    style="margin-top:0px;margin-bottom:0px;border-bottom-left-radius: 0; border-top-left-radius: 0;" title="Set barometric pressure in Hpa">Set
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- General Direct Entry-->
         <div class="col" style="margin-top:20px">
             <div class="lead">General</div>
