@@ -5,6 +5,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 
 from flask import Flask, jsonify, render_template, request, abort, redirect
+from flask_cors import CORS
 
 import subscribe_input_variables
 import subscribe_variables
@@ -30,14 +31,17 @@ logging.getLogger("SimConnect").setLevel(logging.DEBUG if config['CONFIG']['logl
 if "logfile" in config['CONFIG'].keys():
     fh = logging.FileHandler(config['CONFIG']['logfile'])
     fh.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s - %(filename)s - %(threadName)s - %(funcName)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(
+        "%(asctime)s - %(filename)s - %(threadName)s - %(funcName)s - %(levelname)s - %(message)s")
     fh.setFormatter(formatter)
     LOG.addHandler(fh)
+
 
 def get_ip_address():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     return s.getsockname()[0]
+
 
 try:
     LOG.info(get_ip_address())
@@ -123,8 +127,9 @@ def flask_thread_func(threadname):
                          ["Panel", "panel"], ["Other", "other"]],
         "asobo_vl3": [["NAV", "nav"], ["COM", "com"], ["G3X", "g3x"],
                       ["Other", "other"]],
-        "gotfriends_patey_aviation_dracox": [["NAV", "nav"], ["COM", "com"], ["AP", "ap"], ["G3X", "g3x"], ["Panel", "panel"],
-                       ["Other", "other"]],
+        "gotfriends_patey_aviation_dracox": [["NAV", "nav"], ["COM", "com"], ["AP", "ap"], ["G3X", "g3x"],
+                                             ["Panel", "panel"],
+                                             ["Other", "other"]],
         "asobo_xcub": [["NAV", "nav"], ["COM", "com"], ["AP", "ap"], ["G3X", "g3x"], ["Panel", "panel"],
                        ["Other", "other"]],
         "asobo_nxcub": [["NAV", "nav"], ["COM", "com"], ["AP", "ap"], ["G3X", "g3x"], ["Panel", "panel"],
@@ -160,6 +165,7 @@ def flask_thread_func(threadname):
         app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
     else:
         app = Flask(__name__)
+    CORS(app)
 
     flask_log = logging.getLogger('werkzeug')
     flask_log.disabled = True
@@ -306,7 +312,9 @@ def flask_thread_func(threadname):
             elif event_name == "AP_ALT_VAR_INC_1000":
                 sm.send_event(sm.map_to_sim_event("AP_ALT_VAR_SET_ENGLISH"),
                               max(0, int(sm.subscribed_data['ap_altitude_lock_var'] + 1000)))
-            elif event_name in ("AS530_CLR", "AS430_CLR","AS3X_TOUCH_1_KNOB_INNER_BUTTON_L", "AS3X_TOUCH_1_KNOB_INNER_BUTTON_R", "AS3X_TOUCH_2_KNOB_INNER_BUTTON_L", "AS3X_TOUCH_2_KNOB_INNER_BUTTON_R"):
+            elif event_name in (
+                    "AS530_CLR", "AS430_CLR", "AS3X_TOUCH_1_KNOB_INNER_BUTTON_L", "AS3X_TOUCH_1_KNOB_INNER_BUTTON_R",
+                    "AS3X_TOUCH_2_KNOB_INNER_BUTTON_L", "AS3X_TOUCH_2_KNOB_INNER_BUTTON_R"):
                 sm.set_input_event(event_name, value_to_use)
             else:
                 sm.set_input_event(event_name, float(value_to_use))
@@ -344,7 +352,7 @@ def flask_thread_func(threadname):
     # Load Flight Plan
     fltpln = []
 
-    @app.route('/fltpln', methods=["POST"])
+    @app.route('/fltpln', methods=["POST", "GET"])
     def load_fltpln():
         # Load Settings - MSFS Install Location
         try:
@@ -407,14 +415,23 @@ def flask_thread_func(threadname):
 
                 # Get LatLong for Waypoitns
                 fltpln_arr = []
+                fltpln_data = []
                 wpts_processed = 0
                 for line in fltpln_lines:
                     if wpts_processed < no_wpts:
                         if line.find("Waypoint.") >= 0:
                             line_elements = line.split(",")
-                            fltpln_wp = [latlong_dec_convert(
-                                line_elements[5].strip()), latlong_dec_convert(line_elements[6].strip())]
+                            fltpln_wp = [
+                                latlong_dec_convert(line_elements[6].strip()),
+                                latlong_dec_convert(line_elements[5].strip())]
+                            fltpln_text = [
+                                float(line_elements[7].strip()),
+                                line_elements[1].strip(),
+                                line_elements[3].strip(),
+                            line_elements[4].strip()
+                            ]
                             fltpln_arr.append(fltpln_wp)
+                            fltpln_data.append(fltpln_text)
                             wpts_processed = wpts_processed + 1
                     else:
                         break
@@ -422,19 +439,30 @@ def flask_thread_func(threadname):
             else:
                 # For IFR Flights
                 fltpln_arr = []
+                fltpln_data = []
                 wpt_id = False
                 for line in fltpln_lines:
                     if line.find("waypoint.") >= 0:
                         line_elements = line.split(",")
-                        fltpln_wp = [latlong_dec_convert(
-                            line_elements[5].strip()), latlong_dec_convert(line_elements[6].strip())]
+                        fltpln_wp = [
+                            latlong_dec_convert(line_elements[6].strip()),
+                            latlong_dec_convert(line_elements[5].strip())
+                        ]
+                        fltpln_text = [
+                            float(line_elements[7].strip()),
+                            line_elements[1].strip(),
+                            line_elements[3].strip(),
+                            line_elements[4].strip()
+                        ]
                         fltpln_arr.append(fltpln_wp)
+                        fltpln_data.append(fltpln_text)
                         wpt_id = True
                     else:
                         if wpt_id == True:
                             break
 
-            ui_friendly_dictionary["FLT_PLN"] = fltpln_arr
+            ui_friendly_dictionary["FLTPLN_ARR"] = fltpln_arr
+            ui_friendly_dictionary["FLTPLN_DATA"] = fltpln_data
 
             success = "Flight plan loaded"
 
@@ -554,15 +582,17 @@ def simconnect_thread_func(threadname):
                 ui_friendly_dictionary[var.upper()] = round(sm.subscribed_data[var], 6)
 
             elif var in (
-            "plane_heading_degrees_magnetic", "heading", "nav1_standby", "nav1_active", "nav2_standby", "nav2_active"):
+                    "plane_heading_degrees_magnetic", "heading", "nav1_standby", "nav1_active", "nav2_standby",
+                    "nav2_active"):
                 ui_friendly_dictionary[var.upper()] = round(sm.subscribed_data[var], 2)
 
             elif var in ("com1_standby", "com1_active", "com2_standby", "com2_active"):
                 ui_friendly_dictionary[var.upper()] = round(sm.subscribed_data[var], 3)
 
             elif var in (
-            "altitude", "total_weight", "nav1_obs", "nav2_obs", "adf_card", "airspeed_indicated", "ap_heading_lock_dir",
-            "ap_altitude_lock_var", "ap_airspeed_hold_var"):
+                    "altitude", "total_weight", "nav1_obs", "nav2_obs", "adf_card", "airspeed_indicated",
+                    "ap_heading_lock_dir",
+                    "ap_altitude_lock_var", "ap_airspeed_hold_var"):
                 ui_friendly_dictionary[var.upper()] = round(sm.subscribed_data[var])
 
             elif var in ("flaps_handle_percent", "spoilers_handle_position"):
