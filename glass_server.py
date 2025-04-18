@@ -430,7 +430,7 @@ def flask_thread_func(threadname):
                                 float(line_elements[7].strip()),
                                 line_elements[1].strip(),
                                 line_elements[3].strip(),
-                            line_elements[4].strip()
+                                line_elements[4].strip()
                             ]
                             fltpln_arr.append(fltpln_wp)
                             fltpln_data.append(fltpln_text)
