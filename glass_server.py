@@ -21,6 +21,8 @@ import os
 config = configparser.ConfigParser()
 config_file = "config.ini"
 config.read(config_file)
+if 'CONFIG' not in config:
+    raise OSError('config.ini is missing or invalid')
 
 logging.basicConfig(
     format="%(asctime)s - %(filename)s - %(threadName)s - %(funcName)s - %(levelname)s - %(message)s",
