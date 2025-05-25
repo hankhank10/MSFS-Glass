@@ -19,9 +19,14 @@ $(document).ready(function () {
     $('.nav-link').click(function () {
         if ($(this).hasClass('active')) {
             $(this).removeClass('active'); // Deselect if already active
+            document.title = "MSFS Glass"; // Reset title to default
         } else {
             $('.nav-link.active').removeClass('active'); // Remove active from other links
             $(this).addClass('active'); // Activate clicked link
+            
+            // Update the page title with the name of the selected tab
+            const tabName = $(this).text().trim();
+            document.title = "MSFS Glass - " + tabName;
         }
     });
 });
