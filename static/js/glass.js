@@ -26,7 +26,7 @@ $(document).ready(function () {
             
             // Update the page title with the name of the selected tab
             const tabName = $(this).text().trim();
-            document.title = "MSFS Glass - " + tabName;
+            document.title = tabName + " - MSFS Glass";
         }
     });
 });
